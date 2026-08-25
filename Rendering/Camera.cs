@@ -1,4 +1,5 @@
 using OpenTK.Mathematics;
+using TheReachScreensaver.Diagnostics;
 using TheReachScreensaver.Display;
 using TheReachScreensaver.Journey.Coordinates;
 using Vector3d = TheReachScreensaver.Journey.Coordinates.Vector3d;
@@ -7,6 +8,7 @@ namespace TheReachScreensaver.Rendering;
 
 internal sealed class Camera
 {
+    private static bool _loggedFirstProjection;
     /// <summary>Authoritative camera position in AU (heliocentric).</summary>
     public Vector3d WorldPosition { get; set; }
 
@@ -52,10 +54,26 @@ internal sealed class Camera
         float top = (anchorY - region.Top) * worldPerPixel;
         float bottom = (anchorY - region.Bottom) * worldPerPixel;
 
-        if (MathF.Abs(right - left) < 1e-6f)
-            right = left + 1e-4f;
-        if (MathF.Abs(top - bottom) < 1e-6f)
-            bottom = top - 1e-4f;
+        if (right <= left)
+        {
+            var minimumSpan = MathF.Max(MathF.Abs(worldPerPixel), float.Epsilon);
+            right = left + minimumSpan;
+        }
+
+        if (top <= bottom)
+        {
+            var minimumSpan = MathF.Max(MathF.Abs(worldPerPixel), float.Epsilon);
+            bottom = top - minimumSpan;
+        }
+
+        if (!_loggedFirstProjection)
+        {
+            _loggedFirstProjection = true;
+            Log.Info(
+                $"ProjectionForRegion: NearPlane={NearPlane:E3}, worldPerPixel={worldPerPixel:E3}, " +
+                $"region={region.Width}x{region.Height}, left={left:E3}, right={right:E3}, " +
+                $"bottom={bottom:E3}, top={top:E3}, spanX={right - left:E3}, spanY={top - bottom:E3}.");
+        }
 
         return Matrix4.CreatePerspectiveOffCenter(left, right, bottom, top, NearPlane, FarPlane);
     }
