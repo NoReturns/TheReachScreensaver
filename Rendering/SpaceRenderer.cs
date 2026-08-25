@@ -18,6 +18,9 @@ internal sealed class SpaceRenderer : IDisposable
     private float _referenceHeight = 720f;
     private int _framebufferWidth;
     private int _framebufferHeight;
+    private Vector3 _starfieldCameraPosition = Vector3.Zero;
+
+    private const float StarfieldVisualSpeed = 3.5f;
 
     public Camera Camera { get; } = new();
     public float ReferenceHeight => _referenceHeight;
@@ -64,6 +67,16 @@ internal sealed class SpaceRenderer : IDisposable
         }
     }
 
+    public void AdvanceStarfield(double deltaSeconds)
+    {
+        if (deltaSeconds <= 0)
+            return;
+
+        var direction = Camera.Forward;
+        _starfieldCameraPosition += direction * StarfieldVisualSpeed * (float)deltaSeconds;
+        _starfieldCameraPosition = WrapStarfieldPosition(_starfieldCameraPosition);
+    }
+
     public void Draw(JourneyController journey)
     {
         GL.Viewport(0, 0, _framebufferWidth, _framebufferHeight);
@@ -71,6 +84,10 @@ internal sealed class SpaceRenderer : IDisposable
         GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
         var view = Camera.ViewMatrix;
+        var starView = Matrix4.LookAt(
+            _starfieldCameraPosition,
+            _starfieldCameraPosition + Camera.Forward,
+            Camera.WorldUp);
 
         foreach (var pane in _panes)
         {
@@ -80,13 +97,14 @@ internal sealed class SpaceRenderer : IDisposable
 
             var projection = Camera.ProjectionForRegion(pane.VirtualRect, _anchorX, _anchorY, _referenceHeight);
             var viewProjection = view * projection;
+            var starViewProjection = starView * projection;
 
             GL.Disable(EnableCap.DepthTest);
             GL.DepthMask(false);
             GL.Enable(EnableCap.Blend);
             GL.BlendFunc(BlendingFactor.SrcAlpha, BlendingFactor.One);
             GL.Enable(EnableCap.ProgramPointSize);
-            _stars.Draw(Camera, viewProjection, _referenceHeight);
+            _stars.Draw(_starfieldCameraPosition, starViewProjection, _referenceHeight);
 
             _planets.Draw(journey.Bodies, Camera, view, projection, journey.Time, _referenceHeight);
 
@@ -156,4 +174,16 @@ internal sealed class SpaceRenderer : IDisposable
     }
 
     private readonly record struct MonitorPane(int X, int Y, int Width, int Height, PixelRect VirtualRect);
+
+    private static Vector3 WrapStarfieldPosition(Vector3 position)
+    {
+        var wrap = StarfieldRenderer.WrapSize;
+        return new Vector3(
+            WrapComponent(position.X, wrap.X),
+            WrapComponent(position.Y, wrap.Y),
+            WrapComponent(position.Z, wrap.Z));
+    }
+
+    private static float WrapComponent(float value, float size) =>
+        size <= 0f ? value : value - size * MathF.Floor(value / size + 0.5f);
 }

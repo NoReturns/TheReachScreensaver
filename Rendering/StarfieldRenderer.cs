@@ -54,11 +54,11 @@ internal sealed class StarfieldRenderer : IDisposable
         return new StarfieldRenderer(vao, vbo, shader);
     }
 
-    public void Draw(Camera camera, Matrix4 viewProjection, float framebufferHeight)
+    public void Draw(Vector3 cameraPosition, Matrix4 viewProjection, float framebufferHeight)
     {
         _shader.Use();
         GL.UniformMatrix4(_viewProjectionLocation, transpose: true, ref viewProjection);
-        GL.Uniform3(_cameraPositionLocation, camera.Position);
+        GL.Uniform3(_cameraPositionLocation, cameraPosition);
         GL.Uniform3(_wrapSizeLocation, WrapSize);
 
         var pixelScale = MathF.Max(framebufferHeight * 0.085f, 42f);

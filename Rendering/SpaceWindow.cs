@@ -184,6 +184,7 @@ internal sealed class SpaceWindow : GameWindow
         var dt = Math.Clamp(args.Time, 0.0, 0.1);
         _journey.Advance(dt);
         _journey.Apply(_renderer!.Camera, dt, smoothLook: true);
+        _renderer.AdvanceStarfield(dt);
         _state.JourneySeconds = _journey.Time;
         _timeSinceSave += dt;
         if (_timeSinceSave >= SaveIntervalSeconds)
