@@ -2,6 +2,7 @@ using OpenTK.Mathematics;
 using TheReachScreensaver.Diagnostics;
 using TheReachScreensaver.Journey.Coordinates;
 using TheReachScreensaver.Rendering;
+using Vector3d = TheReachScreensaver.Journey.Coordinates.Vector3d;
 
 namespace TheReachScreensaver.Journey;
 
@@ -10,6 +11,8 @@ internal sealed class JourneyController
     public const double DurationSeconds = 1800.0;
     public const double FadeInSeconds = 3.5;
     public const double FadeOutSeconds = 4.0;
+    private const double StartupEarthHoldEnd = 6.0;
+    private const double StartupEarthBlendEnd = 16.0;
 
     private readonly JourneyPath _path = new();
     private readonly List<CelestialBody> _bodies;
@@ -81,7 +84,7 @@ internal sealed class JourneyController
     public void Apply(Camera camera, double deltaSeconds, bool smoothLook)
     {
         var (position, tangent) = _path.Evaluate(Time);
-        var look = tangent.LengthSquared > 1e-16 ? tangent.Normalized().ToVector3() : -Vector3.UnitZ;
+        var look = DesiredLook(position, tangent, Time);
 
         if (!_lookInitialized || !smoothLook)
         {
@@ -152,8 +155,32 @@ internal sealed class JourneyController
 
     private void SnapLook()
     {
-        var (_, tangent) = _path.Evaluate(Time);
-        _smoothedLook = tangent.LengthSquared > 1e-16 ? tangent.Normalized().ToVector3() : -Vector3.UnitZ;
+        var (position, tangent) = _path.Evaluate(Time);
+        _smoothedLook = DesiredLook(position, tangent, Time);
         _lookInitialized = true;
+    }
+
+    private Vector3 DesiredLook(Vector3d position, Vector3d tangent, double time)
+    {
+        var pathLook = tangent.LengthSquared > 1e-16 ? tangent.Normalized().ToVector3() : -Vector3.UnitZ;
+        if (time >= StartupEarthBlendEnd)
+            return pathLook;
+
+        var toEarth = (SolarSystem.EarthHeliocentric - position).ToVector3();
+        if (toEarth.LengthSquared < 1e-12f)
+            return pathLook;
+
+        var earthLook = Vector3.Normalize(toEarth);
+        if (time <= StartupEarthHoldEnd)
+            return earthLook;
+
+        var blendT = (time - StartupEarthHoldEnd) / (StartupEarthBlendEnd - StartupEarthHoldEnd);
+        blendT = Math.Clamp(blendT, 0, 1);
+        var blend = blendT * blendT * (3 - 2 * blendT);
+        var blended = Vector3.Lerp(earthLook, pathLook, (float)blend);
+        if (blended.LengthSquared < 1e-12f)
+            return blend < 0.5 ? earthLook : pathLook;
+
+        return Vector3.Normalize(blended);
     }
 }
