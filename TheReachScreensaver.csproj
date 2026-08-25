@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <RootNamespace>TheReachScreensaver</RootNamespace>
+    <AssemblyName>TheReachScreensaver</AssemblyName>
+    <Version>0.3.0</Version>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(RuntimeIdentifier)' == 'win-x64'">
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>true</SelfContained>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="OpenTK" Version="4.9.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Shaders\Stars.vert" LogicalName="TheReachScreensaver.Shaders.Stars.vert" />
+    <EmbeddedResource Include="Shaders\Stars.frag" LogicalName="TheReachScreensaver.Shaders.Stars.frag" />
+    <EmbeddedResource Include="Shaders\Planet.vert" LogicalName="TheReachScreensaver.Shaders.Planet.vert" />
+    <EmbeddedResource Include="Shaders\Planet.frag" LogicalName="TheReachScreensaver.Shaders.Planet.frag" />
+    <EmbeddedResource Include="Shaders\BodyPoint.vert" LogicalName="TheReachScreensaver.Shaders.BodyPoint.vert" />
+    <EmbeddedResource Include="Shaders\BodyPoint.frag" LogicalName="TheReachScreensaver.Shaders.BodyPoint.frag" />
+    <EmbeddedResource Include="Shaders\Ring.vert" LogicalName="TheReachScreensaver.Shaders.Ring.vert" />
+    <EmbeddedResource Include="Shaders\Ring.frag" LogicalName="TheReachScreensaver.Shaders.Ring.frag" />
+    <EmbeddedResource Include="Shaders\Fade.vert" LogicalName="TheReachScreensaver.Shaders.Fade.vert" />
+    <EmbeddedResource Include="Shaders\Fade.frag" LogicalName="TheReachScreensaver.Shaders.Fade.frag" />
+  </ItemGroup>
+
+  <Target Name="CopyScreensaverExtension" AfterTargets="Publish" Condition="'$(RuntimeIdentifier)' == 'win-x64'">
+    <Copy SourceFiles="$(PublishDir)$(AssemblyName).exe" DestinationFiles="$(PublishDir)$(AssemblyName).scr" />
+  </Target>
+</Project>
