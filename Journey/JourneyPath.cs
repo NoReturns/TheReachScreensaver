@@ -14,6 +14,9 @@ internal sealed class JourneyPath
 
     public (Vector3d Position, Vector3d Tangent) Evaluate(double journeySeconds)
     {
+        if (!double.IsFinite(journeySeconds))
+            journeySeconds = 0;
+
         var t = journeySeconds;
         var i = 1;
         while (i < _points.Length - 2 && t > _points[i + 1].Time)
@@ -24,9 +27,21 @@ internal sealed class JourneyPath
         var span = Math.Max(b.Time - a.Time, 0.0001);
         var u = Math.Clamp((t - a.Time) / span, 0, 1);
 
-        return (
-            CatmullRom(_points[i - 1].Position, a.Position, b.Position, _points[i + 2].Position, u),
-            CatmullRomTangent(_points[i - 1].Position, a.Position, b.Position, _points[i + 2].Position, u));
+        var p0 = _points[i - 1].Position;
+        var p1 = a.Position;
+        var p2 = b.Position;
+        var p3 = _points[i + 2].Position;
+        var segmentFallback = p2 - p1;
+
+        var position = CentripetalCatmullRom(p0, p1, p2, p3, u);
+        if (!IsFinite(position))
+            position = Vector3d.Lerp(p1, p2, u);
+
+        var tangent = CentripetalCatmullRomTangent(p0, p1, p2, p3, u, segmentFallback);
+        if (!IsFinite(tangent) || tangent.LengthSquared < 1e-30)
+            tangent = segmentFallback;
+
+        return (position, tangent);
     }
 
     private static Waypoint[] BuildWaypoints()
@@ -125,25 +140,87 @@ internal sealed class JourneyPath
 
     private static Vector3d Lerp(Vector3d a, Vector3d b, double t) => Vector3d.Lerp(a, b, t);
 
-    private static Vector3d CatmullRom(Vector3d p0, Vector3d p1, Vector3d p2, Vector3d p3, double t)
+    private const double CentripetalAlpha = 0.5;
+    private const double DivisionEpsilon = 1e-15;
+    private const double TangentStep = 1e-4;
+
+    private static double CentripetalKnotDelta(Vector3d from, Vector3d to)
     {
-        var t2 = t * t;
-        var t3 = t2 * t;
-        return (
-            2 * p1 +
-            (-p0 + p2) * t +
-            (2 * p0 - 5 * p1 + 4 * p2 - p3) * t2 +
-            (-p0 + 3 * p1 - 3 * p2 + p3) * t3) * 0.5;
+        var distance = (to - from).Length;
+        if (distance < DivisionEpsilon)
+            return DivisionEpsilon;
+        return Math.Pow(distance, CentripetalAlpha);
     }
 
-    private static Vector3d CatmullRomTangent(Vector3d p0, Vector3d p1, Vector3d p2, Vector3d p3, double t)
+    private static double SafeDivide(double numerator, double denominator)
     {
-        var t2 = t * t;
-        return (
-            (-p0 + p2) +
-            2 * (2 * p0 - 5 * p1 + 4 * p2 - p3) * t +
-            3 * (-p0 + 3 * p1 - 3 * p2 + p3) * t2) * 0.5;
+        if (Math.Abs(denominator) < DivisionEpsilon)
+            return 0;
+        var value = numerator / denominator;
+        return double.IsFinite(value) ? value : 0;
     }
+
+    private static (double T0, double T1, double T2, double T3) CentripetalKnots(
+        Vector3d p0,
+        Vector3d p1,
+        Vector3d p2,
+        Vector3d p3)
+    {
+        var t0 = 0.0;
+        var t1 = t0 + CentripetalKnotDelta(p0, p1);
+        var t2 = t1 + CentripetalKnotDelta(p1, p2);
+        var t3 = t2 + CentripetalKnotDelta(p2, p3);
+        return (t0, t1, t2, t3);
+    }
+
+    private static Vector3d CentripetalCatmullRom(Vector3d p0, Vector3d p1, Vector3d p2, Vector3d p3, double u)
+    {
+        var (t0, t1, t2, t3) = CentripetalKnots(p0, p1, p2, p3);
+        var t = t1 + u * (t2 - t1);
+        return EvaluateCentripetalAt(p0, p1, p2, p3, t0, t1, t2, t3, t);
+    }
+
+    private static Vector3d EvaluateCentripetalAt(
+        Vector3d p0,
+        Vector3d p1,
+        Vector3d p2,
+        Vector3d p3,
+        double t0,
+        double t1,
+        double t2,
+        double t3,
+        double t)
+    {
+        var a1 = p0 * SafeDivide(t1 - t, t1 - t0) + p1 * SafeDivide(t - t0, t1 - t0);
+        var a2 = p1 * SafeDivide(t2 - t, t2 - t1) + p2 * SafeDivide(t - t1, t2 - t1);
+        var a3 = p2 * SafeDivide(t3 - t, t3 - t2) + p3 * SafeDivide(t - t2, t3 - t2);
+
+        var b1 = a1 * SafeDivide(t2 - t, t2 - t0) + a2 * SafeDivide(t - t0, t2 - t0);
+        var b2 = a2 * SafeDivide(t3 - t, t3 - t1) + a3 * SafeDivide(t - t1, t3 - t1);
+
+        return b1 * SafeDivide(t2 - t, t2 - t1) + b2 * SafeDivide(t - t1, t2 - t1);
+    }
+
+    private static Vector3d CentripetalCatmullRomTangent(
+        Vector3d p0,
+        Vector3d p1,
+        Vector3d p2,
+        Vector3d p3,
+        double u,
+        Vector3d segmentFallback)
+    {
+        var u0 = Math.Max(0, u - TangentStep);
+        var u1 = Math.Min(1, u + TangentStep);
+        var pos0 = CentripetalCatmullRom(p0, p1, p2, p3, u0);
+        var pos1 = CentripetalCatmullRom(p0, p1, p2, p3, u1);
+        var tangent = pos1 - pos0;
+        if (!IsFinite(tangent) || tangent.LengthSquared < 1e-30)
+            return segmentFallback;
+        return tangent;
+    }
+
+    private static bool IsFinite(Vector3d value) =>
+        double.IsFinite(value.X) && double.IsFinite(value.Y) && double.IsFinite(value.Z);
 
     private readonly record struct Waypoint(double Time, Vector3d Position);
 }
