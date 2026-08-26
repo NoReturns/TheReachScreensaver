@@ -65,71 +65,125 @@ internal sealed class JourneyPath
         var plutoR = AstronomicalUnits.PlutoRadius;
 
         var earthStart = earth + OffsetFrom(earth, moon, earthR * 12) + new Vector3d(0, earthR * 6, 0);
-        var moonFly = Flyby(moon, earth, moonR * 6, lateralScale: 0.4);
-        var marsFly = Flyby(mars, moon, marsR * 8, lateralScale: 0.45);
-        var jupiterFly = Flyby(jupiter, mars, jupiterR * 4.5, lateralScale: 0.35);
-        var saturnFly = FlybyOverPole(saturn, jupiter, saturnR * 5.5, poleTiltDeg: 26.7);
-        var uranusFly = Flyby(uranus, saturn, uranusR * 6, lateralScale: 0.35);
-        var neptuneFly = Flyby(neptune, uranus, neptuneR * 6, lateralScale: 0.35);
-        var plutoFly = Flyby(pluto, neptune, plutoR * 3, lateralScale: 0.2);
+        var moonFly = ClosestFlyby(EncounterCatalog.Moon, moon, earth, moonR);
+        var marsFly = ClosestFlyby(EncounterCatalog.Mars, mars, moon, marsR);
+        var jupiterFly = ClosestFlyby(EncounterCatalog.Jupiter, jupiter, mars, jupiterR);
+        var saturnFly = ClosestFlyby(EncounterCatalog.Saturn, saturn, jupiter, saturnR);
+        var uranusFly = ClosestFlyby(EncounterCatalog.Uranus, uranus, saturn, uranusR);
+        var neptuneFly = ClosestFlyby(EncounterCatalog.Neptune, neptune, uranus, neptuneR);
+        var plutoFly = ClosestFlyby(EncounterCatalog.Pluto, pluto, neptune, plutoR);
 
-        // Mars-local choreography: fast cruise, decelerate, close flyby, accelerate away.
-        var marsInbound = (mars - moon).Normalized();
-        var marsOutbound = (jupiter - mars).Normalized();
-        var marsLateral = Vector3d.Cross(marsInbound, Vector3d.UnitY);
-        if (marsLateral.LengthSquared < 1e-16)
-            marsLateral = Vector3d.Cross(marsInbound, Vector3d.UnitX);
-        marsLateral = marsLateral.Normalized();
-
-        Vector3d MarsApproach(double radii, double lateralScale) =>
-            mars - marsInbound * (marsR * radii) + marsLateral * (marsR * radii * lateralScale);
-
-        Vector3d MarsDeparture(double radii, double lateralScale) =>
-            mars + marsOutbound * (marsR * radii) + marsLateral * (marsR * radii * lateralScale);
-
-        return
-        [
+        var points = new List<Waypoint>
+        {
             new(-25, earthStart + OffsetFrom(earthStart, earth, earthR * 40)),
             new(SolarSystem.EarthEncounter, earthStart),
             new(16, Lerp(earthStart, moonFly, 0.22)),
-            new(42, Lerp(earthStart, moonFly, 0.55)),
-            new(SolarSystem.MoonEncounter, moonFly),
-            new(140, Lerp(moonFly, marsFly, 0.55)),
-            new(190, Lerp(moonFly, marsFly, 0.88)),
-            new(205, MarsApproach(400, 0.35)),
-            new(215, MarsApproach(150, 0.40)),
-            new(225, MarsApproach(50, 0.42)),
-            new(233, MarsApproach(20, 0.44)),
-            new(SolarSystem.MarsEncounter, marsFly),
-            new(247, MarsDeparture(20, 0.44)),
-            new(255, MarsDeparture(50, 0.42)),
-            new(265, MarsDeparture(150, 0.40)),
-            new(290, MarsDeparture(400, 0.35)),
-            new(360, Lerp(marsFly, jupiterFly, 0.22)),
-            new(480, Lerp(marsFly, jupiterFly, 0.48)),
-            new(560, Lerp(marsFly, jupiterFly, 0.72)),
-            new(590, Lerp(marsFly, jupiterFly, 0.88)),
-            new(SolarSystem.JupiterEncounter, jupiterFly),
-            new(650, Lerp(jupiterFly, saturnFly, 0.18)),
-            new(740, Lerp(jupiterFly, saturnFly, 0.42)),
-            new(780, Lerp(jupiterFly, saturnFly, 0.62)),
-            new(SolarSystem.SaturnEncounter, saturnFly),
-            new(860, Lerp(saturnFly, uranusFly, 0.12)),
-            new(980, Lerp(saturnFly, uranusFly, 0.38)),
-            new(1080, Lerp(saturnFly, uranusFly, 0.68)),
-            new(SolarSystem.UranusEncounter, uranusFly),
-            new(1185, Lerp(uranusFly, neptuneFly, 0.15)),
-            new(1320, Lerp(uranusFly, neptuneFly, 0.42)),
-            new(1420, Lerp(uranusFly, neptuneFly, 0.68)),
-            new(SolarSystem.NeptuneEncounter, neptuneFly),
-            new(1560, Lerp(neptuneFly, plutoFly, 0.22)),
-            new(1680, Lerp(neptuneFly, plutoFly, 0.55)),
-            new(1745, Lerp(neptuneFly, plutoFly, 0.78)),
-            new(1778, Lerp(neptuneFly, plutoFly, 0.92)),
-            new(SolarSystem.PlutoEncounter, plutoFly),
-            new(1880, plutoFly + OffsetFrom(plutoFly, pluto, plutoR * 8)),
-            new(2000, plutoFly + OffsetFrom(plutoFly, pluto, plutoR * 20))
-        ];
+            new(42, Lerp(earthStart, moonFly, 0.55))
+        };
+
+        AppendEncounter(points, EncounterCatalog.Moon, moon, earth, mars, moonR, moonFly);
+        points.Add(new(140, Lerp(moonFly, marsFly, 0.55)));
+        points.Add(new(190, Lerp(moonFly, marsFly, 0.88)));
+        AppendEncounter(points, EncounterCatalog.Mars, mars, moon, jupiter, marsR, marsFly);
+        points.Add(new(360, Lerp(marsFly, jupiterFly, 0.22)));
+        points.Add(new(480, Lerp(marsFly, jupiterFly, 0.48)));
+        AppendEncounter(points, EncounterCatalog.Jupiter, jupiter, mars, saturn, jupiterR, jupiterFly);
+        points.Add(new(700, Lerp(jupiterFly, saturnFly, 0.28)));
+        AppendEncounter(points, EncounterCatalog.Saturn, saturn, jupiter, uranus, saturnR, saturnFly);
+        points.Add(new(960, Lerp(saturnFly, uranusFly, 0.28)));
+        points.Add(new(1050, Lerp(saturnFly, uranusFly, 0.55)));
+        AppendEncounter(points, EncounterCatalog.Uranus, uranus, saturn, neptune, uranusR, uranusFly);
+        points.Add(new(1280, Lerp(uranusFly, neptuneFly, 0.28)));
+        points.Add(new(1400, Lerp(uranusFly, neptuneFly, 0.55)));
+        AppendEncounter(points, EncounterCatalog.Neptune, neptune, uranus, pluto, neptuneR, neptuneFly);
+        points.Add(new(1620, Lerp(neptuneFly, plutoFly, 0.28)));
+        points.Add(new(1710, Lerp(neptuneFly, plutoFly, 0.58)));
+        AppendEncounter(points, EncounterCatalog.Pluto, pluto, neptune, pluto, plutoR, plutoFly);
+        points.Add(new(1880, plutoFly + OffsetFrom(plutoFly, pluto, plutoR * 8)));
+        points.Add(new(2000, plutoFly + OffsetFrom(plutoFly, pluto, plutoR * 20)));
+
+        return points.OrderBy(p => p.Time).ToArray();
+    }
+
+    private static void AppendEncounter(
+        List<Waypoint> points,
+        EncounterPresentationProfile profile,
+        Vector3d body,
+        Vector3d approachFrom,
+        Vector3d departToward,
+        double bodyRadius,
+        Vector3d closestFly)
+    {
+        foreach (var key in profile.ApproachKeys)
+        {
+            points.Add(new(
+                key.Time,
+                LocalApproach(profile, body, approachFrom, bodyRadius * key.Radii, key.LateralScale)));
+        }
+
+        points.Add(new(profile.EncounterTime, closestFly));
+
+        foreach (var key in profile.DepartureKeys)
+        {
+            points.Add(new(
+                key.Time,
+                LocalDeparture(profile, body, approachFrom, departToward, bodyRadius * key.Radii, key.LateralScale)));
+        }
+    }
+
+    private static Vector3d ClosestFlyby(
+        EncounterPresentationProfile profile,
+        Vector3d body,
+        Vector3d approachFrom,
+        double bodyRadius)
+    {
+        var standoff = bodyRadius * profile.ClosestApproachRadii;
+        if (profile.FlybyStyle == EncounterFlybyStyle.OverPole)
+            return FlybyOverPole(body, approachFrom, standoff, profile.PoleTiltDegrees);
+
+        var lateral = profile.ClosestLateralScale
+            ?? (profile.ApproachKeys.Count > 0 ? profile.ApproachKeys[^1].LateralScale : 0.35);
+        return Flyby(body, approachFrom, standoff, lateral);
+    }
+
+    private static Vector3d LocalApproach(
+        EncounterPresentationProfile profile,
+        Vector3d body,
+        Vector3d approachFrom,
+        double standoffAu,
+        double lateralScale)
+    {
+        if (profile.FlybyStyle == EncounterFlybyStyle.OverPole)
+            return FlybyOverPole(body, approachFrom, standoffAu, profile.PoleTiltDegrees);
+        return Flyby(body, approachFrom, standoffAu, lateralScale);
+    }
+
+    private static Vector3d LocalDeparture(
+        EncounterPresentationProfile profile,
+        Vector3d body,
+        Vector3d approachFrom,
+        Vector3d departToward,
+        double standoffAu,
+        double lateralScale)
+    {
+        if (profile.FlybyStyle == EncounterFlybyStyle.OverPole)
+            return FlybyOverPoleDeparture(body, departToward, standoffAu, profile.PoleTiltDegrees);
+
+        var inbound = (body - approachFrom).Normalized();
+        var lateral = Vector3d.Cross(inbound, Vector3d.UnitY);
+        if (lateral.LengthSquared < 1e-16)
+            lateral = Vector3d.Cross(inbound, Vector3d.UnitX);
+        lateral = lateral.Normalized();
+
+        if (profile.FlybyStyle == EncounterFlybyStyle.ThroughPass)
+        {
+            // Continue past the body along the inbound axis with the same lateral bias.
+            return body + inbound * standoffAu + lateral * (standoffAu * lateralScale);
+        }
+
+        // Mars model: shared lateral from inbound, outbound along next-leg direction.
+        var outbound = (departToward - body).Normalized();
+        return body + outbound * standoffAu + lateral * (standoffAu * lateralScale);
     }
 
     /// <summary>Camera standoff position for an offset flyby.</summary>
@@ -153,6 +207,18 @@ internal sealed class JourneyPath
             lateral = Vector3d.Cross(inbound, Vector3d.UnitX);
         lateral = lateral.Normalized();
         return body - inbound * (standoffAu * 0.55) + poleD * (standoffAu * 0.85) + lateral * (standoffAu * 0.25);
+    }
+
+    private static Vector3d FlybyOverPoleDeparture(Vector3d body, Vector3d departToward, double standoffAu, double poleTiltDeg)
+    {
+        var outbound = (departToward - body).Normalized();
+        var pole = CelestialBody.PoleFromTilt((float)poleTiltDeg, 8f);
+        var poleD = new Vector3d(pole.X, pole.Y, pole.Z);
+        var lateral = Vector3d.Cross(outbound, poleD);
+        if (lateral.LengthSquared < 1e-16)
+            lateral = Vector3d.Cross(outbound, Vector3d.UnitX);
+        lateral = lateral.Normalized();
+        return body + outbound * (standoffAu * 0.55) + poleD * (standoffAu * 0.85) + lateral * (standoffAu * 0.25);
     }
 
     private static Vector3d OffsetFrom(Vector3d from, Vector3d toward, double distanceAu)

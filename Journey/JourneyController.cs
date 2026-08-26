@@ -13,10 +13,6 @@ internal sealed class JourneyController
     public const double FadeOutSeconds = 4.0;
     private const double StartupEarthHoldEnd = 6.0;
     private const double StartupEarthBlendEnd = 16.0;
-    private const double MarsLookBlendInStart = 215.0;
-    private const double MarsLookHoldStart = 225.0;
-    private const double MarsLookHoldEnd = 248.0;
-    private const double MarsLookBlendOutEnd = 260.0;
 
     private readonly JourneyPath _path = new();
     private readonly List<CelestialBody> _bodies;
@@ -48,6 +44,9 @@ internal sealed class JourneyController
             return 1f;
         }
     }
+
+    /// <summary>Departure-only warp overlay intensity (0 = off). Separate from starfield motion.</summary>
+    public float WarpIntensity => WarpDepartureCatalog.EvaluateIntensity(Time);
 
     public void Advance(double deltaSeconds)
     {
@@ -168,7 +167,7 @@ internal sealed class JourneyController
     {
         var pathLook = tangent.LengthSquared > 1e-16 ? tangent.Normalized().ToVector3() : -Vector3.UnitZ;
 
-        // Earth opening shot (fresh start / loop restart) — unchanged timing.
+        // Earth opening shot (fresh start / loop restart) — dedicated policy.
         if (time < StartupEarthBlendEnd)
         {
             float earthWeight;
@@ -183,39 +182,34 @@ internal sealed class JourneyController
             return BlendLookToward(pathLook, SolarSystem.EarthHeliocentric - position, earthWeight);
         }
 
-        // Mars close flyby focus.
-        if (time >= MarsLookBlendInStart && time < MarsLookBlendOutEnd)
+        foreach (var profile in EncounterCatalog.PathFocusBodies)
         {
-            return BlendLookToward(
-                pathLook,
-                SolarSystem.MarsHeliocentric - position,
-                MarsFocusWeight(time));
+            if (time < profile.FocusBlendInStart || time >= profile.FocusBlendOutEnd)
+                continue;
+
+            var body = BodyPosition(profile.BodyId);
+            var weight = EncounterCatalog.EvaluateFocusWeight(profile, time);
+            if (weight <= 0f)
+                continue;
+
+            return BlendLookToward(pathLook, body - position, weight);
         }
 
         return pathLook;
     }
 
-    private static float MarsFocusWeight(double time)
+    private static Vector3d BodyPosition(CelestialId id) => id switch
     {
-        if (time <= MarsLookBlendInStart)
-            return 0f;
-        if (time < MarsLookHoldStart)
-        {
-            var t = (time - MarsLookBlendInStart) / (MarsLookHoldStart - MarsLookBlendInStart);
-            return SmoothStep01(t);
-        }
-
-        if (time <= MarsLookHoldEnd)
-            return 1f;
-
-        if (time < MarsLookBlendOutEnd)
-        {
-            var t = (time - MarsLookHoldEnd) / (MarsLookBlendOutEnd - MarsLookHoldEnd);
-            return 1f - SmoothStep01(t);
-        }
-
-        return 0f;
-    }
+        CelestialId.Moon => SolarSystem.EarthHeliocentric + SolarSystem.MoonOffsetFromEarth,
+        CelestialId.Mars => SolarSystem.MarsHeliocentric,
+        CelestialId.Jupiter => SolarSystem.JupiterHeliocentric,
+        CelestialId.Saturn => SolarSystem.SaturnHeliocentric,
+        CelestialId.Uranus => SolarSystem.UranusHeliocentric,
+        CelestialId.Neptune => SolarSystem.NeptuneHeliocentric,
+        CelestialId.Pluto => SolarSystem.PlutoHeliocentric,
+        CelestialId.Earth => SolarSystem.EarthHeliocentric,
+        _ => SolarSystem.EarthHeliocentric
+    };
 
     private static Vector3 BlendLookToward(Vector3 pathLook, Vector3d toBody, float bodyWeight)
     {

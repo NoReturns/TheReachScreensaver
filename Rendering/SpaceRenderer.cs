@@ -10,6 +10,7 @@ internal sealed class SpaceRenderer : IDisposable
 {
     private readonly StarfieldRenderer _stars;
     private readonly PlanetRenderer _planets = new();
+    private readonly WarpTransitionRenderer _warp = new();
     private readonly FadeOverlay _fade = new();
     private readonly VanishingPointMarker? _vanishingPoint;
     private List<MonitorPane> _panes = [];
@@ -106,6 +107,17 @@ internal sealed class SpaceRenderer : IDisposable
             GL.Enable(EnableCap.ProgramPointSize);
             _stars.Draw(_starfieldCameraPosition, starViewProjection, _referenceHeight);
 
+            _warp.Draw(
+                journey.WarpIntensity,
+                (float)journey.Time,
+                _anchorX,
+                _anchorY,
+                pane.VirtualRect,
+                pane.X,
+                pane.Y,
+                pane.Width,
+                pane.Height);
+
             _planets.Draw(journey.Bodies, Camera, view, projection, journey.Time, _referenceHeight);
 
             _vanishingPoint?.Draw(Camera, view, projection, pane.Width, pane.Height);
@@ -123,6 +135,7 @@ internal sealed class SpaceRenderer : IDisposable
     {
         _vanishingPoint?.Dispose();
         _fade.Dispose();
+        _warp.Dispose();
         _planets.Dispose();
         _stars.Dispose();
     }

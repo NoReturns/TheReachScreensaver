@@ -7,6 +7,7 @@ Native Windows screensaver: a passive cinematic voyage **Earth → Moon → Mars
 - .NET 10 SDK (this repo is pinned to `10.0.400` via `global.json`, with `rollForward: latestFeature`)
 - Windows 10/11 x64 for screensaver, preview, and configuration modes
 - An OpenGL 3.3 core context (any GPU from the last ~15 years, or a software renderer)
+- NuGet: OpenTK 4.9.4; StbImageSharp 2.30.15 (embedded planet albedo decode; included in single-file publish)
 
 Development mode can also run on Linux if GLFW/OpenGL are available. `/s`, `/c`, and `/p` are Windows-oriented.
 

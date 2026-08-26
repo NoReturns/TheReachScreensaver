@@ -10,6 +10,9 @@ uniform vec3 uLightDir;
 uniform vec3 uCameraPos;
 uniform int uStyle;
 uniform float uAlpha;
+uniform sampler2D uAlbedoTexture;
+uniform int uUseTexture;
+uniform float uTextureLongitudeOffset;
 
 float hash31(vec3 p)
 {
@@ -20,6 +23,16 @@ float mottling(vec3 n)
 {
     return sin(n.x * 9.1 + n.z * 4.2) * sin(n.y * 7.3 - n.x * 2.8)
          + 0.45 * sin(n.z * 11.0 + n.y * 5.1);
+}
+
+vec2 sphereUv(vec3 n)
+{
+    n = normalize(n);
+    float longitude = atan(n.z, n.x) + uTextureLongitudeOffset;
+    float latitude = asin(clamp(n.y, -1.0, 1.0));
+    float u = longitude / (2.0 * 3.14159265) + 0.5;
+    float v = 0.5 - latitude / 3.14159265;
+    return vec2(u, v);
 }
 
 vec3 earthAlbedo(vec3 n)
@@ -49,39 +62,44 @@ vec3 jupiterAlbedo(vec3 n)
     return color;
 }
 
+// Tuned from Cassini natural-color Saturn (pale butter / soft ochre banding; no fictional map).
 vec3 saturnAlbedo(vec3 n)
 {
     float lat = n.y;
-    float bands = 0.5 + 0.5 * sin(lat * 11.0 + 0.25 * sin(lat * 5.0));
-    vec3 pale = vec3(0.90, 0.82, 0.62);
-    vec3 ochre = vec3(0.72, 0.58, 0.36);
-    vec3 color = mix(pale, ochre, bands * 0.55);
-    color = mix(color, vec3(0.78, 0.70, 0.52), smoothstep(0.55, 0.95, abs(lat)) * 0.35);
+    float bands = 0.5 + 0.5 * sin(lat * 9.5 + 0.18 * sin(lat * 4.2));
+    float fine = 0.5 + 0.5 * sin(lat * 28.0);
+    vec3 pale = vec3(0.93, 0.86, 0.70);
+    vec3 butter = vec3(0.86, 0.76, 0.55);
+    vec3 ochre = vec3(0.74, 0.62, 0.42);
+    vec3 color = mix(pale, butter, bands * 0.55);
+    color = mix(color, ochre, fine * 0.12 * (1.0 - abs(lat)));
+    color = mix(color, vec3(0.82, 0.74, 0.58), smoothstep(0.58, 0.96, abs(lat)) * 0.28);
     return color;
 }
 
+// Tuned from Voyager 2 true-color Uranus (PIA00032): nearly featureless pale cyan-green.
 vec3 uranusAlbedo(vec3 n)
 {
     float lat = n.y;
-    float bands = 0.5 + 0.5 * sin(lat * 9.0);
-    vec3 pale = vec3(0.58, 0.82, 0.84);
-    vec3 mint = vec3(0.38, 0.66, 0.72);
-    vec3 equator = vec3(0.72, 0.90, 0.88);
-    vec3 color = mix(pale, mint, abs(lat) * 0.35 + bands * 0.30);
-    color = mix(color, equator, (1.0 - smoothstep(0.08, 0.32, abs(lat))) * 0.35);
+    float soft = 0.5 + 0.5 * sin(lat * 3.5);
+    vec3 pale = vec3(0.66, 0.84, 0.86);
+    vec3 mint = vec3(0.52, 0.76, 0.78);
+    vec3 color = mix(pale, mint, abs(lat) * 0.18 + soft * 0.08);
+    color = mix(color, vec3(0.72, 0.88, 0.88), (1.0 - smoothstep(0.05, 0.45, abs(lat))) * 0.12);
     return color;
 }
 
+// Tuned from Voyager 2 Neptune color: deep azure with restrained banding / storm.
 vec3 neptuneAlbedo(vec3 n)
 {
     float lat = n.y;
-    float bands = 0.5 + 0.5 * sin(lat * 10.0 + 0.35 * sin(lat * 4.0));
-    vec3 deep = vec3(0.07, 0.18, 0.58);
-    vec3 rich = vec3(0.14, 0.38, 0.82);
-    vec3 color = mix(deep, rich, bands * 0.55 + 0.25);
-    vec2 storm = vec2(n.x + 0.28, n.y - 0.18);
-    float dark = exp(-dot(storm, storm) * 42.0);
-    color = mix(color, vec3(0.04, 0.08, 0.28), dark * 0.7);
+    float bands = 0.5 + 0.5 * sin(lat * 8.0 + 0.22 * sin(lat * 3.5));
+    vec3 deep = vec3(0.05, 0.16, 0.52);
+    vec3 rich = vec3(0.12, 0.34, 0.78);
+    vec3 color = mix(deep, rich, bands * 0.40 + 0.28);
+    vec2 storm = vec2(n.x + 0.30, n.y - 0.16);
+    float dark = exp(-dot(storm, storm) * 36.0);
+    color = mix(color, vec3(0.03, 0.07, 0.24), dark * 0.55);
     return color;
 }
 
@@ -125,7 +143,12 @@ void main()
     vec3 nWorld = normalize(vNormal);
     vec3 nLocal = normalize(vLocalNormal);
     vec3 albedo = uAlbedo;
-    if (uStyle == 1)
+
+    if (uUseTexture != 0)
+    {
+        albedo = texture(uAlbedoTexture, sphereUv(nLocal)).rgb;
+    }
+    else if (uStyle == 1)
         albedo = earthAlbedo(nLocal);
     else if (uStyle == 2)
         albedo = jupiterAlbedo(nLocal);
@@ -152,7 +175,7 @@ void main()
     if (uStyle == 1)
         color += vec3(0.25, 0.45, 0.85) * rim * 0.55;
     else if (uStyle == 4)
-        color += vec3(0.45, 0.75, 0.80) * rim * 0.22;
+        color += vec3(0.45, 0.75, 0.80) * rim * 0.18;
     else if (uStyle == 5)
         color += vec3(0.20, 0.40, 0.90) * rim * 0.28;
     else

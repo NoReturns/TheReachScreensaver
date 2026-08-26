@@ -8,7 +8,7 @@
     <InvariantGlobalization>true</InvariantGlobalization>
     <RootNamespace>TheReachScreensaver</RootNamespace>
     <AssemblyName>TheReachScreensaver</AssemblyName>
-    <Version>0.3.0</Version>
+    <Version>0.4.0</Version>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <DebugType>embedded</DebugType>
   </PropertyGroup>
@@ -22,6 +22,8 @@
 
   <ItemGroup>
     <PackageReference Include="OpenTK" Version="4.9.4" />
+    <!-- Lightweight RGBA decoder for embedded planet albedo maps (single-file publish friendly). -->
+    <PackageReference Include="StbImageSharp" Version="2.30.15" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,6 +37,12 @@
     <EmbeddedResource Include="Shaders\Ring.frag" LogicalName="TheReachScreensaver.Shaders.Ring.frag" />
     <EmbeddedResource Include="Shaders\Fade.vert" LogicalName="TheReachScreensaver.Shaders.Fade.vert" />
     <EmbeddedResource Include="Shaders\Fade.frag" LogicalName="TheReachScreensaver.Shaders.Fade.frag" />
+    <EmbeddedResource Include="Shaders\Warp.vert" LogicalName="TheReachScreensaver.Shaders.Warp.vert" />
+    <EmbeddedResource Include="Shaders\Warp.frag" LogicalName="TheReachScreensaver.Shaders.Warp.frag" />
+    <EmbeddedResource Include="Assets\Planets\Earth_BlueMarble_2048.jpg" LogicalName="TheReachScreensaver.Assets.Planets.Earth_BlueMarble_2048.jpg" />
+    <EmbeddedResource Include="Assets\Planets\Mars_Viking.jpg" LogicalName="TheReachScreensaver.Assets.Planets.Mars_Viking.jpg" />
+    <EmbeddedResource Include="Assets\Planets\Jupiter_PIA07782_2048.jpg" LogicalName="TheReachScreensaver.Assets.Planets.Jupiter_PIA07782_2048.jpg" />
+    <EmbeddedResource Include="Assets\Planets\Pluto_PIA11707_2048.jpg" LogicalName="TheReachScreensaver.Assets.Planets.Pluto_PIA11707_2048.jpg" />
   </ItemGroup>
 
   <Target Name="CopyScreensaverExtension" AfterTargets="Publish" Condition="'$(RuntimeIdentifier)' == 'win-x64'">

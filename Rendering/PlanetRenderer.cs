@@ -22,6 +22,9 @@ internal sealed class PlanetRenderer : IDisposable
     private readonly int _cameraLocation;
     private readonly int _styleLocation;
     private readonly int _alphaLocation;
+    private readonly int _albedoTextureLocation;
+    private readonly int _useTextureLocation;
+    private readonly int _textureLongitudeOffsetLocation;
     private readonly int _ringViewProjectionLocation;
     private readonly int _ringCenterLocation;
     private readonly int _ringPoleLocation;
@@ -38,6 +41,7 @@ internal sealed class PlanetRenderer : IDisposable
     private readonly int _pointVao;
     private readonly int _pointVbo;
     private readonly PointVertex[] _pointScratch = new PointVertex[32];
+    private readonly Dictionary<CelestialId, BodyTextureBinding> _textures = new();
 
     public PlanetRenderer()
     {
@@ -61,6 +65,9 @@ internal sealed class PlanetRenderer : IDisposable
         _cameraLocation = _shader.GetUniformLocation("uCameraPos");
         _styleLocation = _shader.GetUniformLocation("uStyle");
         _alphaLocation = _shader.GetUniformLocation("uAlpha");
+        _albedoTextureLocation = _shader.GetUniformLocation("uAlbedoTexture");
+        _useTextureLocation = _shader.GetUniformLocation("uUseTexture");
+        _textureLongitudeOffsetLocation = _shader.GetUniformLocation("uTextureLongitudeOffset");
         _ringViewProjectionLocation = _ringShader.GetUniformLocation("uViewProjection");
         _ringCenterLocation = _ringShader.GetUniformLocation("uCenter");
         _ringPoleLocation = _ringShader.GetUniformLocation("uPole");
@@ -86,6 +93,11 @@ internal sealed class PlanetRenderer : IDisposable
         GL.EnableVertexAttribArray(1);
         GL.VertexAttribPointer(1, 4, VertexAttribPointerType.Float, false, stride, 3 * sizeof(float));
         GL.BindVertexArray(0);
+
+        TryBindTexture(CelestialId.Earth, "TheReachScreensaver.Assets.Planets.Earth_BlueMarble_2048.jpg", 0f);
+        TryBindTexture(CelestialId.Mars, "TheReachScreensaver.Assets.Planets.Mars_Viking.jpg", 0f);
+        TryBindTexture(CelestialId.Jupiter, "TheReachScreensaver.Assets.Planets.Jupiter_PIA07782_2048.jpg", 0f);
+        TryBindTexture(CelestialId.Pluto, "TheReachScreensaver.Assets.Planets.Pluto_PIA11707_2048.jpg", 0f);
     }
 
     public void Draw(
@@ -127,6 +139,10 @@ internal sealed class PlanetRenderer : IDisposable
 
     public void Dispose()
     {
+        foreach (var binding in _textures.Values)
+            binding.Texture.Dispose();
+        _textures.Clear();
+
         GL.DeleteBuffer(_pointVbo);
         GL.DeleteVertexArray(_pointVao);
         _pointShader.Dispose();
@@ -134,6 +150,14 @@ internal sealed class PlanetRenderer : IDisposable
         _shader.Dispose();
         _rings.Dispose();
         _mesh.Dispose();
+    }
+
+    private void TryBindTexture(CelestialId id, string resourceName, float longitudeOffset)
+    {
+        var texture = GlTexture.TryLoadEmbedded(resourceName);
+        if (texture is null)
+            return;
+        _textures[id] = new BodyTextureBinding(texture, longitudeOffset);
     }
 
     private void DrawSpheres(
@@ -148,6 +172,7 @@ internal sealed class PlanetRenderer : IDisposable
         _shader.Use();
         GL.UniformMatrix4(_viewProjectionLocation, transpose: true, ref viewProjection);
         GL.Uniform3(_cameraLocation, camera.Position);
+        GL.Uniform1(_albedoTextureLocation, 0);
 
         foreach (var body in bodies)
         {
@@ -179,6 +204,21 @@ internal sealed class PlanetRenderer : IDisposable
         var rotation = body.LocalToWorld(journeySeconds);
         var light = SolarSystem.LightDirectionAt(body.WorldPosition, cameraWorld);
         var radius = (float)body.Radius;
+
+        var useTexture = _textures.TryGetValue(body.Id, out var binding);
+        if (useTexture)
+        {
+            binding!.Texture.Bind(TextureUnit.Texture0);
+            GL.Uniform1(_useTextureLocation, 1);
+            GL.Uniform1(_textureLongitudeOffsetLocation, binding.LongitudeOffset);
+        }
+        else
+        {
+            GL.ActiveTexture(TextureUnit.Texture0);
+            GL.BindTexture(TextureTarget.Texture2D, 0);
+            GL.Uniform1(_useTextureLocation, 0);
+            GL.Uniform1(_textureLongitudeOffsetLocation, 0f);
+        }
 
         GL.Uniform3(_centerLocation, renderPos);
         GL.Uniform1(_radiusLocation, radius);
@@ -283,6 +323,12 @@ internal sealed class PlanetRenderer : IDisposable
     private static void UniformMatrix3(int location, Matrix3 matrix)
     {
         GL.UniformMatrix3(location, transpose: true, ref matrix);
+    }
+
+    private sealed class BodyTextureBinding(GlTexture texture, float longitudeOffset)
+    {
+        public GlTexture Texture { get; } = texture;
+        public float LongitudeOffset { get; } = longitudeOffset;
     }
 
     [StructLayout(LayoutKind.Sequential)]
