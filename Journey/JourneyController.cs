@@ -13,6 +13,10 @@ internal sealed class JourneyController
     public const double FadeOutSeconds = 4.0;
     private const double StartupEarthHoldEnd = 6.0;
     private const double StartupEarthBlendEnd = 16.0;
+    private const double MarsLookBlendInStart = 215.0;
+    private const double MarsLookHoldStart = 225.0;
+    private const double MarsLookHoldEnd = 248.0;
+    private const double MarsLookBlendOutEnd = 260.0;
 
     private readonly JourneyPath _path = new();
     private readonly List<CelestialBody> _bodies;
@@ -163,24 +167,79 @@ internal sealed class JourneyController
     private Vector3 DesiredLook(Vector3d position, Vector3d tangent, double time)
     {
         var pathLook = tangent.LengthSquared > 1e-16 ? tangent.Normalized().ToVector3() : -Vector3.UnitZ;
-        if (time >= StartupEarthBlendEnd)
+
+        // Earth opening shot (fresh start / loop restart) — unchanged timing.
+        if (time < StartupEarthBlendEnd)
+        {
+            float earthWeight;
+            if (time <= StartupEarthHoldEnd)
+                earthWeight = 1f;
+            else
+            {
+                var t = (time - StartupEarthHoldEnd) / (StartupEarthBlendEnd - StartupEarthHoldEnd);
+                earthWeight = 1f - SmoothStep01(t);
+            }
+
+            return BlendLookToward(pathLook, SolarSystem.EarthHeliocentric - position, earthWeight);
+        }
+
+        // Mars close flyby focus.
+        if (time >= MarsLookBlendInStart && time < MarsLookBlendOutEnd)
+        {
+            return BlendLookToward(
+                pathLook,
+                SolarSystem.MarsHeliocentric - position,
+                MarsFocusWeight(time));
+        }
+
+        return pathLook;
+    }
+
+    private static float MarsFocusWeight(double time)
+    {
+        if (time <= MarsLookBlendInStart)
+            return 0f;
+        if (time < MarsLookHoldStart)
+        {
+            var t = (time - MarsLookBlendInStart) / (MarsLookHoldStart - MarsLookBlendInStart);
+            return SmoothStep01(t);
+        }
+
+        if (time <= MarsLookHoldEnd)
+            return 1f;
+
+        if (time < MarsLookBlendOutEnd)
+        {
+            var t = (time - MarsLookHoldEnd) / (MarsLookBlendOutEnd - MarsLookHoldEnd);
+            return 1f - SmoothStep01(t);
+        }
+
+        return 0f;
+    }
+
+    private static Vector3 BlendLookToward(Vector3 pathLook, Vector3d toBody, float bodyWeight)
+    {
+        if (bodyWeight <= 0f)
             return pathLook;
 
-        var toEarth = (SolarSystem.EarthHeliocentric - position).ToVector3();
-        if (toEarth.LengthSquared < 1e-12f)
+        var toBodyF = toBody.ToVector3();
+        if (toBodyF.LengthSquared < 1e-12f)
             return pathLook;
 
-        var earthLook = Vector3.Normalize(toEarth);
-        if (time <= StartupEarthHoldEnd)
-            return earthLook;
+        var bodyLook = Vector3.Normalize(toBodyF);
+        if (bodyWeight >= 1f)
+            return bodyLook;
 
-        var blendT = (time - StartupEarthHoldEnd) / (StartupEarthBlendEnd - StartupEarthHoldEnd);
-        blendT = Math.Clamp(blendT, 0, 1);
-        var blend = blendT * blendT * (3 - 2 * blendT);
-        var blended = Vector3.Lerp(earthLook, pathLook, (float)blend);
+        var blended = Vector3.Lerp(pathLook, bodyLook, bodyWeight);
         if (blended.LengthSquared < 1e-12f)
-            return blend < 0.5 ? earthLook : pathLook;
+            return bodyWeight < 0.5f ? pathLook : bodyLook;
 
         return Vector3.Normalize(blended);
+    }
+
+    private static float SmoothStep01(double t)
+    {
+        t = Math.Clamp(t, 0, 1);
+        return (float)(t * t * (3 - 2 * t));
     }
 }

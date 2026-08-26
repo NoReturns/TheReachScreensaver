@@ -73,6 +73,20 @@ internal sealed class JourneyPath
         var neptuneFly = Flyby(neptune, uranus, neptuneR * 6, lateralScale: 0.35);
         var plutoFly = Flyby(pluto, neptune, plutoR * 3, lateralScale: 0.2);
 
+        // Mars-local choreography: fast cruise, decelerate, close flyby, accelerate away.
+        var marsInbound = (mars - moon).Normalized();
+        var marsOutbound = (jupiter - mars).Normalized();
+        var marsLateral = Vector3d.Cross(marsInbound, Vector3d.UnitY);
+        if (marsLateral.LengthSquared < 1e-16)
+            marsLateral = Vector3d.Cross(marsInbound, Vector3d.UnitX);
+        marsLateral = marsLateral.Normalized();
+
+        Vector3d MarsApproach(double radii, double lateralScale) =>
+            mars - marsInbound * (marsR * radii) + marsLateral * (marsR * radii * lateralScale);
+
+        Vector3d MarsDeparture(double radii, double lateralScale) =>
+            mars + marsOutbound * (marsR * radii) + marsLateral * (marsR * radii * lateralScale);
+
         return
         [
             new(-25, earthStart + OffsetFrom(earthStart, earth, earthR * 40)),
@@ -80,8 +94,17 @@ internal sealed class JourneyPath
             new(16, Lerp(earthStart, moonFly, 0.22)),
             new(42, Lerp(earthStart, moonFly, 0.55)),
             new(SolarSystem.MoonEncounter, moonFly),
-            new(140, Lerp(moonFly, marsFly, 0.28)),
+            new(140, Lerp(moonFly, marsFly, 0.55)),
+            new(190, Lerp(moonFly, marsFly, 0.88)),
+            new(205, MarsApproach(400, 0.35)),
+            new(215, MarsApproach(150, 0.40)),
+            new(225, MarsApproach(50, 0.42)),
+            new(233, MarsApproach(20, 0.44)),
             new(SolarSystem.MarsEncounter, marsFly),
+            new(247, MarsDeparture(20, 0.44)),
+            new(255, MarsDeparture(50, 0.42)),
+            new(265, MarsDeparture(150, 0.40)),
+            new(290, MarsDeparture(400, 0.35)),
             new(360, Lerp(marsFly, jupiterFly, 0.22)),
             new(480, Lerp(marsFly, jupiterFly, 0.48)),
             new(560, Lerp(marsFly, jupiterFly, 0.72)),
