@@ -3,6 +3,7 @@ using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 using OpenTK.Windowing.GraphicsLibraryFramework;
+using Keys = OpenTK.Windowing.GraphicsLibraryFramework.Keys;
 using TheReachScreensaver.Application;
 using TheReachScreensaver.Diagnostics;
 using TheReachScreensaver.Display;

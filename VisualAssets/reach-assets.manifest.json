@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "assets": [
+    {
+      "assetId": "earth-day-high",
+      "destinationBodyId": "earth",
+      "sourceAttribution": "NASA Earth Observatory / Blue Marble Next Generation",
+      "licenseUsageTerms": "NASA imagery guidelines: educational and informational reuse with NASA credit; no endorsement.",
+      "sourceUrl": "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/bmng/bmng-base/january/world.200401.3x5400x2700.jpg",
+      "downloadPath": "earth/earth-day-high.jpg",
+      "localRelativePath": "earth/earth-day-high.jpg",
+      "expectedFileSize": 1884678,
+      "sha256": "99F5FAAD74EFE985FBF1714C8BE7296CA9999759A1215B65F99B7F1DF278DDE5",
+      "width": 5400,
+      "height": 2700
+    }
+  ]
+}

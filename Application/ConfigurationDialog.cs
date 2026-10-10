@@ -16,6 +16,11 @@ internal static class ConfigurationDialog
         ShowMessage(IntPtr.Zero, message, iconError: true);
     }
 
+    public static void ShowInfo(string message)
+    {
+        ShowMessage(IntPtr.Zero, message, iconError: false);
+    }
+
     private static void ShowMessage(IntPtr ownerHwnd, string message, bool iconError)
     {
         Log.Info($"Configuration/message: {message}");

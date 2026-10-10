@@ -32,6 +32,8 @@ internal static class Win32
     public static readonly IntPtr HwndTopmost = new(-1);
 
     public const uint MbOk = 0x00000000;
+    public const uint MbYesNo = 0x00000004;
+    public const int IdYes = 6;
     public const uint MbIconInformation = 0x00000040;
     public const uint MbIconError = 0x00000010;
 
@@ -42,6 +44,7 @@ internal static class Win32
     public const int SmCMonitors = 80;
 
     public const uint MonitorInfoPrimary = 0x00000001;
+    public const uint MonitorDefaultToPrimary = 1;
     public const int MdtEffectiveDpi = 0;
 
     public static readonly IntPtr DpiAwarenessContextPerMonitorAwareV2 = new(-4);
@@ -61,11 +64,17 @@ internal static class Win32
     [DllImport("user32.dll", CharSet = CharSet.Unicode)]
     public static extern bool GetMonitorInfoW(IntPtr hMonitor, ref MonitorInfoEx info);
 
+    [DllImport("user32.dll")]
+    public static extern IntPtr MonitorFromPoint(Point point, uint flags);
+
     [DllImport("shcore.dll")]
     public static extern int GetDpiForMonitor(IntPtr hMonitor, int dpiType, out uint dpiX, out uint dpiY);
 
     [DllImport("user32.dll")]
     public static extern IntPtr SetParent(IntPtr hWndChild, IntPtr hWndNewParent);
+
+    [DllImport("user32.dll")]
+    public static extern IntPtr GetParent(IntPtr hWnd);
 
     [DllImport("user32.dll")]
     public static extern bool GetClientRect(IntPtr hWnd, out Rect lpRect);
@@ -114,6 +123,15 @@ internal static class Win32
 
         public int Width => Right - Left;
         public int Height => Bottom - Top;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    public struct Point
+    {
+        public int X;
+        public int Y;
+
+        public Point(int x, int y) { X = x; Y = y; }
     }
 
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
