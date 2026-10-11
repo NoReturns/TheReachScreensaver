@@ -188,7 +188,7 @@ internal static class ConfigurationDialog
         AddButtonRow(journeyRows, "Reset Trip", enabled: true, () =>
         {
             const string question = "Reset your journey?\n\n"
-                + "This will return your voyage to its starting point and reset your total distance travelled and completed round trips.\n\n"
+                + "This will return your voyage to its starting point and reset your total distance travelled.\n\n"
                 + "Downloaded images and application settings will be preserved.\n\n"
                 + "This cannot be undone.";
             if (MessageBox.Show(form, question, "Reset Trip", MessageBoxButtons.YesNo,
@@ -216,14 +216,17 @@ internal static class ConfigurationDialog
         var version = Assembly.GetExecutingAssembly().GetName().Version?.ToString(3) ?? "unknown";
         AddRow(aboutRows, "Application", $"The Reach Screensaver {version}");
         AddRow(aboutRows, "Origin", "Based on Your Eyes In Space by Berk Comba.");
-        AddButtonRow(aboutRows, "GitHub", enabled: true, () => OpenGitHub(form));
+        AddButtonRow(aboutRows, "Source Code", enabled: true, () => OpenGitHub(form));
+        AddButtonRow(aboutRows, "Privacy", enabled: true, () => OpenPackagedFile(form, "PRIVACY.md", "Privacy"));
         about.Controls.Add(aboutRows);
         root.Controls.Add(about, 0, 2);
 
         var credits = Section("Credits");
         var creditsRows = Rows();
         AddRow(creditsRows, "Attribution", "Project, data, imagery, and dependency credits.");
-        AddButtonRow(creditsRows, "Open Credits", enabled: true, () => OpenCredits(form));
+        AddButtonRow(creditsRows, "Open Credits", enabled: true, () => OpenPackagedFile(form, "CREDITS.txt", "Credits"));
+        AddButtonRow(creditsRows, "Host License", enabled: true, () => OpenPackagedFile(form, "LICENSE", "Host License"));
+        AddButtonRow(creditsRows, "Third-Party Licenses", enabled: true, () => OpenPackagedDirectory(form, "licenses", "Third-Party Licenses"));
         credits.Controls.Add(creditsRows);
         root.Controls.Add(credits, 0, 3);
 
@@ -283,14 +286,14 @@ internal static class ConfigurationDialog
         catch (Exception ex) { MessageBox.Show(owner, ex.Message, "Could not open GitHub", MessageBoxButtons.OK, MessageBoxIcon.Error); }
     }
 
-    private static void OpenCredits(Form owner)
+    private static void OpenPackagedFile(Form owner, string fileName, string title)
     {
         var executableDirectory = Path.GetDirectoryName(Environment.ProcessPath);
-        var path = Path.Combine(executableDirectory ?? AppContext.BaseDirectory, "CREDITS.txt");
-        if (!File.Exists(path)) path = Path.Combine(AppContext.BaseDirectory, "CREDITS.txt");
+        var path = Path.Combine(executableDirectory ?? AppContext.BaseDirectory, fileName);
+        if (!File.Exists(path)) path = Path.Combine(AppContext.BaseDirectory, fileName);
         if (!File.Exists(path))
         {
-            MessageBox.Show(owner, "The packaged credits file is missing.", "Credits", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(owner, $"The packaged {fileName} file is missing.", title, MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
         try
@@ -299,7 +302,21 @@ internal static class ConfigurationDialog
             start.ArgumentList.Add(path);
             Process.Start(start);
         }
-        catch (Exception ex) { MessageBox.Show(owner, ex.Message, "Could not open Credits", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+        catch (Exception ex) { MessageBox.Show(owner, ex.Message, $"Could not open {title}", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+    }
+
+    private static void OpenPackagedDirectory(Form owner, string directoryName, string title)
+    {
+        var executableDirectory = Path.GetDirectoryName(Environment.ProcessPath);
+        var path = Path.Combine(executableDirectory ?? AppContext.BaseDirectory, directoryName);
+        if (!Directory.Exists(path)) path = Path.Combine(AppContext.BaseDirectory, directoryName);
+        if (!Directory.Exists(path))
+        {
+            MessageBox.Show(owner, $"The packaged {directoryName} directory is missing.", title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
+        try { Process.Start(new ProcessStartInfo(path) { UseShellExecute = true }); }
+        catch (Exception ex) { MessageBox.Show(owner, ex.Message, $"Could not open {title}", MessageBoxButtons.OK, MessageBoxIcon.Error); }
     }
 
     private sealed class WindowOwner(IntPtr handle) : IWin32Window

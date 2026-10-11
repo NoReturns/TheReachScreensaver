@@ -19,7 +19,11 @@ internal sealed record ReachAssetManifest(int Version, ReachAsset[] Assets)
             new JsonSerializerOptions { PropertyNameCaseInsensitive = true })
             ?? throw new InvalidDataException("Pinned visual asset manifest is empty.");
         manifest.Validate();
-        return manifest;
+        // Ceres rights and Mercury JPEG provenance are unresolved. Keep their pinned
+        // records for provenance, but do not offer or inject them in the public build.
+        return manifest with { Assets = manifest.Assets.Where(asset =>
+            !asset.DestinationBodyId.Equals("ceres", StringComparison.OrdinalIgnoreCase)
+            && !asset.DestinationBodyId.Equals("mercury", StringComparison.OrdinalIgnoreCase)).ToArray() };
     }
 
     public void Validate()

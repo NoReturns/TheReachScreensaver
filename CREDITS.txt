@@ -1,25 +1,75 @@
-The Reach Screensaver - Credits
+The Reach Screensaver - Credits and Licenses
 
-The Reach Screensaver uses a production build of Your Eyes In Space, originally
-created by Berk Comba. The original repository is
-https://github.com/berkcomba/youreyesinspace.
+The Reach Screensaver native host:
+https://github.com/NoReturns/TheReachScreensaver
+Original native host code is MIT licensed, Copyright (c) 2026 NoReturns.
+The package includes the host LICENSE. Images, data and third-party code
+retain their own terms.
 
-The screensaver host repository is
-https://github.com/NoReturns/TheReachScreensaver.
+The embedded web experience is based on Your Eyes In Space, created by
+Berk Comba for BigBrains: https://github.com/berkcomba/youreyesinspace
+Its source code is MIT licensed, Copyright (c) 2026 BigBrains. The original
+MIT license and notice are included in licenses/Universe-LICENSE.txt and
+licenses/Universe-NOTICE.md. The original project name and logos are not
+licensed as part of its MIT source code.
 
-Your Eyes In Space source code is MIT licensed. Its HYG-derived star catalogue
-comes from the HYG Database by David Nash (Astronexus) and uses CC BY-SA 4.0:
-https://creativecommons.org/licenses/by-sa/4.0/.
+The bundled star catalogue in dist/data/stars.bin and star-names.json is
+derived from the HYG Database by David Nash (Astronexus), drawing on the
+Hipparcos, Yale Bright Star, and Gliese catalogues. The derived data retains
+CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/
+Source: https://github.com/astronexus/HYG-Database
 
-Planetary data and images include NASA/JPL orbital and spacecraft data, NASA
-Blue Marble imagery, NASA/USGS Viking Mars imagery, NASA/JPL/Space Science
-Institute Cassini Jupiter imagery, and NASA/Johns Hopkins University Applied
-Physics Laboratory/Southwest Research Institute New Horizons Pluto imagery.
-The complete package includes further source and license details in
-ATTRIBUTION.md, licenses/Universe-NOTICE.md, and the asset manifests.
+Bundled Reach planetary maps are credited individually in
+dist/textures/reach-assets.manifest.json. They include NASA Earth Observatory
+Blue Marble Next Generation; NASA SVS, Ernie Wright, LROC/Arizona State
+University and LOLA Moon data; NASA/JPL-Caltech/USGS Viking Mars and moon
+maps; NASA/JPL/Space Science Institute Cassini Jupiter imagery; and
+NASA/JPL-Caltech/USGS Voyager and Galileo moon maps. The native host also
+embeds Earth Blue Marble, Viking Mars, Cassini Jupiter, and New Horizons
+Pluto maps; their source products are recorded in the host repository's
+Assets/Planets/SOURCES.md. NASA, JPL, and USGS source credits do not imply
+endorsement of The Reach Screensaver.
+Native map source pages: Earth https://visibleearth.nasa.gov/collection/1484/blue-marble
+Mars https://science.nasa.gov/3d-resources/mars/
+Jupiter https://photojournal.jpl.nasa.gov/catalog/PIA07782
+Pluto https://photojournal.jpl.nasa.gov/catalog/PIA11707
 
-The native host includes OpenTK 4.9.4 (MIT; Stefanos Apostolopoulos and the
-Open Toolkit contributors), StbImageSharp 2.30.15 (public domain), the
-Microsoft WebView2 SDK loader, and .NET runtime components. Their detailed
-notices are in the complete package's licenses folder. The WebView2 Evergreen
-Runtime is a separate prerequisite and is not redistributed here.
+Optional enhanced maps are not included in the base package. Their individual
+source teams, image processing, known coverage limits, and pinned file hashes
+are recorded in the host repository's VisualAssets/REACH_IMAGERY_V1.md and
+VisualAssets/reach-assets.manifest.json. Redistribution terms for the DLR
+Ceres mosaic remain unverified. The exact enhanced Mercury JPEG source and
+derivation also remain unverified. Both Ceres and both Mercury records are
+excluded from the public download offer; bundled or procedural fallback stays
+available. Existing local files are not deleted.
+Public download availability alone does not establish redistribution rights.
+
+Six additional Phobos, Deimos, and Mimas maps are hosted on the imagery Release
+but are not offered by the v1.0 app. The Phobos and Deimos grayscale maps are
+derived from Philip Stooke's Stooke Small Bodies Maps V3.0. Required citation:
+Stooke, P., Stooke Small Bodies Maps V3.0,
+MULTI-SA-MULTI-6-STOOKEMAPS-V3.0, NASA Planetary Data System, 2015.
+The PDS source guide states that the maps are public domain with proper credit
+and are for visualization, not photometric analysis:
+https://sbnarchive.psi.edu/pds3/multi_mission/MULTI_SA_MULTI_6_STOOKEMAPS_V3_0/document/00_map_guide.html
+The Mimas grayscale map derives from Cassini Global Map - June 2017,
+PIA17214. Credit: NASA/JPL-Caltech/Space Science Institute.
+https://science.nasa.gov/photojournal/mimas-global-map-june-2017/
+Source files, export details, and image limitations are recorded in
+VisualAssets/REACH_IMAGERY_V1.md. These credits do not imply endorsement.
+
+Software shipped with the package:
+- three.js: MIT; licenses/Three-LICENSE.txt; https://threejs.org/
+- OpenTK 4.9.4: MIT; licenses/OpenTK-LICENSE.txt;
+  https://github.com/opentk/opentk
+- StbImageSharp 2.30.15: public domain;
+  https://github.com/StbSharp/StbImageSharp
+- Microsoft WebView2 SDK loader: Microsoft license and notice;
+  licenses/WebView2-LICENSE.txt and licenses/WebView2-NOTICE.txt
+- Self-contained .NET runtime: third-party notices in
+  licenses/DotNet-ThirdPartyNotices.txt
+
+The WebView2 Evergreen Runtime is a separately installed prerequisite.
+Additional catalogue, model, and imagery sources are listed in
+licenses/Universe-NOTICE.md. NASA media guidance:
+https://www.nasa.gov/nasa-brand-center/images-and-media/

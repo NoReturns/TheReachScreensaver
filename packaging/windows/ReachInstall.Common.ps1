@@ -31,14 +31,25 @@ function Get-ReachPackageFiles([string]$path) {
     $root = [IO.Path]::GetFullPath((Resolve-Path -LiteralPath $path).Path)
     Assert-NoReparsePoints $root
     foreach ($required in @('TheReachScreensaver.scr', 'dist\index.html', 'ATTRIBUTION.md', 'INSTALL.md',
+            'CREDITS.txt', 'LICENSE', 'PRIVACY.md',
             'licenses\Universe-LICENSE.txt', 'licenses\Universe-NOTICE.md',
-            'licenses\Three-LICENSE.txt', 'licenses\WebView2-LICENSE.txt',
+            'licenses\Three-LICENSE.txt', 'licenses\OpenTK-LICENSE.txt',
+            'licenses\WebView2-LICENSE.txt', 'licenses\WebView2-NOTICE.txt',
             'licenses\DotNet-ThirdPartyNotices.txt', 'windows\ReachInstall.Common.ps1',
             'windows\Install-ReachScreensaver.ps1', 'windows\Select-ReachScreensaver.ps1',
             'windows\Uninstall-ReachScreensaver.ps1')) {
         if (-not (Test-Path -LiteralPath (Join-Path $root $required) -PathType Leaf)) {
             throw "Incomplete package: missing $required"
         }
+    }
+    foreach ($brandFile in @('logo.png', 'logo-white.png', 'favicon.png', 'apple-touch-icon.png', 'og-image.jpg')) {
+        if (Test-Path -LiteralPath (Join-Path $root "dist\$brandFile") -PathType Leaf) {
+            throw "Package retains unused upstream branding: $brandFile"
+        }
+    }
+    $index = Get-Content -LiteralPath (Join-Path $root 'dist\index.html') -Raw
+    if ($index -cmatch 'logo(?:-white)?\.png|favicon\.png|apple-touch-icon\.png|og-image\.jpg|<span class="brand-name">YOUR EYES IN SPACE|<title>Your Eyes In Space') {
+        throw 'Package HTML retains upstream branding references.'
     }
     $files = @(Get-ChildItem -LiteralPath $root -File -Recurse -Force)
     if ($files.Count -lt 10) { throw 'The package contains too few files.' }

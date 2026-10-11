@@ -1,7 +1,8 @@
 # The Reach Screensaver - manual installation
 
 This folder is a self-contained Windows x64 screensaver package. Keep
-`TheReachScreensaver.scr` and the complete `dist` directory together. No .NET
+`TheReachScreensaver.scr`, `LICENSE`, `PRIVACY.md`, `CREDITS.txt`, `ATTRIBUTION.md`, the `licenses`
+directory, and the complete `dist` directory together. No .NET
 SDK, Node.js, npm, source checkout, web server, or network connection is needed
 for playback.
 
@@ -50,16 +51,16 @@ After separate approval to change the user's screensaver selection, rerun
 with `-Apply`. This first saves `SCRNSAVE.EXE`, `ScreenSaveActive`,
 `ScreenSaveTimeOut`, and `ScreenSaverIsSecure`, including missing values and
 registry types, at `%LOCALAPPDATA%\TheReachScreensaver\Installation\previous-screensaver.json`.
-It then calls Windows `desk.cpl,InstallScreenSaver` with the installed `.scr`'s
-full absolute path and verifies that Windows retained that path. If selection
+It writes the installed `.scr`'s full absolute path to the current user's
+`SCRNSAVE.EXE` registry value, broadcasts the desktop settings change, and
+verifies that Windows retained the path. If selection
 fails, it restores the captured values and stops. Existing timeout and resume
 security choices are preserved for rollback.
 
-On the Windows 10 system used for this rehearsal, `.scr` right-click **Install**
-uses the same `desk.cpl,InstallScreenSaver` action with the file's long path.
-Windows currently selects `C:\Windows\system32\Ribbons.scr`, with a 300-second
-timeout. The actual Screen Saver Settings preview and idle activation still
-require owner-approved selection and have not been exercised.
+The script preserves the current `ScreenSaveActive`, `ScreenSaveTimeOut`, and
+`ScreenSaverIsSecure` values. It does not enable an inactive screensaver or
+change the idle timeout. Preview and idle activation still need validation
+with the selected release candidate.
 
 Windows may restrict screensaver selection through organization policy. If it
 does not retain the absolute per-user path, stop there. Do not copy only the
@@ -71,16 +72,17 @@ does not retain the absolute per-user path, stop there. Do not copy only the
    `.scr`, `dist`, attribution, and licenses. Confirm Windows still selects the
    previous screensaver.
 2. Run the installed `.scr` with `/s` and `/c` through a direct process launch.
-   Check all displays, primary-only countdown, native input exit, and the
-   configuration dialog. Relaunch `/s` to check voyage restoration.
+   Check all displays, primary-only countdown and distance display, native
+   input exit, Settings, Reset Trip, and Open Credits. Relaunch `/s` to check
+   voyage restoration and a scheduled reset.
 3. Approve selection separately, then run the select script with `-Apply`.
    Confirm that `SCRNSAVE.EXE` equals the full installed path and the prior
-   timeout and security choices were captured.
+   active flag, timeout, and security choices were captured.
 4. Open Screen Saver Settings with `control.exe desk.cpl,screensaver,@screensaver`.
    Check that Reach is selected and its embedded preview renders stars and a
    planet without a countdown. Check that closing Settings ends the preview.
 5. Leave the computer idle for the currently configured timeout, then check
-   automatic `/s` activation, panoramic alignment, primary-only countdown,
+   automatic `/s` activation, panoramic alignment, primary-only overlays,
    input exit from a secondary display, and checkpoint restoration. Review
    `%LOCALAPPDATA%\TheReachScreensaver\logs` for missing assets or blocked
    external requests.

@@ -15,9 +15,10 @@ internal static class ReachAssetSelfTest
         {
             var pinned = ReachAssetManifest.LoadPinned();
             var batchBodies = new[] { "moon", "mars", "io", "tethys", "dione", "iapetus", "titan",
-                "enceladus", "europa", "mercury", "rhea", "venus" };
-            Check(pinned.Assets.Length == 24 && pinned.Assets[0].AssetId == "earth-day-high"
+                "enceladus", "europa", "rhea", "venus", "vesta", "pluto" };
+            Check(pinned.Assets.Length == 26 && pinned.Assets[0].AssetId == "earth-day-high"
                 && pinned.Assets[1].AssetId == "moon-day-high"
+                && pinned.Assets.All(asset => asset.DestinationBodyId is not ("ceres" or "mercury"))
                 && batchBodies.All(body => pinned.Assets.Any(asset => asset.DestinationBodyId == body))
                 && batchBodies.Where(body => body != "moon").All(body =>
                     pinned.Assets.Count(asset => asset.DestinationBodyId == body && asset.Width == 2048) == 1
@@ -26,7 +27,7 @@ internal static class ReachAssetSelfTest
                     .All(asset => !asset.SourceUrl.Contains("/review-"))
                 && pinned.Assets.Where(asset => asset.DestinationBodyId == "venus")
                     .All(asset => asset.SourceAttribution.Contains("radar surface, fully simulated colour")),
-                "production manifest pins the 12-destination 2K/4K batch");
+                "public offer pins 26 files and excludes Ceres and Mercury");
             var asset = new ReachAsset("earth-day", "earth", "Local fixture", "Test data",
                 "https://example.com/source", "earth/day.bin", "earth/day.bin", Payload.Length, Hash, 1, 1);
             var manifest = new ReachAssetManifest(1, [asset]);
