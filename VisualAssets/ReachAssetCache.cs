@@ -91,7 +91,7 @@ internal sealed class ReachAssetCache
                     {
                     using var deadline = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
                     deadline.CancelAfter(TimeSpan.FromSeconds(60));
-                    using var response = await client.GetAsync(url, HttpCompletionOption.ResponseHeadersRead, deadline.Token);
+                    using var response = await GetApprovedResponseAsync(client, asset, url, deadline.Token);
                     if (response.StatusCode != HttpStatusCode.OK)
                         throw new HttpRequestException($"Asset {asset.AssetId} returned HTTP {(int)response.StatusCode}.");
                     if (response.Content.Headers.ContentLength is long length && length != asset.ExpectedFileSize)
@@ -158,4 +158,30 @@ internal sealed class ReachAssetCache
             throw new InvalidDataException("Asset file is a symbolic link.");
         return path;
     }
+
+    private static async Task<HttpResponseMessage> GetApprovedResponseAsync(
+        HttpClient client, ReachAsset asset, Uri source, CancellationToken cancellationToken)
+    {
+        var response = await client.GetAsync(source, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+        if (response.StatusCode != HttpStatusCode.Found || !IsPinnedGitHubRelease(asset, source))
+            return response;
+
+        var target = response.Headers.Location;
+        if (target is null || !target.IsAbsoluteUri || target.Scheme != Uri.UriSchemeHttps
+            || !target.Host.Equals("release-assets.githubusercontent.com", StringComparison.OrdinalIgnoreCase)
+            || !target.IsDefaultPort || target.UserInfo.Length != 0 || target.Fragment.Length != 0
+            || !target.AbsolutePath.StartsWith("/github-production-release-asset/", StringComparison.Ordinal))
+            return response;
+
+        response.Dispose();
+        // A second redirect is not followed. The normal HTTP 200, size, and hash checks still apply.
+        return await client.GetAsync(target, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+    }
+
+    private static bool IsPinnedGitHubRelease(ReachAsset asset, Uri source) =>
+        source.AbsoluteUri == asset.SourceUrl && source.Scheme == Uri.UriSchemeHttps
+        && source.Host.Equals("github.com", StringComparison.OrdinalIgnoreCase)
+        && source.IsDefaultPort && source.UserInfo.Length == 0 && source.Query.Length == 0
+        && source.Fragment.Length == 0
+        && source.AbsolutePath.StartsWith("/NoReturns/TheReachScreensaver/releases/download/", StringComparison.Ordinal);
 }

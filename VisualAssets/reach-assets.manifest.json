@@ -13,6 +13,19 @@
       "sha256": "99F5FAAD74EFE985FBF1714C8BE7296CA9999759A1215B65F99B7F1DF278DDE5",
       "width": 5400,
       "height": 2700
+    },
+    {
+      "assetId": "moon-day-high",
+      "destinationBodyId": "moon",
+      "sourceAttribution": "NASA SVS / Ernie Wright / LROC WAC team (Arizona State University) / LRO LOLA team",
+      "licenseUsageTerms": "NASA imagery guidelines: credit NASA SVS and source teams; no endorsement. LROC observed color with lower-resolution LOLA polar fill.",
+      "sourceUrl": "https://github.com/NoReturns/TheReachScreensaver/releases/download/reach-imagery-v1/moon-day-4k.jpg",
+      "downloadPath": "moon/moon-day-4k.jpg",
+      "localRelativePath": "moon/moon-day-4k.jpg",
+      "expectedFileSize": 2835944,
+      "sha256": "77a6bc0532dd901e0e5acdf9bc19b5ee4efe7375eca9ebe22eb22508d7e85a7d",
+      "width": 4096,
+      "height": 2048
     }
   ]
 }

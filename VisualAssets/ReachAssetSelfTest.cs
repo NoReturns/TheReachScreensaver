@@ -14,8 +14,10 @@ internal static class ReachAssetSelfTest
         try
         {
             var pinned = ReachAssetManifest.LoadPinned();
-            Check(pinned.Assets.Length == 1 && pinned.Assets[0].AssetId == "earth-day-high",
-                "production manifest pins optional Earth imagery");
+            Check(pinned.Assets.Length == 2 && pinned.Assets[0].AssetId == "earth-day-high"
+                && pinned.Assets[1].AssetId == "moon-day-high"
+                && pinned.Assets[1].ExpectedFileSize == 2835944,
+                "production manifest pins optional Earth and Moon imagery");
             var asset = new ReachAsset("earth-day", "earth", "Local fixture", "Test data",
                 "https://example.com/source", "earth/day.bin", "earth/day.bin", Payload.Length, Hash, 1, 1);
             var manifest = new ReachAssetManifest(1, [asset]);
@@ -135,6 +137,58 @@ internal static class ReachAssetSelfTest
             Check(directCache.AcquireApprovedAsync(true, directClient).GetAwaiter().GetResult() == 1
                 && directHandler.LastUri?.AbsoluteUri == asset.SourceUrl,
                 "per-asset direct HTTPS source used without a mirror");
+            var releaseAsset = asset with { AssetId = "moon-day-high", DestinationBodyId = "moon",
+                SourceUrl = pinned.Assets[1].SourceUrl, DownloadPath = "moon/day.bin",
+                LocalRelativePath = "moon/day.bin" };
+            var releaseManifest = new ReachAssetManifest(1, [releaseAsset]);
+            var releaseConfiguration = enhanced with { SourceBaseUrl = null, SourceOverrides = null };
+            var releaseTarget = new Uri("https://release-assets.githubusercontent.com/github-production-release-asset/fixture?token=test");
+            var releaseHandler = new RedirectHandler(releaseTarget);
+            using (var releaseClient = new HttpClient(releaseHandler))
+            {
+                var releaseCache = new ReachAssetCache(releaseManifest,
+                    releaseConfiguration with { AssetDirectory = Path.Combine(root, "release") });
+                var releaseResult = releaseCache.AcquireApprovedDetailedAsync(true, releaseClient).GetAwaiter().GetResult();
+                Check(releaseResult.Installed == 1
+                    && releaseHandler.Count == 2 && releaseHandler.LastUri == releaseTarget
+                    && releaseCache.IsVerified(releaseAsset),
+                    $"pinned GitHub release follows one approved HTTPS redirect: installed={releaseResult.Installed}, requests={releaseHandler.Count}, failure={releaseResult.Failures.FirstOrDefault()?.Reason}");
+            }
+            foreach (var unsafeTarget in new[] {
+                "http://release-assets.githubusercontent.com/github-production-release-asset/fixture",
+                "https://other.example.test/github-production-release-asset/fixture",
+                "https://release-assets.githubusercontent.com/other/fixture" })
+            {
+                var rejectedHandler = new RedirectHandler(new Uri(unsafeTarget));
+                using var rejectedClient = new HttpClient(rejectedHandler);
+                var rejectedCache = new ReachAssetCache(releaseManifest,
+                    releaseConfiguration with { AssetDirectory = Path.Combine(root, "rejected-" + rejectedHandler.GetHashCode()) });
+                var rejected = rejectedCache.AcquireApprovedDetailedAsync(true, rejectedClient).GetAwaiter().GetResult();
+                Check(rejected.Installed == 0 && rejected.Failures.Count == 1 && rejectedHandler.Count == 1
+                    && !rejectedCache.IsVerified(releaseAsset), "unsafe GitHub redirect was not followed");
+            }
+            var overrideHandler = new RedirectHandler(releaseTarget);
+            using (var overrideClient = new HttpClient(overrideHandler))
+            {
+                var overrideCache = new ReachAssetCache(releaseManifest,
+                    releaseConfiguration with { AssetDirectory = Path.Combine(root, "release-override"),
+                        SourceOverrides = new Dictionary<string, Uri> {
+                            [releaseAsset.AssetId] = new("https://mirror.example.test/moon.jpg") } });
+                var overrideResult = overrideCache.AcquireApprovedDetailedAsync(true, overrideClient).GetAwaiter().GetResult();
+                Check(overrideResult.Installed == 0 && overrideResult.Failures.Count == 1
+                    && overrideHandler.Count == 1 && !overrideCache.IsVerified(releaseAsset),
+                    "mirror redirect does not inherit pinned GitHub permission");
+            }
+            var secondHandler = new RedirectHandler(releaseTarget) { RedirectAgain = true };
+            using (var secondClient = new HttpClient(secondHandler))
+            {
+                var secondCache = new ReachAssetCache(releaseManifest,
+                    releaseConfiguration with { AssetDirectory = Path.Combine(root, "second-redirect") });
+                var secondResult = secondCache.AcquireApprovedDetailedAsync(true, secondClient).GetAwaiter().GetResult();
+                Check(secondResult.Installed == 0 && secondResult.Failures.Count == 1
+                    && secondHandler.Count == 2 && !secondCache.IsVerified(releaseAsset),
+                    "second release redirect was not followed");
+            }
             var overridden = ReachVisualConfiguration.Parse("[Visuals]\nMode=enhanced\n[Downloads]\nSourceBaseUrl=https://mirror.example.test/assets/\n[AssetSources]\nearth-day=https://alternate.example.test/earth.jpg");
             Check(overridden.SourceFor(asset).AbsoluteUri == "https://alternate.example.test/earth.jpg",
                 "per-asset override takes precedence over shared mirror");
@@ -188,6 +242,27 @@ internal static class ReachAssetSelfTest
                 throw new HttpRequestException("Publisher unreachable at " + request.RequestUri);
             return new HttpResponseMessage(HttpStatusCode.OK)
                 { Content = new ByteArrayContent(Corrupt ? Encoding.ASCII.GetBytes(new string('z', Payload.Length)) : Payload) };
+        }
+    }
+
+    private sealed class RedirectHandler(Uri target) : HttpMessageHandler
+    {
+        public int Count { get; private set; }
+        public Uri? LastUri { get; private set; }
+        public bool RedirectAgain { get; set; }
+
+        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        {
+            Count++;
+            LastUri = request.RequestUri;
+            if (Count == 1 || RedirectAgain)
+            {
+                var redirect = new HttpResponseMessage(HttpStatusCode.Found);
+                redirect.Headers.Location = target;
+                return Task.FromResult(redirect);
+            }
+            return Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK)
+                { Content = new ByteArrayContent(Payload) });
         }
     }
 
