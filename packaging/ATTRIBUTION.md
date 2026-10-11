@@ -7,6 +7,11 @@ model, and imagery credits. The bundled HYG-derived star catalogue is credited
 there and uses CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/).
 The bundled planetary imagery credits are also recorded in
 `dist/textures/reach-assets.manifest.json`.
+The source repository pins optional downloaded imagery with credits and usage
+notes in `VisualAssets/reach-assets.manifest.json`. Its
+`VisualAssets/REACH_IMAGERY_V1.md` records source products and processing
+limitations. These optional JPEGs are hosted on the reach-imagery-v1 release
+and are not bundled here.
 
 Bundled runtime dependencies and their notices:
 
