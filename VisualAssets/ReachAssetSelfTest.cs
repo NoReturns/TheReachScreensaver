@@ -38,6 +38,17 @@ internal static class ReachAssetSelfTest
             Check(enhancedCache.VerifiedAssets().Count == 0, "missing enhanced asset falls back");
             Check(enhancedCache.AcquireApprovedAsync(false, client).GetAwaiter().GetResult() == 0 && handler.Count == 0,
                 "enhanced acquisition requires consent");
+            handler.DelayUntilCancelled = true;
+            using (var cancellation = new CancellationTokenSource())
+            {
+                var pending = enhancedCache.AcquireApprovedDetailedAsync(true, client, cancellation.Token);
+                Check(!pending.IsCompleted, "slow download remains asynchronous");
+                cancellation.Cancel();
+                try { pending.GetAwaiter().GetResult(); throw new Exception("Cancellation was ignored."); }
+                catch (OperationCanceledException) { }
+                Check(!File.Exists(enhancedCache.LocalPath(asset)), "cancelled download left no installed asset");
+            }
+            handler.DelayUntilCancelled = false;
             handler.Corrupt = true;
             var corruptResult = enhancedCache.AcquireApprovedDetailedAsync(true, client).GetAwaiter().GetResult();
             Check(corruptResult.Installed == 0 && corruptResult.Failures.Count == 1
@@ -47,9 +58,13 @@ internal static class ReachAssetSelfTest
                 "corrupt download left no installed or temporary file");
             handler.Corrupt = false;
             var countAfterCorrupt = handler.Count;
-            Check(enhancedCache.AcquireApprovedAsync(true, client).GetAwaiter().GetResult() == 1
+            var progressUpdates = new List<ReachAssetCache.AcquisitionProgress>();
+            var progress = new FixtureProgress(progressUpdates);
+            Check(enhancedCache.AcquireApprovedDetailedAsync(true, client, progress: progress).GetAwaiter().GetResult().Installed == 1
                 && handler.Count == countAfterCorrupt + 1,
                 "approved download installed one file");
+            Check(progressUpdates.Count > 0 && progressUpdates[^1].BytesProcessed == Payload.Length
+                && progressUpdates[^1].TotalBytes == Payload.Length, "download reports byte progress");
             Check(handler.LastUri?.AbsoluteUri == "https://mirror.example.test/assets/earth/day.bin",
                 "source override selected the expected mirror path");
             Check(enhancedCache.VerifiedAssets().Count == 1, "enhanced mode uses verified file");
@@ -90,6 +105,12 @@ internal static class ReachAssetSelfTest
             Check(recovered.Installed == 1 && recovered.Failures.Count == 0 && recovered.Skipped == 1
                 && handler.Count == countBeforeRetry + 1 && multiple.IsVerified(asset),
                 "later setup retries failure and skips previously verified asset");
+            var settingsPath = Path.Combine(root, "settings.json");
+            ReachVisualConfiguration.SavePreferences(procedural with { Mode = ReachVisualMode.Enhanced,
+                CountdownEnabled = false, CountdownPosition = "bottom-right" }, settingsPath);
+            var persisted = ReachVisualConfiguration.Load(Path.Combine(root, "missing.ini"), settingsPath);
+            Check(persisted.Mode == ReachVisualMode.Enhanced && !persisted.CountdownEnabled
+                && persisted.CountdownPosition == "bottom-right", "enhanced mode and existing preferences persist");
             var bad = ReachVisualConfiguration.Parse("[Visuals]\nMode=garbage\n[Downloads]\nSourceBaseUrl=http://example.com\n[Storage]\nAssetDirectory=../escape");
             Check(bad.Mode == ReachVisualMode.Basic && bad.SourceBaseUrl is null
                 && bad.AssetDirectory == ReachVisualConfiguration.DefaultAssetDirectory, "invalid INI defaults");
@@ -156,15 +177,23 @@ internal static class ReachAssetSelfTest
         public int Count { get; private set; }
         public Uri? LastUri { get; private set; }
         public bool Corrupt { get; set; }
+        public bool DelayUntilCancelled { get; set; }
         public string? FailAssetId { get; set; }
-        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             Count++;
             LastUri = request.RequestUri;
+            if (DelayUntilCancelled) await Task.Delay(Timeout.Infinite, cancellationToken);
             if (FailAssetId is not null && request.RequestUri?.AbsolutePath.Contains(FailAssetId) == true)
                 throw new HttpRequestException("Publisher unreachable at " + request.RequestUri);
-            return Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK)
-                { Content = new ByteArrayContent(Corrupt ? Encoding.ASCII.GetBytes(new string('z', Payload.Length)) : Payload) });
+            return new HttpResponseMessage(HttpStatusCode.OK)
+                { Content = new ByteArrayContent(Corrupt ? Encoding.ASCII.GetBytes(new string('z', Payload.Length)) : Payload) };
         }
+    }
+
+    private sealed class FixtureProgress(List<ReachAssetCache.AcquisitionProgress> updates)
+        : IProgress<ReachAssetCache.AcquisitionProgress>
+    {
+        public void Report(ReachAssetCache.AcquisitionProgress value) => updates.Add(value);
     }
 }

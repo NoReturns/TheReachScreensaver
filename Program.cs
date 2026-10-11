@@ -46,7 +46,7 @@ internal static class Program
                 ConfigurationDialog.ShowError(message);
                 return 1;
             }
-            return ReachWebApplication.Run(fullscreen);
+            return fullscreen ? RunScreensaver() : ReachWebApplication.Run(fullscreen: false);
         }
 
         if (args.Length > 0 && string.Equals(args[0], "--legacy-opentk", StringComparison.OrdinalIgnoreCase))
@@ -74,7 +74,7 @@ internal static class Program
             {
                 ScreensaverMode.Configuration => RunConfiguration(parsed.ParentHwnd),
                 ScreensaverMode.Preview => ReachWebApplication.RunPreview(parsed.ParentHwnd),
-                ScreensaverMode.Screensaver => ReachWebApplication.Run(fullscreen: true),
+                ScreensaverMode.Screensaver => RunScreensaver(),
                 _ => ReachWebApplication.Run(fullscreen: false)
             };
         }
@@ -89,10 +89,22 @@ internal static class Program
 
     private static int RunConfiguration(IntPtr ownerHwnd)
     {
-        var visuals = ReachVisualConfiguration.Load();
-        if (visuals.Mode == ReachVisualMode.Enhanced && visuals.DownloadOnFirstUse)
-            return ReachVisualSetup.Run();
         ConfigurationDialog.Show(ownerHwnd);
         return 0;
+    }
+
+    private static int RunScreensaver()
+    {
+        using var mutex = new Mutex(false, "Local\\TheReachScreensaverFullscreenVoyage");
+        bool acquired;
+        try { acquired = mutex.WaitOne(0); }
+        catch (AbandonedMutexException) { acquired = true; }
+        if (!acquired)
+        {
+            Log.Warn("A fullscreen Reach voyage is already running.");
+            return 0;
+        }
+        try { return ReachWebApplication.Run(fullscreen: true); }
+        finally { mutex.ReleaseMutex(); }
     }
 }

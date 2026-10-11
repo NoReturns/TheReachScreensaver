@@ -30,6 +30,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="VisualAssets\reach-assets.manifest.json" LogicalName="TheReachScreensaver.VisualAssets.reach-assets.manifest.json" />
+    <None Update="CREDITS.txt" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="Always" ExcludeFromSingleFile="true" />
   </ItemGroup>
 
   <ItemGroup>

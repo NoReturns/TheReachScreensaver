@@ -6,7 +6,7 @@ namespace TheReachScreensaver.VisualAssets;
 
 internal static class ReachVisualSetup
 {
-    private static string AcquisitionLogPath => Path.Combine(ReachVisualConfiguration.RootDirectory, "asset-acquisition.log");
+    internal static string AcquisitionLogPath => Path.Combine(ReachVisualConfiguration.RootDirectory, "asset-acquisition.log");
 
     public static int Status()
     {

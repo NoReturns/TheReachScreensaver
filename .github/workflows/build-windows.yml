@@ -39,5 +39,6 @@ jobs:
           path: |
             publish/win-x64/TheReachScreensaver.scr
             publish/win-x64/TheReachScreensaver.exe
+            publish/win-x64/CREDITS.txt
           if-no-files-found: error
           compression-level: 0

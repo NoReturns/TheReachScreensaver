@@ -10,11 +10,11 @@ Native Windows screensaver: a passive cinematic voyage **Earth → Moon → Mars
 - An OpenGL 3.3 core context for the legacy OpenTK renderer
 - NuGet: Microsoft.Web.WebView2 1.0.4258.31; OpenTK 4.9.4; StbImageSharp 2.30.15 (embedded planet albedo decode; included in single-file publish)
 
-The standard `/s` screensaver and `/p` preview use WebView2. The OpenTK renderer remains available with `--legacy-opentk`. `/c` retains its existing configuration dialog.
+The standard `/s` screensaver and `/p` preview use WebView2. The OpenTK renderer remains available with `--legacy-opentk`. `/c` opens the native Settings window.
 
 ## WebView2 renderer
 
-Build `TheReachUniverse-source` with `npm run build`. The host first uses a built `dist` folder beside its executable or `.scr`, then looks for an adjacent `TheReachUniverse-source/dist` while running from the source tree. `REACH_WEB_DIST` can select an absolute `dist` path. The host maps the folder to `https://reach.example/index.html?reach=1`; no web server is used. A missing folder or WebView2 Runtime produces an error dialog and a log entry.
+Build `Universe` with `npm run build`. The host first uses a built `dist` folder beside its executable or `.scr`, then looks for a sibling `Universe/dist` while running from the source tree. `REACH_WEB_DIST` can select an absolute `dist` path. The host maps the folder to `https://reach.example/index.html?reach=1`; no web server is used. A missing folder or WebView2 Runtime produces an error dialog and a log entry.
 
 This mode opens one resizable window centered on the primary monitor. It uses the Microsoft Edge WebView2 Evergreen Runtime and a separate `%LOCALAPPDATA%\TheReachScreensaver\WebView2Prototype` browser profile. The web voyage state stays in that profile's localStorage; the original `state.json` is not loaded or changed. Close the window with its normal title bar button.
 
@@ -54,7 +54,7 @@ AssetDirectory=%LOCALAPPDATA%\TheReachScreensaver\Assets
 
 `[Countdown]` controls the small yellow destination timer in the primary WebView2 window only. Set `Enabled=0` to hide it. `Position=auto` rotates through top-left, top-centre, top-right, bottom-left, bottom-centre, and bottom-right as the destination changes; any of those names can be used as a fixed position. Existing INI files without this section use the enabled, automatic defaults. The timer reads the active voyage phase and saved duration, so a resumed or paused voyage retains its time. The interactive explorer and legacy OpenTK screensaver do not show it.
 
-`basic` uses bundled Earth, Moon, Mars, Jupiter, and selected observed moon maps; other surfaces remain procedural. `procedural` ignores all imagery. `enhanced` uses verified local high-resolution assets, then bundled maps, then procedural surfaces. Existing `cached` and `download` INI values are read as `enhanced` without rewriting the user's file. Downloads occur only through `--reach-assets-setup` or `/c` when `DownloadOnFirstUse=1`; setup shows the missing asset count, byte total, and sources before asking for consent. Declining leaves bundled imagery available. Playback never invokes setup. `VerifyHashes=0` is ignored: cached files must match pinned hashes.
+`basic` uses bundled Earth, Moon, Mars, Jupiter, and selected observed moon maps; other surfaces remain procedural. `procedural` ignores all imagery. `enhanced` uses verified local high-resolution assets, then bundled maps, then procedural surfaces. Existing `cached` and `download` INI values are read as `enhanced` without rewriting the user's file. The `/c` Settings window offers Download High-Quality Images when pinned files are missing or invalid. It shows the required size and publisher before asking for consent, reports progress, and allows cancellation. A complete verified download enables `enhanced` through persistent settings for the next launch. The separate `--reach-assets-setup` command remains available. Playback and opening `/c` do not start downloads. `VerifyHashes=0` is ignored: cached files must match pinned hashes.
 
 Each pinned asset has its own direct HTTPS publisher URL. `SourceBaseUrl` optionally overrides those URLs with an HTTPS mirror root using each asset's `DownloadPath`. An `AssetSources` entry overrides one asset's source and takes precedence over the shared mirror. All sources retain the application's pinned size and SHA-256. A local asset pack can be placed in `AssetDirectory` and will work without internet access if its files match the manifest. Invalid INI values fall back to safe defaults.
 
@@ -106,7 +106,7 @@ or, after building:
 
 `dotnet run -- --legacy-opentk /s` runs the old OpenTK fullscreen renderer for development. `/s /all` remains accepted for compatibility.
 
-Configuration (no settings yet; this shows a short message and exits):
+Configuration (shows imagery status, About, and Credits; download and reset actions are disabled):
 
 ```powershell
 dotnet run -- /c
@@ -123,7 +123,7 @@ Windows preview (parent HWND from Screen Saver Settings):
 
 | Piece | Role |
 | --- | --- |
-| `Application/` | Command-line modes, `/c` message, `/p` parenting, input/exit, process lifecycle |
+| `Application/` | Command-line modes, `/c` Settings window, `/p` parenting, input/exit, process lifecycle |
 | `Display/` | Monitor enumeration, virtual-desktop bounds, visual-anchor (middle) monitor |
 | `Journey/` | `JourneyController`, authored spline, celestial body data, axial rotation |
 | `Rendering/` | OpenGL window, camera, starfield, planets, rings, fade. Does not own journey time. |
@@ -204,11 +204,11 @@ The following results describe an earlier OpenTK-only slice. They do not validat
 - `dotnet build` succeeds on .NET 10
 - `dotnet run` opens a 1280×720 window, renders at about 60 FPS, resizes, and closes cleanly
 - `dotnet run -- /s` covers the virtual desktop, exits on a key and on a mouse click
-- `dotnet run -- /c` prints the no-settings message and exits 0
+- `dotnet run -- /c` showed the earlier no-settings message and exited 0
 - `/p` parses correctly and does not open a window on Linux
 - Journey state is created, loaded, saved every 30 seconds, and saved on shutdown
 - `dotnet publish -r win-x64` writes `publish/win-x64/TheReachScreensaver.scr`
 
 ## What this slice does not include
 
-Alpha Centauri, interstellar travel, the heliopause, the Oort Cloud, real ephemerides, gravity, galaxies, labels, HUD, audio, installer, updater, networking, or a settings system.
+Alpha Centauri, interstellar travel, the heliopause, the Oort Cloud, real ephemerides, gravity, galaxies, labels, HUD, audio, installer, updater, networking, or editable Settings controls.

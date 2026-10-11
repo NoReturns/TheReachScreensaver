@@ -8,6 +8,7 @@ using TheReachScreensaver.Native;
 using TheReachScreensaver.Display;
 using System.Runtime.InteropServices;
 using TheReachScreensaver.VisualAssets;
+using TheReachScreensaver.Persistence;
 
 namespace TheReachScreensaver.Application;
 
@@ -43,7 +44,7 @@ internal static class ReachWebApplication
         var dist = FindDist();
         if (dist is null)
         {
-            const string message = "Reach web assets were not found. Place the built Universe dist folder beside the screensaver as dist, or set REACH_WEB_DIST to its absolute path. Build TheReachUniverse-source with npm run build first.";
+            const string message = "Reach web assets were not found. Place the built Universe dist folder beside the screensaver as dist, or set REACH_WEB_DIST to its absolute path. Build Universe with npm run build first.";
             Log.Error(message);
             ConfigurationDialog.ShowError(message);
             return 1;
@@ -52,7 +53,6 @@ internal static class ReachWebApplication
         IReadOnlyList<ReachAsset> verifiedAssets;
         try
         {
-            ReachVisualConfiguration.EnsureDefaultFile();
             configuration = ReachVisualConfiguration.Load();
             verifiedAssets = new ReachAssetCache(ReachAssetManifest.LoadPinned(), configuration).VerifiedAssets();
             Log.Info($"Reach visual mode: {configuration.Mode}; verified local assets: {verifiedAssets.Count}.");
@@ -133,7 +133,7 @@ internal static class ReachWebApplication
         {
             for (var parent = new DirectoryInfo(start); parent is not null; parent = parent.Parent)
             {
-                var candidate = Path.Combine(parent.FullName, "TheReachUniverse-source", "dist");
+                var candidate = Path.Combine(parent.FullName, "Universe", "dist");
                 if (ValidDist(candidate)) return candidate;
             }
         }
@@ -364,6 +364,7 @@ internal static class ReachWebApplication
         private bool _shutdownRequested;
         private bool _cursorHidden;
         private bool _previewHandleDestroyedLogged;
+        private string? _pendingResetToken;
 
         public int ExitCode { get; private set; }
 
@@ -543,6 +544,20 @@ internal static class ReachWebApplication
                         Log.Error($"Reach web navigation failed: {args.WebErrorStatus}");
                         _closeGroup?.Invoke("web navigation failed");
                     }
+                    if (args.IsSuccess && _pendingResetToken is { } resetToken && _isPrimaryDisplay)
+                    {
+                        try
+                        {
+                            if (await core.ExecuteScriptAsync("window.__reachResetApplied === true") == "true")
+                            {
+                                JourneyReset.Complete(resetToken);
+                                _pendingResetToken = null;
+                                Log.Info("Pending Reach journey reset applied before checkpoint restoration.");
+                            }
+                            else Log.Error("Pending Reach journey reset was not applied; request retained.");
+                        }
+                        catch (Exception ex) { Log.Error("Could not confirm Reach journey reset; request retained.", ex); }
+                    }
                     if (args.IsSuccess && _panorama is not null)
                     {
                         try
@@ -657,6 +672,14 @@ internal static class ReachWebApplication
                       else hideCursor();
                     })();
                     """);
+                if (_fullscreen && _isPrimaryDisplay)
+                {
+                    _pendingResetToken = JourneyReset.PendingToken();
+                    if (!string.IsNullOrEmpty(_pendingResetToken))
+                        await core.AddScriptToExecuteOnDocumentCreatedAsync(
+                            "try { localStorage.removeItem('the-reach:journey:v1'); window.__reachResetApplied = true; } " +
+                            "catch { window.__reachResetApplied = false; }");
+                }
                 if (Environment.GetEnvironmentVariable("REACH_WEB_VERIFY_CHECKPOINT") == "1")
                     await core.AddScriptToExecuteOnDocumentCreatedAsync("window.__reachCheckpointAtStart = localStorage.getItem('the-reach:journey:v1');");
                 if (_verifiedAssets.Count > 0)

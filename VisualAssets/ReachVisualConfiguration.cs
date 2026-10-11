@@ -1,3 +1,5 @@
+using System.Text.Json;
+
 namespace TheReachScreensaver.VisualAssets;
 
 internal enum ReachVisualMode { Basic, Procedural, Enhanced }
@@ -10,21 +12,61 @@ internal sealed record ReachVisualConfiguration(
     public static string RootDirectory => Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "TheReachScreensaver");
     public static string IniPath => Path.Combine(RootDirectory, "reach.ini");
+    public static string SettingsPath => Path.Combine(RootDirectory, "settings.json");
     public static string DefaultAssetDirectory => Path.Combine(RootDirectory, "Assets");
 
     public static ReachVisualConfiguration Default => new(
         ReachVisualMode.Basic, null, false, DefaultAssetDirectory, true);
 
-    public static ReachVisualConfiguration Load()
+    public static ReachVisualConfiguration Load() => Load(IniPath, SettingsPath);
+
+    internal static ReachVisualConfiguration Load(string iniPath, string settingsPath)
     {
-        if (!File.Exists(IniPath)) return Default;
-        try { return Parse(File.ReadAllText(IniPath)); }
+        var legacy = Default;
+        try { if (File.Exists(iniPath)) legacy = Parse(File.ReadAllText(iniPath)); }
         catch (Exception ex)
         {
             Diagnostics.Log.Warn($"Could not read reach.ini; using basic defaults: {ex.Message}");
-            return Default;
+        }
+        if (!File.Exists(settingsPath)) return legacy;
+        try
+        {
+            var saved = JsonSerializer.Deserialize<SavedSettings>(File.ReadAllText(settingsPath));
+            if (saved is null || saved.Version != 1 || !Enum.TryParse<ReachVisualMode>(saved.Mode, true, out var mode)
+                || !Enum.IsDefined(mode) || !ValidCountdownPosition(saved.CountdownPosition))
+                throw new InvalidDataException("Invalid application settings.");
+            return legacy with { Mode = mode, CountdownEnabled = saved.CountdownEnabled,
+                CountdownPosition = saved.CountdownPosition };
+        }
+        catch (Exception ex)
+        {
+            Diagnostics.Log.Warn($"Could not read settings.json; using existing preferences: {ex.Message}");
+            return legacy;
         }
     }
+
+    public static void SavePreferences(ReachVisualConfiguration configuration) =>
+        SavePreferences(configuration, SettingsPath);
+
+    internal static void SavePreferences(ReachVisualConfiguration configuration, string settingsPath)
+    {
+        if (!ValidCountdownPosition(configuration.CountdownPosition))
+            throw new ArgumentException("Invalid countdown position.", nameof(configuration));
+        Directory.CreateDirectory(Path.GetDirectoryName(settingsPath)!);
+        var temporary = settingsPath + "." + Guid.NewGuid().ToString("N") + ".tmp";
+        try
+        {
+            File.WriteAllText(temporary, JsonSerializer.Serialize(new SavedSettings(1,
+                configuration.Mode.ToString(), configuration.CountdownEnabled, configuration.CountdownPosition)));
+            File.Move(temporary, settingsPath, true);
+        }
+        finally { if (File.Exists(temporary)) File.Delete(temporary); }
+    }
+
+    private sealed record SavedSettings(int Version, string Mode, bool CountdownEnabled, string CountdownPosition);
+
+    private static bool ValidCountdownPosition(string? position) => position is
+        "auto" or "top-left" or "top-centre" or "top-right" or "bottom-left" or "bottom-centre" or "bottom-right";
 
     public static void EnsureDefaultFile()
     {

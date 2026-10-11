@@ -1,0 +1,25 @@
+The Reach Screensaver - Credits
+
+The Reach Screensaver uses a production build of Your Eyes In Space, originally
+created by Berk Comba. The original repository is
+https://github.com/berkcomba/youreyesinspace.
+
+The screensaver host repository is
+https://github.com/NoReturns/TheReachScreensaver.
+
+Your Eyes In Space source code is MIT licensed. Its HYG-derived star catalogue
+comes from the HYG Database by David Nash (Astronexus) and uses CC BY-SA 4.0:
+https://creativecommons.org/licenses/by-sa/4.0/.
+
+Planetary data and images include NASA/JPL orbital and spacecraft data, NASA
+Blue Marble imagery, NASA/USGS Viking Mars imagery, NASA/JPL/Space Science
+Institute Cassini Jupiter imagery, and NASA/Johns Hopkins University Applied
+Physics Laboratory/Southwest Research Institute New Horizons Pluto imagery.
+The complete package includes further source and license details in
+ATTRIBUTION.md, licenses/Universe-NOTICE.md, and the asset manifests.
+
+The native host includes OpenTK 4.9.4 (MIT; Stefanos Apostolopoulos and the
+Open Toolkit contributors), StbImageSharp 2.30.15 (public domain), the
+Microsoft WebView2 SDK loader, and .NET runtime components. Their detailed
+notices are in the complete package's licenses folder. The WebView2 Evergreen
+Runtime is a separate prerequisite and is not redistributed here.

@@ -7,6 +7,7 @@ internal sealed class ReachAssetCache
 {
     internal sealed record Failure(string AssetId, string Source, string Reason);
     internal sealed record AcquisitionResult(int Installed, int Skipped, IReadOnlyList<Failure> Failures);
+    internal sealed record AcquisitionProgress(string AssetId, long BytesProcessed, long TotalBytes);
     private readonly ReachAssetManifest _manifest;
     private readonly ReachVisualConfiguration _configuration;
 
@@ -42,7 +43,8 @@ internal sealed class ReachAssetCache
     public async Task<int> AcquireApprovedAsync(bool consent, HttpClient? client = null, CancellationToken cancellationToken = default)
         => (await AcquireApprovedDetailedAsync(consent, client, cancellationToken)).Installed;
 
-    public async Task<AcquisitionResult> AcquireApprovedDetailedAsync(bool consent, HttpClient? client = null, CancellationToken cancellationToken = default)
+    public async Task<AcquisitionResult> AcquireApprovedDetailedAsync(bool consent, HttpClient? client = null,
+        CancellationToken cancellationToken = default, IProgress<AcquisitionProgress>? progress = null)
     {
         if (!consent || _configuration.Mode != ReachVisualMode.Enhanced)
             return new(0, _manifest.Assets.Length, []);
@@ -52,6 +54,7 @@ internal sealed class ReachAssetCache
         var missing = _manifest.Assets.Where(asset => !IsVerified(asset)).ToArray();
         if (missing.Length == 0) return new(0, _manifest.Assets.Length, []);
         var total = missing.Sum(asset => asset.ExpectedFileSize);
+        long processed = 0;
         if (total > 268_435_456) throw new InvalidDataException("Asset download batch exceeds 256 MiB.");
         var drive = new DriveInfo(Path.GetPathRoot(Path.GetFullPath(_configuration.AssetDirectory))!);
         if (drive.AvailableFreeSpace < total * 2 + 67_108_864)
@@ -67,7 +70,12 @@ internal sealed class ReachAssetCache
             foreach (var asset in missing)
             {
                 cancellationToken.ThrowIfCancellationRequested();
-                if (IsVerified(asset)) continue;
+                if (IsVerified(asset))
+                {
+                    processed += asset.ExpectedFileSize;
+                    progress?.Report(new(asset.AssetId, processed, total));
+                    continue;
+                }
                 var url = _configuration.SourceFor(asset);
                 try
                 {
@@ -99,6 +107,7 @@ internal sealed class ReachAssetCache
                             bytes += read;
                             if (bytes > asset.ExpectedFileSize) throw new InvalidDataException($"Oversized asset {asset.AssetId}.");
                             await target.WriteAsync(buffer.AsMemory(0, read), deadline.Token);
+                            progress?.Report(new(asset.AssetId, processed + bytes, total));
                         }
                         if (bytes != asset.ExpectedFileSize) throw new InvalidDataException($"Incomplete asset {asset.AssetId}.");
                     }
@@ -122,6 +131,8 @@ internal sealed class ReachAssetCache
                     if (url.Query.Length > 0) reason = reason.Replace(url.Query, "[query]", StringComparison.OrdinalIgnoreCase);
                     failures.Add(new(asset.AssetId, url.GetLeftPart(UriPartial.Path), ex.GetType().Name + ": " + reason));
                 }
+                processed += asset.ExpectedFileSize;
+                progress?.Report(new(asset.AssetId, processed, total));
             }
             return new(installed, _manifest.Assets.Length - missing.Length, failures);
         }
