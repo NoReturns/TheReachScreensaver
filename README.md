@@ -1,130 +1,138 @@
 # The Reach Screensaver
 
-Native Windows screensaver: a passive 41-stop Solar System voyage that starts at Earth, visits planets, moons, dwarf planets, spacecraft, Halley's Comet and the Sun, and then repeats. Interstellar destinations are outside the production route.
+**A free, open-source cinematic space screensaver for Windows 10/11.**
+
+Let your idle desktop take you through the Solar System. The Reach follows a persistent **41-stop voyage**, visiting planets, moons, dwarf planets, Halley's Comet, and historic spacecraft. Watch close-up encounters and cinematic journeys between destinations, then pick up from your saved progress the next time it starts.
+
+Created by **NoReturns**, The Reach Screensaver is an independent project based on *Your Eyes In Space* by **Berk Comba / BigBrains**.
+
+**Current version: 0.4.0.** The v1.0 installer and final ZIP are not published yet; the version will remain 0.4.0 until release validation is complete.
+
+## Screenshots
+
+Screenshots will be added here before release:
+
+- **Three-monitor panoramic voyage** - one view of space spanning three displays.
+- **Close-up planetary encounter** - a destination during observation.
+- **Native Screensaver Settings** - imagery downloads, journey reset, and project information.
+
+No suitable screenshots are currently included in this repository. The owner can add the three captures to a repository screenshot folder and embed them here when ready.
+
+## Features
+
+- **41 Solar System destinations.** Explore a route that starts at Earth and includes the Moon, giant planets and their moons, dwarf planets, the Sun, Halley's Comet, and the Pioneer and Voyager spacecraft.
+- **Cinematic travel and observation.** Automated departures, travel, planetary observation, and moon flybys make the voyage a passive experience.
+- **One screen or a panorama.** The screensaver detects active monitors at launch. Multiple displays share the same voyage and camera view, including a three-monitor panoramic layout.
+- **Windows screensaver integration.** Fullscreen playback, a native Settings window, and an embedded preview in Windows Screen Saver Settings. Preview uses a separate profile and leaves your fullscreen journey untouched.
+- **Persistent journey progress.** Saved checkpoints let subsequent sessions resume the voyage instead of starting over. Secondary monitors follow the primary journey.
+- **Astronomical distance odometer.** A cumulative distance display tracks progress across destination-to-destination legs. It measures geometric separation sampled at departure, rather than the camera's exact flight path.
+- **Destination countdown.** See the time remaining for the current observation, departure, or travel phase. Countdown and distance overlays appear only on the primary monitor.
+- **Imagery with a fallback.** Bundled planetary textures work offline. Procedural surfaces cover bodies without maps, while optional verified high-resolution imagery adds detail where available.
+- **Verified downloads.** Optional images must match their expected file size and SHA-256 fingerprint before they can be used.
+- **Settings and Reset Trip.** Review imagery status, approve downloads, restart your journey, and open privacy, credits, licensing, and source information.
+- **Exit on input.** A key press, mouse click, or deliberate mouse movement closes playback across all displays.
+
+## Download and installation
+
+**The normal Windows installer and final v1.0 ZIP are not available yet.** There are no application download links to use at this stage. The planned distribution options are:
+
+| Option | What to expect |
+| --- | --- |
+| Windows installer | A normal installer built with Inno Setup, planned for release. |
+| Manual ZIP | A complete portable package containing the screensaver, local visual assets, installation scripts, and license notices. |
+| Build from source | Build the native host and Universe fork yourself using the public repositories. Available now through the source-build guide. |
+
+**Installing the files and selecting the screensaver are separate actions.** For the manual package:
+
+1. Extract the entire package and keep its files and folders together, including the complete `dist` folder and license notices.
+2. Ensure Microsoft Edge WebView2 Evergreen Runtime is installed.
+3. Follow the [manual installation guide](packaging/INSTALL.md) to review and run the per-user installation script, then the separate selection script.
+4. Open Windows **Change screen saver** settings to check the selection, preview it, and review your idle timeout and resume security options. Use **Settings** to open Reach's native configuration window.
+
+The manual selection script preserves your existing timeout, active flag, and resume security settings. If screensavers are currently disabled, selecting Reach does not enable them automatically. Organization policy may restrict selection.
+
+Keep the `.scr` with its companion files. **Do not copy only the `.scr` into System32 or another Windows directory.** The [installation guide](packaging/INSTALL.md) also covers uninstalling and restoring the previous selection. Uninstall leaves local journey data and downloaded imagery in place.
+
+To build your own package, follow [Build from source](BUILD_FROM_SOURCE.md).
 
 ## Requirements
 
-- .NET 10 SDK for source builds only (this repo is pinned to `10.0.102` via `global.json`, with `rollForward: latestFeature`)
-- Windows 10/11 x64 for this build and all window modes
-- Microsoft Edge WebView2 Evergreen Runtime for `/s` playback and `/p` preview
-- An OpenGL 3.3 core context for the legacy OpenTK renderer
-- NuGet: Microsoft.Web.WebView2 1.0.4258.31; OpenTK 4.9.4; StbImageSharp 2.30.15 (embedded planet albedo decode; included in single-file publish)
+- **Windows 10 or Windows 11, x64.**
+- **Microsoft Edge WebView2 Evergreen Runtime**, installed separately.
+- **WebGL-capable graphics hardware** for playback and preview.
+- One monitor; additional monitors are optional. Rendering on multiple monitors uses more graphics resources.
+- An internet connection only if you choose to download optional high-resolution imagery. Playback works offline with the complete local package and installed runtime.
 
-The standard `/s` screensaver and `/p` preview use WebView2. The OpenTK renderer remains available with `--legacy-opentk`. `/c` opens the native Settings window.
+Packaged builds include the .NET runtime and require **no .NET SDK, Node.js, npm, or web server**. Developer prerequisites belong in [BUILD_FROM_SOURCE.md](BUILD_FROM_SOURCE.md).
 
-## WebView2 renderer
+## Settings and imagery
 
-Build `Universe` with `npm run build`. The host first uses a built `dist` folder beside its executable or `.scr`, then looks for a sibling `Universe/dist` while running from the source tree. `REACH_WEB_DIST` can select an absolute `dist` path. The host maps the folder to `https://reach.example/index.html?reach=1`; no web server is used. A missing folder or WebView2 Runtime produces an error dialog and a log entry.
+Open Reach's **Settings** from Windows Screen Saver Settings. The native window shows the current visual mode, verified and missing images, required download size, and download progress. It also provides **Reset Trip**, credits, privacy, licenses, and source links.
 
-Development mode opens one resizable WebView2 window. Fullscreen `/s` uses the active displays. The voyage state is stored in the `%LOCALAPPDATA%\TheReachScreensaver\WebView2Prototype` browser profile's localStorage; the legacy `state.json` is not loaded or changed.
+### Visual modes
 
-Standard `/s` and `--reach-web /s` use the same WebView2 screensaver path. It detects active Windows displays at launch. With one display it opens the existing borderless, topmost primary-monitor window and uses a normal camera projection. With multiple displays it opens one window per display and renders a panorama. A native key press or mouse click closes it; deliberate mouse movement also exits. Native input is consumed before it reaches WebView2.
+| Mode | Appearance |
+| --- | --- |
+| **Basic** | The default. Uses bundled planetary maps where available and procedural surfaces elsewhere. |
+| **Procedural** | Uses generated surfaces instead of imagery maps. |
+| **Enhanced** | Uses verified local high-resolution maps, falling back to bundled maps and then procedural surfaces when needed. |
 
-`--reach-web /s /all` and `/s /all` remain accepted aliases. With multiple displays, Reach opens one borderless WebView2 window at each active monitor's physical virtual-desktop bounds. The primary advances and saves the voyage; secondary windows render its broadcast camera and simulation frames without starting or saving separate journeys. A native input event on any monitor closes all windows. The native input monitor uses a 750 ms startup grace period and a 16-pixel mouse movement threshold.
+The public enhanced imagery offer contains **26 files across 14 destinations**. Available maps include 2K and 4K versions where supplied; the renderer chooses an available verified resolution for the display. The Moon's enhanced map is 4K only.
 
-The WebViews have separate render loops, so there is no hardware frame-lock guarantee at a moving seam. Post-processing such as bloom is also clipped at each window edge. Physical bezel compensation is not applied. Multi-monitor mode uses more GPU and memory than the single-window path because each display has its own WebGL renderer and post-processing buffers.
+**Ceres and Mercury enhanced downloads are excluded** while Ceres redistribution terms and the exact Mercury JPEG provenance remain unresolved. Both destinations remain in the voyage with fallback imagery. Separate enhanced maps for **Phobos, Deimos, and Mimas** exist, but are not offered through the application.
 
-On a normal close, the host dispatches the web page's `pagehide` event and waits up to one second before disposing WebView2. The web voyage also saves periodically and on visibility changes. A renderer crash, forced termination, or timed-out script can leave the latest checkpoint older than the last visible frame. The profile remains stable across development and fullscreen launches.
+### Optional downloads
 
-The host blocks and logs external web resources. Reach mode selects only bundled maps or verified local maps and does not construct NASA GIBS or Trek tile providers. Local asset responses and failures are logged in `%LOCALAPPDATA%\TheReachScreensaver\logs\`. There is no imagery download or polling during playback.
+Choose **Download High-Quality Images** to review the files, size, and sources before approving a download. Verified files are skipped. Downloads show progress, support cancellation, and can be retried after failure. A complete verified acquisition enables Enhanced mode for the next launch.
 
-### Offline visual assets
+Downloads are user-initiated. Opening Settings or starting playback does not download images. Cached images are checked against pinned sizes and SHA-256 fingerprints; missing or invalid images fall back to the available local rendering. Once acquired, enhanced imagery also works offline.
 
-The host creates `%LOCALAPPDATA%\TheReachScreensaver\reach.ini` with safe defaults on the first WebView2 launch. Edit it with a text editor:
+### Countdown preferences and Reset Trip
 
-```ini
-[Visuals]
-Mode=basic
+The countdown is enabled by default. It can use a fixed position or automatically move among six positions as destinations change. These preferences and the visual mode are stored locally: `reach.ini` supplies defaults, and saved preferences in `settings.json` take precedence. The current native Settings window reports the mode and manages downloads; it does not include visual-mode or countdown selectors.
 
-[Countdown]
-Enabled=1
-Position=auto
+**Reset Trip** asks for confirmation and schedules a return to the starting point, with the distance odometer reset, on the next fullscreen launch. Close any running fullscreen voyage before requesting a reset. Downloaded images and application settings are preserved.
 
-[Downloads]
-SourceBaseUrl=
-DownloadOnFirstUse=0
-VerifyHashes=1
+For individual image sources, processing details, and coverage limitations, see the [imagery provenance documentation](VisualAssets/REACH_IMAGERY_V1.md).
 
-[AssetSources]
-; earth-day-high=https://your-https-mirror.example/earth.jpg
+## Privacy and transparency
 
-[Storage]
-AssetDirectory=%LOCALAPPDATA%\TheReachScreensaver\Assets
-```
+The Reach Screensaver contains **no advertising, application analytics, or user tracking**. Its source contains no NoReturns collection endpoint, and it does not send your preferences or voyage progress to NoReturns.
 
-`[Countdown]` controls the small yellow destination timer in the primary WebView2 window only. Set `Enabled=0` to hide it. `Position=auto` rotates through top-left, top-centre, top-right, bottom-left, bottom-centre, and bottom-right as the destination changes; any of those names can be used as a fixed position. Existing INI files without this section use the enabled, automatic defaults. The timer reads the active voyage phase and saved duration, so a resumed or paused voyage retains its time. The interactive explorer and legacy OpenTK screensaver do not show it.
+Journey saves, preferences, WebView2 profiles, cached images, and diagnostic logs stay locally under `%LOCALAPPDATA%\TheReachScreensaver`. Logs may contain local paths, runtime errors, and blocked request host names.
 
-`basic` uses the 15 bundled Reach maps where available; other surfaces remain procedural. `procedural` ignores imagery. `enhanced` uses verified local high-resolution assets, then bundled maps, then procedural surfaces. The public download offer has 26 files for 14 destinations: Earth and 25 files in the optional batch. The source manifest retains two Ceres and two Mercury records for provenance, but the app excludes them because Ceres redistribution terms and the exact Mercury JPEG provenance are unresolved. Existing local files are retained but these four records are not injected into playback. The web renderer selects 2K at physical viewport widths up to 2048 pixels and 4K above that, using an available verified tier if the preferred tier is absent. Moon has a 4K enhanced file only. Existing `cached` and `download` INI values are read as `enhanced`. The `/c` Settings window offers Download High-Quality Images for missing offered files, with consent, progress, cancellation, and retry. A complete verified acquisition enables `enhanced` for the next launch. Playback and opening `/c` do not start downloads. Cached files must pass size and SHA-256 checks, even if `VerifyHashes=0` is set.
+Normal playback uses local resources, makes no external resource requests, and does not fetch imagery. The application blocks external web resources. Optional, user-approved imagery downloads use pinned GitHub sources by default; those services receive ordinary connection information such as your IP address. Image size and SHA-256 verification protect file integrity.
 
-Each offered asset has its own HTTPS source URL. The 25 offered batch JPEGs are pinned to the project's `reach-imagery-v1` GitHub Release; their listed names, sizes, and GitHub SHA-256 digest metadata matched the manifest on 2026-10-11. Full download and playback remain release-candidate checks. A single redirect to GitHub's HTTPS release-asset host is allowed; other redirects are not followed. `SourceBaseUrl` can select an HTTPS mirror root, and an `AssetSources` entry can override one source. All sources retain pinned size and SHA-256 checks. A matching local asset pack in `AssetDirectory` works without internet access. Ceres and Mercury retain their bundled or procedural fallback paths.
+Playback depends on Microsoft's separately installed **WebView2 Evergreen Runtime**, which may make its own update or diagnostic connections under Microsoft's terms and settings.
 
-The embedded `VisualAssets/reach-assets.manifest.json` contains Earth and a 15-destination optional batch. The public loader excludes Ceres and Mercury, leaving 14 offered destinations. The maps include enhanced colour, grayscale, near-infrared, and radar-derived products; `VisualAssets/REACH_IMAGERY_V1.md` records their sources and limitations. Bundled map records are in Universe's `public/textures/reach-assets.manifest.json`. Run `--reach-assets-status` to inspect the cache without downloading. An approved setup retries missing or corrupt offered assets and records results in `%LOCALAPPDATA%\TheReachScreensaver\asset-acquisition.log`.
+Both the native host and the Universe fork have public source repositories, so you can inspect the code and build the application yourself. Read the [privacy policy](PRIVACY.md) for details.
 
-The WebView2 host injects `window.__reachVisualAssets` before page scripts run: `{ schema: 1, mode: "basic|procedural|enhanced", assets: [{ assetId, destinationBodyId, url, sourceAttribution, width, height }] }`. Only verified enhanced assets are listed. Their URLs use `https://reach-assets.example/` mapped to the configured local asset directory. Reach uses bundled maps from Vite's public directory as fallback and never constructs remote tile providers. The interactive explorer retains its existing providers. The host rejects external resource requests.
+## Source code
 
-For a local asset check, set `REACH_WEB_VERIFY_ASSETS=1` when launching `--reach-web`. This sends HEAD requests through the virtual host for the built JS, WASM, catalogue, model, and image files and logs each response. It reads local files only.
+- [Native Windows host - NoReturns/TheReachScreensaver](https://github.com/NoReturns/TheReachScreensaver)
+- [Universe fork - NoReturns/youreyesinspace](https://github.com/NoReturns/youreyesinspace)
+- [Original Your Eyes In Space - berkcomba/youreyesinspace](https://github.com/berkcomba/youreyesinspace)
 
-For a read-only persistence check, set `REACH_WEB_VERIFY_CHECKPOINT=1`. The log records a fingerprint and route progress from the saved web checkpoint at document start and after `pagehide`. It does not read or write the original C# `state.json`.
+The [source-build guide](BUILD_FROM_SOURCE.md) explains how to build both components and assemble a complete offline package.
 
-## Build
+## Known limitations
 
-From the repository root:
+- The current **41-stop route repeats in the same forward order**. Interstellar travel is not part of v1.0. Reverse traversal and round-trip counting are future features.
+- Astronomical imagery has uneven coverage and resolution. Some maps contain seams or missing polar regions; others use processed colour, grayscale, near-infrared, or radar-derived data rather than natural visible colour. See [image sources and limitations](VisualAssets/REACH_IMAGERY_V1.md).
+- Multi-monitor rendering is **not hardware frame-locked**. Displays render independently, so moving seams may differ between frames. Bloom is clipped at window edges, and physical bezel compensation is not applied.
+- Journey progress is checkpointed rather than saved every frame. A crash or forced termination can resume from an older checkpoint.
+- Final v1.0 package, installation, full imagery-download, and playback acceptance checks remain pending. This README describes current implementation, not a claim of completed release certification.
 
-```powershell
-dotnet build
-```
+## Credits and licensing
 
-Release, self-contained Windows x64 publish (also writes `TheReachScreensaver.scr` next to the `.exe`):
+The Reach Screensaver is developed by **NoReturns**, building on **Your Eyes In Space by Berk Comba / BigBrains**.
 
-```powershell
-dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o ./publish/win-x64
-```
+Astronomical imagery and maps draw on **NASA, JPL, USGS**, and contributing mission and processing teams, including LROC/Arizona State University, LOLA, the Space Science Institute, and Philip Stooke's NASA Planetary Data System maps. Individual credits and usage limits are recorded with the imagery. These credits do not imply endorsement.
 
-For manual distribution, keep the published `.scr`, built Universe `dist`, `LICENSE`, `PRIVACY.md`, `CREDITS.txt`, attribution, third-party licenses, and `packaging/windows` scripts together. [BUILD_FROM_SOURCE.md](BUILD_FROM_SOURCE.md) covers the two-repository build and package layout. `packaging/INSTALL.md` describes separate per-user installation, selection, and uninstall steps. Selection preserves the existing idle timeout, active flag, and resume security setting; it does not enable an inactive screensaver. WebView2 Evergreen must already be installed. Do not copy only the `.scr` into `C:\Windows`.
+The star catalogue is derived from the **HYG Database by David Nash / Astronexus**, using the Hipparcos, Yale Bright Star, and Gliese catalogues. The derived data retains its **CC BY-SA 4.0** license.
 
-A self-contained publish includes the .NET runtime and OpenTK/GLFW natives. WebView2 Evergreen Runtime and the built Universe `dist` folder are separate requirements.
+Third-party software includes **three.js**, **OpenTK**, **StbImageSharp**, the **Microsoft WebView2 SDK loader**, and the **.NET runtime**. Their respective licenses and notices accompany the package.
 
-## Run
+The original native host code is **MIT licensed**; the Universe source retains its **BigBrains MIT license**. **Those source-code licenses do not relicense third-party imagery, astronomical data, trademarks, or dependencies.** Each retains its own terms and attribution requirements.
 
-The default development window uses WebView2. `--reach-web` keeps the same development behavior. For the old OpenTK development window (resizable, journey time in the title, Escape to close), use `--legacy-opentk`. Its keys `1`–`8` jump to Earth / Moon / Mars / Jupiter / Saturn / Uranus / Neptune / Pluto approach; PageUp / PageDown skip 15 seconds. These keys do nothing in `/s`.
-
-```powershell
-dotnet run
-```
-
-Full WebView2 screensaver mode (one borderless window per display, hidden cursor, exits on key / click / meaningful mouse movement):
-
-```powershell
-dotnet run -- /s
-```
-
-or, after building:
-
-```powershell
-.\bin\Debug\net10.0\TheReachScreensaver.exe /s
-```
-
-`dotnet run -- --legacy-opentk /s` runs the old OpenTK fullscreen renderer for development. `/s /all` remains accepted for compatibility.
-
-Configuration (imagery status and consent-based download, Reset Trip, About, Privacy, Credits, Licenses, and Source Code):
-
-```powershell
-dotnet run -- /c
-```
-
-Windows preview (parent HWND from Screen Saver Settings):
-
-```powershell
-.\TheReachScreensaver.exe /p <HWND>
-.\TheReachScreensaver.exe /p:<HWND>
-```
-
-## Journey and persistence
-
-The production route contains 41 authored Solar System stops and repeats in the same forward order. The primary WebView2 window saves `the-reach:journey:v1` in its localStorage on phase changes, periodically, on visibility changes, and on normal close. Secondary displays follow the primary without separate journey saves. `/p` preview uses a separate WebView2 profile and does not change the fullscreen voyage.
-
-The distance display accumulates geometric centre-to-centre legs sampled at departure; it is not the camera's travelled path. Reset Trip in `/c` schedules deletion of the web checkpoint at the next fullscreen launch, returning the voyage and distance to the start. The legacy OpenTK renderer and its `state.json` are separate.
-
-## Credits
-
-Settings opens the packaged [Credits](CREDITS.txt), [Privacy](PRIVACY.md), and [MIT host license](LICENSE), and links to the [source code](https://github.com/NoReturns/TheReachScreensaver). Keep them with `ATTRIBUTION.md`, third-party notices, and the complete Reach `dist` folder when assembling a release candidate. The version remains 0.4.0 until release candidate validation.
+Read the [host license](LICENSE), [full credits](CREDITS.txt), [imagery provenance](VisualAssets/REACH_IMAGERY_V1.md), [pinned enhanced imagery manifest](VisualAssets/reach-assets.manifest.json), [native map sources](Assets/Planets/SOURCES.md), and [privacy policy](PRIVACY.md) for the applicable details.
