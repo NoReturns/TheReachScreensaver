@@ -26,6 +26,8 @@ internal static class Program
             Log.Initialize(ReachVisualConfiguration.RootDirectory);
             return ReachAssetSelfTest.Run();
         }
+        if (args.Length == 1 && string.Equals(args[0], "--reach-journey-reset-self-test", StringComparison.OrdinalIgnoreCase))
+            return JourneyResetSelfTest.Run();
         if (args.Length == 1 && string.Equals(args[0], "--reach-web-display-self-test", StringComparison.OrdinalIgnoreCase))
             return ReachWebApplication.RunDisplayFixtures();
         if (args.Any(a => string.Equals(a, "--path-audit", StringComparison.OrdinalIgnoreCase)))
@@ -95,7 +97,7 @@ internal static class Program
 
     private static int RunScreensaver()
     {
-        using var mutex = new Mutex(false, "Local\\TheReachScreensaverFullscreenVoyage");
+        using var mutex = new Mutex(false, JourneyReset.FullscreenMutexName);
         bool acquired;
         try { acquired = mutex.WaitOne(0); }
         catch (AbandonedMutexException) { acquired = true; }

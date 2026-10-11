@@ -548,13 +548,22 @@ internal static class ReachWebApplication
                     {
                         try
                         {
-                            if (await core.ExecuteScriptAsync("window.__reachResetApplied === true") == "true")
+                            var freshCheckpoint = false;
+                            for (var attempt = 0; attempt < 60 && !_shutdownRequested; attempt++)
                             {
-                                JourneyReset.Complete(resetToken);
-                                _pendingResetToken = null;
-                                Log.Info("Pending Reach journey reset applied before checkpoint restoration.");
+                                if (JourneyReset.IsFreshCheckpoint(await core.ExecuteScriptAsync(JourneyReset.ProbeScript)))
+                                {
+                                    freshCheckpoint = true;
+                                    break;
+                                }
+                                await Task.Delay(500);
                             }
-                            else Log.Error("Pending Reach journey reset was not applied; request retained.");
+                            if (freshCheckpoint && JourneyReset.Complete(resetToken))
+                            {
+                                _pendingResetToken = null;
+                                Log.Info("Pending Reach journey reset completed with a fresh initial checkpoint.");
+                            }
+                            else Log.Error("Fresh Reach journey checkpoint was not confirmed; reset request retained.");
                         }
                         catch (Exception ex) { Log.Error("Could not confirm Reach journey reset; request retained.", ex); }
                     }
@@ -676,9 +685,7 @@ internal static class ReachWebApplication
                 {
                     _pendingResetToken = JourneyReset.PendingToken();
                     if (!string.IsNullOrEmpty(_pendingResetToken))
-                        await core.AddScriptToExecuteOnDocumentCreatedAsync(
-                            "try { localStorage.removeItem('the-reach:journey:v1'); window.__reachResetApplied = true; } " +
-                            "catch { window.__reachResetApplied = false; }");
+                        await core.AddScriptToExecuteOnDocumentCreatedAsync(JourneyReset.RemovalScript);
                 }
                 if (Environment.GetEnvironmentVariable("REACH_WEB_VERIFY_CHECKPOINT") == "1")
                     await core.AddScriptToExecuteOnDocumentCreatedAsync("window.__reachCheckpointAtStart = localStorage.getItem('the-reach:journey:v1');");

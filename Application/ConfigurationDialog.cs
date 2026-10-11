@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.Reflection;
 using TheReachScreensaver.Diagnostics;
 using TheReachScreensaver.Native;
+using TheReachScreensaver.Persistence;
 using TheReachScreensaver.VisualAssets;
 
 namespace TheReachScreensaver.Application;
@@ -173,7 +174,40 @@ internal static class ConfigurationDialog
         var journey = Section("Journey progress");
         var journeyRows = Rows();
         AddRow(journeyRows, "Trip", "Your current journey is kept between launches.");
-        AddButtonRow(journeyRows, "Reset Trip", enabled: false);
+        var resetStatus = AddRow(journeyRows, "Reset status", "No reset pending.");
+        try
+        {
+            if (JourneyReset.PendingToken() is not null)
+                resetStatus.Text = "Reset scheduled for the next fullscreen launch.";
+        }
+        catch (Exception ex)
+        {
+            Log.Error("Could not inspect journey reset request.", ex);
+            resetStatus.Text = "Reset status unavailable; see the application log.";
+        }
+        AddButtonRow(journeyRows, "Reset Trip", enabled: true, () =>
+        {
+            const string question = "Reset your journey?\n\n"
+                + "This will return your voyage to its starting point and reset your total distance travelled and completed round trips.\n\n"
+                + "Downloaded images and application settings will be preserved.\n\n"
+                + "This cannot be undone.";
+            if (MessageBox.Show(form, question, "Reset Trip", MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) != DialogResult.Yes) return;
+            try
+            {
+                JourneyReset.Schedule();
+                resetStatus.Text = "Reset scheduled for the next fullscreen launch.";
+                MessageBox.Show(form, "Journey reset scheduled for the next fullscreen launch.",
+                    "Reset Trip", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Could not schedule Reach journey reset.", ex);
+                resetStatus.Text = "Reset failed. Check the details before trying again.";
+                MessageBox.Show(form, "Journey reset failed. " + ex.Message,
+                    "Reset Trip", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        });
         journey.Controls.Add(journeyRows);
         root.Controls.Add(journey, 0, 1);
 
