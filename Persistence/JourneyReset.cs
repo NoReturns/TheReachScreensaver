@@ -93,7 +93,7 @@ internal static class JourneyReset
             var odometer = state.GetProperty("odometer");
             return state.GetProperty("schema").GetInt32() == 1
                 && itinerary.GetProperty("id").GetString() == "solar-system-41"
-                && itinerary.GetProperty("version").GetInt32() == 1
+                && itinerary.GetProperty("version").GetInt32() == 4
                 && state.GetProperty("destinationId").GetString() == "earth"
                 && state.GetProperty("routeIndex").GetInt32() == 0
                 && state.GetProperty("phase").GetProperty("kind").GetString() == "observe"
