@@ -1,11 +1,13 @@
-param([switch]$Apply)
+param([switch]$Apply, [switch]$Reselect)
 
 . (Join-Path $PSScriptRoot 'ReachInstall.Common.ps1')
 $paths = Get-ReachInstallPaths
 $previous = @(Get-ReachSelection)
 $selected = Get-ReachSelectedPath
-if (Test-ReachPathEqual $selected $paths.Scr) { throw 'Reach is already selected; no previous selection can be captured now.' }
+$alreadySelected = Test-ReachFileEqual $selected $paths.Scr
+if ($alreadySelected -and -not $Reselect) { throw 'Reach is already selected; no previous selection can be captured now.' }
 $backupExists = Test-Path -LiteralPath $paths.Backup
+$backupIsCurrent = $false
 if ($backupExists) {
     if (-not (Test-Path -LiteralPath $paths.Backup -PathType Leaf)) { throw 'The previous-settings backup is not a file.' }
     $snapshot = Get-Content -LiteralPath $paths.Backup -Raw | ConvertFrom-Json
@@ -16,7 +18,8 @@ if ($backupExists) {
         @($savedNames | Where-Object { $script:ReachSettingsNames -notcontains $_ }).Count -ne 0) {
         throw 'The previous-settings backup does not match this installed package.'
     }
-    if (-not (Test-ReachSelectionEqual $snapshot.Values)) {
+    $backupIsCurrent = Test-ReachSelectionEqual $snapshot.Values
+    if (-not $backupIsCurrent -and -not $Reselect -and -not $alreadySelected) {
         throw 'The screensaver settings changed after the backup. Refusing to overwrite a newer user choice.'
     }
 }
@@ -27,6 +30,17 @@ Write-Output "Backup file: $($paths.Backup)"
 Write-Output 'This action asks Windows to select Reach. It does not change the existing timeout or security choice intentionally.'
 if (-not $Apply) { Write-Output 'Plan only. Run again with -Apply after separate owner approval.'; return }
 Get-ReachPackageFiles $paths.Target | Out-Null
+if ($alreadySelected) {
+    Write-Output 'Reach is already selected. The previous-selection backup was left unchanged.'
+    return
+}
+
+if ($backupExists -and -not $backupIsCurrent) {
+    $history = Join-Path ([IO.Path]::GetDirectoryName($paths.Backup)) ('superseded-' + [DateTime]::UtcNow.ToString('yyyyMMdd-HHmmss') + '-' + [Guid]::NewGuid().ToString('N') + '.json')
+    Move-Item -LiteralPath $paths.Backup -Destination $history
+    Write-Output "Earlier selection backup retained at $history"
+    $backupExists = $false
+}
 
 if (-not $backupExists) {
     $backupFolder = [IO.Path]::GetDirectoryName($paths.Backup)
@@ -41,15 +55,12 @@ if (-not $backupExists) {
 }
 
 try {
-    $key = [Microsoft.Win32.Registry]::CurrentUser.OpenSubKey('Control Panel\Desktop', $true)
-    if ($null -eq $key) { throw 'Current-user desktop settings are not writable.' }
-    try { $key.SetValue('SCRNSAVE.EXE', $paths.Scr, [Microsoft.Win32.RegistryValueKind]::String) }
-    finally { $key.Dispose() }
+    Set-ReachSelectedPath $paths.Scr
     Send-ReachDesktopSettingsChanged
 
     $entry = @(Get-ReachSelection | Where-Object Name -eq 'SCRNSAVE.EXE')[0]
     if (-not $entry.Exists -or $entry.Kind -ne 'String' -or
-        -not (Test-ReachPathEqual ([string]$entry.Value) $paths.Scr) -or
+        -not (Test-ReachFileEqual ([string]$entry.Value) $paths.Scr) -or
         -not (Test-ReachSelectionEqual @($previous | Where-Object Name -ne 'SCRNSAVE.EXE'))) {
         throw 'Windows did not retain the installed absolute path or changed another screensaver setting.'
     }

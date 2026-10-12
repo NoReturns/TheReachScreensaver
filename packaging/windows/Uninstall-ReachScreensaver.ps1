@@ -14,7 +14,7 @@ if (Test-Path -LiteralPath $paths.Programs) {
 }
 Assert-NoReparsePoints $paths.Target
 $selected = Get-ReachSelectedPath
-$reachSelected = Test-ReachPathEqual $selected $paths.Scr
+$reachSelected = Test-ReachFileEqual $selected $paths.Scr
 $backupExists = Test-Path -LiteralPath $paths.Backup -PathType Leaf
 if ($reachSelected -and -not $backupExists) {
     throw 'Reach is selected but the previous-settings backup is missing. Do not remove the active package.'
@@ -32,21 +32,18 @@ if ($backupExists) {
         throw 'The previous-settings backup does not match this installed package.'
     }
     $alreadyRestored = Test-ReachSelectionEqual $snapshot.Values
-    if (-not $reachSelected -and -not $alreadyRestored) {
-        throw 'The screensaver settings changed after the backup. Refusing to overwrite a newer user choice.'
-    }
 }
 
 Write-Output "Installed package: $($paths.Target)"
 Write-Output "Current screensaver: $selected"
 Write-Output $(if ($reachSelected) { 'Will restore the previous selection and settings before removing Reach.' }
     elseif ($alreadyRestored) { 'Previous settings are already restored.' }
-    else { 'Reach is not selected; no settings change is needed.' })
+    else { 'Reach is not selected; the newer user choice will be preserved.' })
 Write-Output 'reach.ini, visual assets, WebView2 profiles, saved journey, and logs will be kept.'
 if (-not $Apply) { Write-Output 'Plan only. Run again with -Apply after owner approval.'; return }
 
 if ($reachSelected) { Restore-ReachSelection $snapshot.Values }
-if (Test-ReachPathEqual (Get-ReachSelectedPath) $paths.Scr) {
+if (Test-ReachFileEqual (Get-ReachSelectedPath) $paths.Scr) {
     throw 'Reach remains selected; refusing to remove its executable.'
 }
 if ([IO.Path]::GetFullPath($paths.Target) -cne
@@ -55,7 +52,7 @@ if ([IO.Path]::GetFullPath($paths.Target) -cne
 }
 Remove-Item -LiteralPath $paths.Target -Recurse -Force
 if ($backupExists) {
-    $history = Join-Path ([IO.Path]::GetDirectoryName($paths.Backup)) ('restored-' + [DateTime]::Now.ToString('yyyyMMdd-HHmmss') + '.json')
+    $history = Join-Path ([IO.Path]::GetDirectoryName($paths.Backup)) ('retained-' + [DateTime]::Now.ToString('yyyyMMdd-HHmmss') + '.json')
     Move-Item -LiteralPath $paths.Backup -Destination $history
     Write-Output "Previous-settings record retained at $history"
 }

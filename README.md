@@ -8,6 +8,36 @@ Created by **NoReturns**, The Reach Screensaver is an independent project based 
 
 **Current version: 1.0.0.** Download the Windows installer or manual ZIP from [GitHub Releases](https://github.com/NoReturns/TheReachScreensaver/releases).
 
+## Why does this exist?
+
+First, an important note: **The Reach is a NON-INTERACTIVE screensaver.** It's designed to play automatically while you're away from your computer. You don't fly the ship, click planets, or control the journey. You just watch it travel through space, and it picks up where it left off next time.
+
+And yes, I realize screensavers are passé.
+
+Unfortunately, my monitor and Windows seem incapable of performing a proper display handshake when waking from sleep. Every time I'd walk away for more than 20 minutes, I'd come back to find my carefully arranged desktop icons all grouped together in a corner.
+
+After spending far too much time trying to solve a problem that shouldn't exist in the first place, I gave up fighting it. My monitors no longer go to sleep.
+
+So... screensaver it is. Windows Ribbons? Meh.
+
+So I built a basic space-travel screensaver myself. It worked, but frankly, it sucked. I wanted something better: a cinematic journey through space that could run across my monitors, remember its progress, and continue exploring whenever I walked away.
+
+I put up with my homemade version until I came across [**Your Eyes In Space**](https://github.com/berkcomba/youreyesinspace) by **Berk Comba / BigBrains**.
+
+With his permission and under the project's MIT license, I forked it and started building the screensaver I'd wanted all along. His interactive universe explorer provided a fantastic foundation for turning that idea into something much more substantial.
+
+And that's it.
+
+Just a stubborn monitor, a Windows sleep/wake handshake problem I couldn't solve, and a desire to watch something more interesting than Ribbons.
+
+**Screw the sleep-mode handshake nonsense. I'll take a journey through space instead.**
+
+Hopefully others enjoy it as much as I do.
+
+**41 destinations in v1.0. Another 200+ are planned.**
+
+Enjoy the journey.
+
 ## Screenshots
 
 Screenshots are planned for:
@@ -38,15 +68,16 @@ Get the v1.0.0 packages and `SHA256SUMS.txt` from [GitHub Releases](https://gith
 
 | Option | What to expect |
 | --- | --- |
-| Windows installer | `TheReachScreensaver-1.0.0-Setup.exe`. Recommended for most Windows users. Installs for the current user without administrator rights. |
-| Manual ZIP | `TheReachScreensaver-1.0.0-win-x64.zip`. Complete package with screensaver, local visual assets, installation scripts, and license notices for manual installation. |
+| Windows installer | `TheReachScreensaver-1.0.0-Setup-backup-fix.exe`. Recommended for most Windows users. Installs for the current user without administrator rights. |
+| Manual ZIP | `TheReachScreensaver-1.0.0-win-x64-backup-fix.zip`. Complete package with screensaver, local visual assets, installation scripts, and license notices for manual installation. |
 | Build from source | Build the native host and Universe fork yourself using the public repositories. Follow the source-build guide. |
 
 **Installing the files and selecting the screensaver are separate actions.** The installer does not automatically select or enable Reach, and it leaves the existing idle timeout and resume security setting unchanged. For the normal installer:
 
 1. Install Microsoft Edge WebView2 Evergreen Runtime if it is not already available.
-2. Run `TheReachScreensaver-1.0.0-Setup.exe` and complete Setup. Close any running Reach windows before upgrading an older copy.
-3. Open Windows **Change screen saver** settings, choose **The Reach Screensaver**, then review the preview, idle timeout, and resume security options. Use **Settings** to open Reach's native configuration window.
+2. Run `TheReachScreensaver-1.0.0-Setup-backup-fix.exe` and complete Setup. Close any running Reach windows before upgrading an older copy.
+3. On Setup's final page, optionally check **Set The Reach as my Windows screensaver**. It is unchecked by default. You can select Reach later through **Start > The Reach Screensaver > Select The Reach Screensaver**.
+4. Open Windows **Change screen saver** settings to review the preview, idle timeout, and resume security options. Use Reach's Settings action to open its native configuration window.
 
 For the manual ZIP:
 
@@ -57,7 +88,9 @@ For the manual ZIP:
 
 The manual selection script preserves your existing timeout, active flag, and resume security settings. If screensavers are currently disabled, selecting Reach does not enable them automatically. Organization policy may restrict selection.
 
-Keep the `.scr` with its companion files. **Do not copy only the `.scr` into System32 or another Windows directory.** The [installation guide](packaging/INSTALL.md) also covers upgrades, recovery, and uninstalling. Uninstall leaves local journey data and downloaded imagery in place. The installer is currently unsigned, so Windows may show an unknown publisher or SmartScreen warning.
+Reach's per-user installation does not add a permanent entry to the native Windows screensaver dropdown. After switching to another saver, use the Start Menu shortcut to select Reach again. The shortcut preserves the current Windows settings and retains earlier selection backups in local history. Uninstall refuses while Reach is selected; choose another saver or no saver in Windows settings first. Installation and ordinary selection do not require administrator rights.
+
+Keep the `.scr` with its companion files. **Do not copy only the `.scr` into System32 or another Windows directory.** The [installation guide](packaging/INSTALL.md) also covers upgrades, recovery, and uninstalling. Uninstall leaves local journey data and downloaded imagery in place. Its optional, unchecked cleanup removes retained upgrade backups only after the application is removed; deleting them prevents restoration of earlier installations. The installer is currently unsigned, so Windows may show an unknown publisher or SmartScreen warning.
 
 To build your own package, follow [Build from source](BUILD_FROM_SOURCE.md).
 
@@ -127,7 +160,7 @@ The [source-build guide](BUILD_FROM_SOURCE.md) explains how to build both compon
 - Astronomical imagery has uneven coverage and resolution. Some maps contain seams or missing polar regions; others use processed colour, grayscale, near-infrared, or radar-derived data rather than natural visible colour. See [image sources and limitations](VisualAssets/REACH_IMAGERY_V1.md).
 - Multi-monitor rendering is **not hardware frame-locked**. Displays render independently, so moving seams may differ between frames. Bloom is clipped at window edges, and physical bezel compensation is not applied.
 - Journey progress is checkpointed rather than saved every frame. A crash or forced termination can resume from an older checkpoint.
-- The v1.0.0 installer has been tested upgrading an existing Windows 10 installation. Clean installation and uninstall still require separate acceptance testing.
+- The v1.0.0 installer passed owner acceptance on Windows 11 Home in VM-Chewy. Backup cleanup was disabled there when inspection found an unrecognized historical `pending-upgrade.json.*.previous` artifact. The uninstaller reported the issue and preserved the backups. Actual backup deletion was verified in synthetic tests, not in VM-Chewy.
 
 ## Credits and licensing
 

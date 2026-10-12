@@ -10,7 +10,7 @@ The original Universe project is https://github.com/berkcomba/youreyesinspace.
 Use the exact revisions selected for a release candidate. The commands below
 assume sibling checkouts at `C:\Storage\Screensaver` and `C:\Storage\Universe`.
 Record both commit IDs and any working-tree changes with the release evidence.
-The v1.0.0 release candidate uses host version 1.0.0.
+The v1.0.0 release uses host version 1.0.0.
 
 ## Tools
 
@@ -39,8 +39,10 @@ dotnet publish .\TheReachScreensaver.csproj -c Release -r win-x64 --self-contain
 
 Set a fixed `BUILD_ID` for a repeatable bundle reference. `npm ci` uses
 Universe's lockfile. The Reach package build removes upstream logo, favicon,
-and social preview files from `dist`, and removes their HTML references. It
-does not delete those source files or affect an ordinary Universe build.
+and social preview files from `dist`, and removes their HTML references. With
+`REACH_PACKAGE=1`, it also omits `tours`, `tour-media`, `models/dawn.glb`, and
+`models/galileo.glb`. It does not delete source assets or affect an ordinary
+Universe build.
 For the offline release package, omit `robots.txt` and `sitemap.xml`, which
 refer to the upstream website. Replace the upstream product claim in the
 `index.html` help credits with an accurate MIT attribution to Your Eyes In
@@ -62,6 +64,8 @@ PRIVACY.md
 CREDITS.txt
 ATTRIBUTION.md
 INSTALL.md
+README.md
+BUILD_FROM_SOURCE.md
 dist\...                 (entire Reach package build output)
 licenses\Universe-LICENSE.txt
 licenses\Universe-NOTICE.md
@@ -70,7 +74,10 @@ licenses\OpenTK-LICENSE.txt
 licenses\WebView2-LICENSE.txt
 licenses\WebView2-NOTICE.txt
 licenses\DotNet-ThirdPartyNotices.txt
-windows\...              (all scripts from packaging/windows)
+windows\...              (production scripts from packaging/windows)
+docs\...                 (native map, imagery, and asset-manifest documentation)
+RELEASE-NOTES.md         (copy of Docs/Releases/v1.0.0.md)
+RELEASE-METADATA.txt    (candidate source and build identity)
 PAYLOAD-SHA256.json      (SHA-256 manifest for staged installer validation)
 ```
 
@@ -80,11 +87,17 @@ For example, from PowerShell after both builds (choose a fresh destination):
 $hostRepo = 'C:\Storage\Screensaver'
 $webRepo = 'C:\Storage\Universe'
 $packageRoot = 'C:\Storage\ReachCandidate'
-New-Item -ItemType Directory -Path $packageRoot, "$packageRoot\licenses" | Out-Null
+New-Item -ItemType Directory -Path $packageRoot, "$packageRoot\licenses", "$packageRoot\docs" | Out-Null
 Copy-Item "$hostRepo\publish\win-x64\TheReachScreensaver.scr", "$hostRepo\publish\win-x64\TheReachScreensaver.exe", "$hostRepo\publish\win-x64\LICENSE", "$hostRepo\publish\win-x64\PRIVACY.md", "$hostRepo\publish\win-x64\CREDITS.txt" -Destination $packageRoot
+Copy-Item "$hostRepo\README.md", "$hostRepo\BUILD_FROM_SOURCE.md" -Destination $packageRoot
 Copy-Item "$webRepo\dist" -Destination $packageRoot -Recurse
 Copy-Item "$hostRepo\packaging\ATTRIBUTION.md", "$hostRepo\packaging\INSTALL.md" -Destination $packageRoot
 Copy-Item "$hostRepo\packaging\windows" -Destination $packageRoot -Recurse
+Remove-Item "$packageRoot\windows\tests" -Recurse -Force
+Copy-Item "$hostRepo\Docs\Releases\v1.0.0.md" "$packageRoot\RELEASE-NOTES.md"
+Copy-Item "$hostRepo\Assets\Planets\SOURCES.md" "$packageRoot\docs\NativeMapSources.md"
+Copy-Item "$hostRepo\VisualAssets\reach-assets.manifest.json" "$packageRoot\docs\reach-assets.manifest.json"
+Copy-Item "$hostRepo\VisualAssets\REACH_IMAGERY_V1.md" "$packageRoot\docs\REACH_IMAGERY_V1.md"
 Copy-Item "$webRepo\LICENSE" "$packageRoot\licenses\Universe-LICENSE.txt"
 Copy-Item "$webRepo\NOTICE.md" "$packageRoot\licenses\Universe-NOTICE.md"
 Copy-Item "$webRepo\node_modules\three\LICENSE" "$packageRoot\licenses\Three-LICENSE.txt"
@@ -113,6 +126,23 @@ if ((Get-Content "$packageRoot\CREDITS.txt" -Raw) -notmatch 'CC BY-SA 4\.0' -or
     (Get-Content "$packageRoot\licenses\Universe-NOTICE.md" -Raw) -notmatch 'CC BY-SA 4\.0') {
   throw 'HYG attribution is missing.'
 }
+$hostRevision = git -C $hostRepo rev-parse HEAD
+$webRevision = git -C $webRepo rev-parse HEAD
+@(
+  'The Reach Screensaver v1.0.0 source build'
+  "Native Screensaver: $hostRevision"
+  "Universe: $webRevision"
+  'Record any local changes, tool versions, and build ID alongside this package.'
+) | Set-Content "$packageRoot\RELEASE-METADATA.txt" -Encoding UTF8
+$prefix = [IO.Path]::GetFullPath($packageRoot).TrimEnd('\') + '\'
+$entries = @(Get-ChildItem -LiteralPath $packageRoot -File -Recurse | Sort-Object FullName | ForEach-Object {
+  [pscustomobject]@{
+    Path = $_.FullName.Substring($prefix.Length)
+    SHA256 = (Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash
+  }
+})
+@{ Schema = 1; Files = $entries } | ConvertTo-Json -Depth 4 |
+  Set-Content "$packageRoot\PAYLOAD-SHA256.json" -Encoding UTF8
 ```
 
 The notice source is the .NET 10 runtime used for publish.
@@ -142,7 +172,7 @@ process launch:
 ```powershell
 $p = [Diagnostics.ProcessStartInfo]::new((Resolve-Path .\TheReachScreensaver.scr).Path)
 $p.UseShellExecute = $false
-$p.ArgumentList.Add('/s')
+$p.Arguments = '/s'
 [Diagnostics.Process]::Start($p)
 ```
 

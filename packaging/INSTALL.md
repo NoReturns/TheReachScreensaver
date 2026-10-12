@@ -8,11 +8,33 @@ for playback.
 
 ## Windows installer
 
-`TheReachScreensaver-1.0.0-Setup.exe` installs this complete package to
-`%LOCALAPPDATA%\Programs\TheReachScreensaver` for the current user. It does not
-select or enable a screen saver, or change the idle timeout or resume security
-setting. Opening Settings after installation is optional and unchecked by
-default. The WebView2 Evergreen Runtime is a separate prerequisite.
+`TheReachScreensaver-1.0.0-Setup-backup-fix.exe` installs this complete package to
+`%LOCALAPPDATA%\Programs\TheReachScreensaver` for the current user. The final
+page offers "Set The Reach as my Windows screensaver" and "Open The Reach
+Screensaver Settings". Both are unchecked by default. If selection is checked,
+Setup runs the same backup and selection procedure as
+`Select-ReachScreensaver.ps1 -Apply`. It preserves the existing idle timeout,
+active state, and resume security choice. If selection fails, Setup displays an
+error and restores the previous settings. The WebView2 Evergreen Runtime is a
+separate prerequisite.
+
+Setup creates **Start > The Reach Screensaver > Select The Reach Screensaver**
+for the current user. Opening it later explicitly selects Reach, shows a
+success or error dialog, and uses the same selection verification. If the user
+has switched to another saver, the earlier selection backup is retained as a
+`superseded-*.json` history record before the new choice is captured. If Reach
+is already selected, the shortcut leaves the backup unchanged. No administrator
+rights are needed for ordinary installation or selection. Uninstall removes
+the installer-created Start Menu shortcut.
+
+Windows builds the native Screen Saver Settings list from `.scr` files in the
+Windows system directory. The per-user installed `.scr` can be selected, but
+does not remain in that list after choosing another saver. The final-page
+selection action sets the current choice; it does not register a permanent
+dropdown entry. A reliable permanent entry would need a separate elevated
+system-directory launcher that forwards `/s`, `/c`, and `/p` to the complete
+per-user package and handles preview lifetime, upgrades, all users, and
+uninstall. No such launcher is included in this per-user release.
 
 Before replacing an existing copy, Setup requires all Reach processes to be
 closed. It copies the complete existing install to
@@ -43,10 +65,19 @@ fails or the pending record is missing or unreadable after an interruption, use 
 backup path with `-BackupPath` and inspect the retained directories. This
 process is not fully transactional across power loss or Windows failure.
 
-The installer uninstall leaves that user data and prior-install backups in
-place. If Reach is selected as the Windows screen saver, or its selection
-cannot be verified, uninstall stops and asks you to select another screen
-saver in Windows Screen Saver Settings first.
+The installer uninstall leaves user settings, saved journeys, downloaded imagery,
+WebView2 profiles, and logs in place. It offers an unchecked option to remove
+retained upgrade backups after the application is removed. The uninstall prompt
+shows the detected folder and size and can open the folder. Removing backups
+prevents restoring earlier installations. If backup inspection is unsafe or an
+upgrade recovery record is pending, the option is unavailable. In owner testing,
+an unrecognized historical `pending-upgrade.json.*.previous` artifact also
+disabled cleanup and preserved the backups. Actual deletion was verified in
+synthetic tests, not in the owner's Windows VM. Silent uninstall
+keeps backups. If Reach is selected as the Windows screen saver, uninstall asks you to
+select another saver first. An inaccessible or malformed selected path also
+stops uninstall, with a separate diagnostic. Ribbons, Bubbles, and no selected
+saver do not block uninstall.
 It does not change Windows screen saver settings for you. Close Reach before
 uninstalling. The installer is not digitally signed.
 
@@ -65,7 +96,7 @@ runtime is shared by Windows applications and is not included here.
 
 The scripts in `windows` are plan-only unless `-Apply` is supplied. Keep this
 entire package in a stable staging location until the rehearsal is complete.
-Installing the files and selecting Reach are separate owner-approved actions.
+Installing the files and selecting Reach are separate actions.
 In PowerShell, from this package folder:
 
 ```powershell
@@ -146,6 +177,10 @@ and restores the prior selection, timeout, active flag, and resume security
 choice before removing the installed package. It refuses to overwrite a newer
 screensaver choice or remove Reach while it remains selected. The restored
 snapshot is retained as an audit record.
+
+If the user has selected a different saver after selecting Reach, manual
+uninstall preserves that newer choice and retains the earlier settings backup
+as an audit record. It does not overwrite the newer choice.
 
 Uninstall does not remove `%LOCALAPPDATA%\TheReachScreensaver` or its `reach.ini`,
 journey checkpoint, WebView2 profiles, visual asset cache, or logs. Removing
