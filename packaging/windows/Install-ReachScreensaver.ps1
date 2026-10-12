@@ -3,6 +3,21 @@ param(
     [switch]$Apply
 )
 
+function Get-ReachRelativePath([string]$root, [string]$path) {
+    if ($root -notmatch '\A[A-Za-z]:[\\/]' -or $path -notmatch '\A[A-Za-z]:[\\/]' -or
+        $root -match '[*?"<>|]' -or $path -match '[*?"<>|]' -or
+        $root.Substring(2) -match ':' -or $path.Substring(2) -match ':') {
+        throw 'Expected absolute local drive paths without invalid characters.'
+    }
+    $fullRoot = [IO.Path]::GetFullPath($root.Replace('/', '\'))
+    $fullPath = [IO.Path]::GetFullPath($path.Replace('/', '\'))
+    $prefix = $fullRoot.TrimEnd('\') + '\'
+    if (-not $fullPath.StartsWith($prefix, [StringComparison]::OrdinalIgnoreCase)) {
+        throw "Path is outside the source directory: $path"
+    }
+    return $fullPath.Substring($prefix.Length)
+}
+
 . (Join-Path $PSScriptRoot 'ReachInstall.Common.ps1')
 $paths = Get-ReachInstallPaths
 $package = Get-ReachPackageFiles $PackagePath
@@ -26,7 +41,7 @@ $pending = Join-Path $paths.Programs ('TheReachScreensaver.pending-' + [Guid]::N
 New-Item -ItemType Directory -Path $pending | Out-Null
 try {
     foreach ($file in $package.Files) {
-        $relative = [IO.Path]::GetRelativePath($package.Root, $file.FullName)
+        $relative = Get-ReachRelativePath $package.Root $file.FullName
         $copy = Join-Path $pending $relative
         New-Item -ItemType Directory -Path ([IO.Path]::GetDirectoryName($copy)) -Force | Out-Null
         Copy-Item -LiteralPath $file.FullName -Destination $copy

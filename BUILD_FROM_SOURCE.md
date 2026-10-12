@@ -10,7 +10,7 @@ The original Universe project is https://github.com/berkcomba/youreyesinspace.
 Use the exact revisions selected for a release candidate. The commands below
 assume sibling checkouts at `C:\Storage\Screensaver` and `C:\Storage\Universe`.
 Record both commit IDs and any working-tree changes with the release evidence.
-The current version remains 0.4.0 until the candidate is validated.
+The v1.0.0 release candidate uses host version 1.0.0.
 
 ## Tools
 
@@ -41,6 +41,10 @@ Set a fixed `BUILD_ID` for a repeatable bundle reference. `npm ci` uses
 Universe's lockfile. The Reach package build removes upstream logo, favicon,
 and social preview files from `dist`, and removes their HTML references. It
 does not delete those source files or affect an ordinary Universe build.
+For the offline release package, omit `robots.txt` and `sitemap.xml`, which
+refer to the upstream website. Replace the upstream product claim in the
+`index.html` help credits with an accurate MIT attribution to Your Eyes In
+Space by Berk Comba / BigBrains. Keep the full upstream license and notice.
 The host publish produces both `.exe` and `.scr`; the `.scr` is a copy of the
 published executable.
 Byte-for-byte reproducibility across machines has not been established;
@@ -67,6 +71,7 @@ licenses\WebView2-LICENSE.txt
 licenses\WebView2-NOTICE.txt
 licenses\DotNet-ThirdPartyNotices.txt
 windows\...              (all scripts from packaging/windows)
+PAYLOAD-SHA256.json      (SHA-256 manifest for staged installer validation)
 ```
 
 For example, from PowerShell after both builds (choose a fresh destination):
@@ -143,4 +148,4 @@ $p.ArgumentList.Add('/s')
 
 Windows Screen Saver Settings provides `/p` preview after selection. The
 manual per-user install and separate selection path remains documented in
-`packaging/INSTALL.md`; a future installer is optional.
+`packaging/INSTALL.md`.

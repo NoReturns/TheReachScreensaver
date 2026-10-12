@@ -6,6 +6,50 @@ directory, and the complete `dist` directory together. No .NET
 SDK, Node.js, npm, source checkout, web server, or network connection is needed
 for playback.
 
+## Windows installer
+
+`TheReachScreensaver-1.0.0-Setup.exe` installs this complete package to
+`%LOCALAPPDATA%\Programs\TheReachScreensaver` for the current user. It does not
+select or enable a screen saver, or change the idle timeout or resume security
+setting. Opening Settings after installation is optional and unchecked by
+default. The WebView2 Evergreen Runtime is a separate prerequisite.
+
+Before replacing an existing copy, Setup requires all Reach processes to be
+closed. It copies the complete existing install to
+`%LOCALAPPDATA%\TheReachScreensaver\DeploymentBackups`, verifies every file by
+SHA-256, and records the backup path. Setup then extracts the new package to a
+sibling staging directory and verifies its file manifest. Only then does it
+move the original directory into DeploymentBackups and move the complete staged
+package into place. The original directory and verified copy backup are kept.
+User settings, journey progress, downloaded imagery, WebView2 profiles, and
+logs are stored separately and are not part of the replacement.
+
+If staging verification fails, the existing install stays in place. If the
+directory swap fails, Setup attempts to restore the original directory. A
+power interruption can stop that attempt; the verified backup and a recovery
+record remain. Do not retry Setup while a pending upgrade record or staging
+directory exists. Close Reach, inspect the backup, and run:
+
+```powershell
+& .\windows\Complete-ReachUpgrade.ps1 -Recover
+```
+
+Run this from the extracted v1.0.0 package. For a completed upgrade that must
+be rolled back, pass `-BackupPath` with the exact verified `pre-inno-v1.0.0-*`
+directory reported by Setup under `DeploymentBackups`. Recovery copies and
+hash-verifies that backup before moving the current install aside; it keeps
+both the source backup and the displaced install for inspection. If recovery
+fails or the pending record is missing or unreadable after an interruption, use the exact
+backup path with `-BackupPath` and inspect the retained directories. This
+process is not fully transactional across power loss or Windows failure.
+
+The installer uninstall leaves that user data and prior-install backups in
+place. If Reach is selected as the Windows screen saver, or its selection
+cannot be verified, uninstall stops and asks you to select another screen
+saver in Windows Screen Saver Settings first.
+It does not change Windows screen saver settings for you. Close Reach before
+uninstalling. The installer is not digitally signed.
+
 ## Prerequisite
 
 Microsoft Edge WebView2 Evergreen Runtime must be installed. If it is absent,

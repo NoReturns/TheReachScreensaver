@@ -37,7 +37,9 @@ function Get-ReachPackageFiles([string]$path) {
             'licenses\WebView2-LICENSE.txt', 'licenses\WebView2-NOTICE.txt',
             'licenses\DotNet-ThirdPartyNotices.txt', 'windows\ReachInstall.Common.ps1',
             'windows\Install-ReachScreensaver.ps1', 'windows\Select-ReachScreensaver.ps1',
-            'windows\Uninstall-ReachScreensaver.ps1')) {
+            'windows\Uninstall-ReachScreensaver.ps1', 'windows\Prepare-ReachUpgrade.ps1',
+            'windows\Complete-ReachUpgrade.ps1', 'windows\Check-ReachUninstallSelection.ps1',
+            'PAYLOAD-SHA256.json')) {
         if (-not (Test-Path -LiteralPath (Join-Path $root $required) -PathType Leaf)) {
             throw "Incomplete package: missing $required"
         }

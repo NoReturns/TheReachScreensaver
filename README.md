@@ -6,17 +6,17 @@ Let your idle desktop take you through the Solar System. The Reach follows a per
 
 Created by **NoReturns**, The Reach Screensaver is an independent project based on *Your Eyes In Space* by **Berk Comba / BigBrains**.
 
-**Current version: 0.4.0.** The v1.0 installer and final ZIP are not published yet; the version will remain 0.4.0 until release validation is complete.
+**Current version: 1.0.0.** Download the Windows installer or manual ZIP from [GitHub Releases](https://github.com/NoReturns/TheReachScreensaver/releases).
 
 ## Screenshots
 
-Screenshots will be added here before release:
+Screenshots are planned for:
 
 - **Three-monitor panoramic voyage** - one view of space spanning three displays.
 - **Close-up planetary encounter** - a destination during observation.
 - **Native Screensaver Settings** - imagery downloads, journey reset, and project information.
 
-No suitable screenshots are currently included in this repository. The owner can add the three captures to a repository screenshot folder and embed them here when ready.
+Screenshots are not yet included in this repository.
 
 ## Features
 
@@ -34,24 +34,30 @@ No suitable screenshots are currently included in this repository. The owner can
 
 ## Download and installation
 
-**The normal Windows installer and final v1.0 ZIP are not available yet.** There are no application download links to use at this stage. The planned distribution options are:
+Get the v1.0.0 packages and `SHA256SUMS.txt` from [GitHub Releases](https://github.com/NoReturns/TheReachScreensaver/releases). Check the downloaded file's SHA-256 against the checksum file.
 
 | Option | What to expect |
 | --- | --- |
-| Windows installer | A normal installer built with Inno Setup, planned for release. |
-| Manual ZIP | A complete portable package containing the screensaver, local visual assets, installation scripts, and license notices. |
-| Build from source | Build the native host and Universe fork yourself using the public repositories. Available now through the source-build guide. |
+| Windows installer | `TheReachScreensaver-1.0.0-Setup.exe`. Recommended for most Windows users. Installs for the current user without administrator rights. |
+| Manual ZIP | `TheReachScreensaver-1.0.0-win-x64.zip`. Complete package with screensaver, local visual assets, installation scripts, and license notices for manual installation. |
+| Build from source | Build the native host and Universe fork yourself using the public repositories. Follow the source-build guide. |
 
-**Installing the files and selecting the screensaver are separate actions.** For the manual package:
+**Installing the files and selecting the screensaver are separate actions.** The installer does not automatically select or enable Reach, and it leaves the existing idle timeout and resume security setting unchanged. For the normal installer:
+
+1. Install Microsoft Edge WebView2 Evergreen Runtime if it is not already available.
+2. Run `TheReachScreensaver-1.0.0-Setup.exe` and complete Setup. Close any running Reach windows before upgrading an older copy.
+3. Open Windows **Change screen saver** settings, choose **The Reach Screensaver**, then review the preview, idle timeout, and resume security options. Use **Settings** to open Reach's native configuration window.
+
+For the manual ZIP:
 
 1. Extract the entire package and keep its files and folders together, including the complete `dist` folder and license notices.
 2. Ensure Microsoft Edge WebView2 Evergreen Runtime is installed.
-3. Follow the [manual installation guide](packaging/INSTALL.md) to review and run the per-user installation script, then the separate selection script.
+3. Follow the [Windows installation guide](packaging/INSTALL.md) to review and run the per-user installation script, then the separate selection script if you choose to select Reach.
 4. Open Windows **Change screen saver** settings to check the selection, preview it, and review your idle timeout and resume security options. Use **Settings** to open Reach's native configuration window.
 
 The manual selection script preserves your existing timeout, active flag, and resume security settings. If screensavers are currently disabled, selecting Reach does not enable them automatically. Organization policy may restrict selection.
 
-Keep the `.scr` with its companion files. **Do not copy only the `.scr` into System32 or another Windows directory.** The [installation guide](packaging/INSTALL.md) also covers uninstalling and restoring the previous selection. Uninstall leaves local journey data and downloaded imagery in place.
+Keep the `.scr` with its companion files. **Do not copy only the `.scr` into System32 or another Windows directory.** The [installation guide](packaging/INSTALL.md) also covers upgrades, recovery, and uninstalling. Uninstall leaves local journey data and downloaded imagery in place. The installer is currently unsigned, so Windows may show an unknown publisher or SmartScreen warning.
 
 To build your own package, follow [Build from source](BUILD_FROM_SOURCE.md).
 
@@ -121,7 +127,7 @@ The [source-build guide](BUILD_FROM_SOURCE.md) explains how to build both compon
 - Astronomical imagery has uneven coverage and resolution. Some maps contain seams or missing polar regions; others use processed colour, grayscale, near-infrared, or radar-derived data rather than natural visible colour. See [image sources and limitations](VisualAssets/REACH_IMAGERY_V1.md).
 - Multi-monitor rendering is **not hardware frame-locked**. Displays render independently, so moving seams may differ between frames. Bloom is clipped at window edges, and physical bezel compensation is not applied.
 - Journey progress is checkpointed rather than saved every frame. A crash or forced termination can resume from an older checkpoint.
-- Final v1.0 package, installation, full imagery-download, and playback acceptance checks remain pending. This README describes current implementation, not a claim of completed release certification.
+- The v1.0.0 installer has been tested upgrading an existing Windows 10 installation. Clean installation and uninstall still require separate acceptance testing.
 
 ## Credits and licensing
 
