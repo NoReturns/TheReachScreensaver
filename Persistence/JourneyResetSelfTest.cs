@@ -149,6 +149,9 @@ internal static class JourneyResetSelfTest
             await Task.Delay(250);
         }
         Check(fresh, "reset starts a fresh Earth voyage with zero odometer and round trips");
+        var freshCheckpoint = await ReadCheckpoint(resetVoyage.CoreWebView2);
+        Check(freshCheckpoint.GetProperty("itinerary").GetProperty("version").GetInt32() == 5,
+            "reset confirms the current itinerary version");
         Check(JourneyReset.PendingToken(root) == token, "marker remains until fresh checkpoint confirmation");
         Check(JourneyReset.Complete(token!, root) && JourneyReset.PendingToken(root) is null,
             "marker cleared only after fresh checkpoint");
