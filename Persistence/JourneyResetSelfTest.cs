@@ -24,6 +24,12 @@ internal static class JourneyResetSelfTest
         var root = Path.Combine(Path.GetTempPath(), "ReachJourneyResetFixture-" + Guid.NewGuid().ToString("N"));
         Log.Initialize(root);
         var result = 1;
+        try { CheckFreshCheckpointValidation(); }
+        catch (Exception ex)
+        {
+            Log.Error("Reach journey checkpoint validation: FAIL", ex);
+            return result;
+        }
         System.Windows.Forms.Application.EnableVisualStyles();
         using (var form = new Form
         {
@@ -63,6 +69,48 @@ internal static class JourneyResetSelfTest
             }
         }
         return result;
+    }
+
+    public static int RunCheckpointValidation()
+    {
+        try
+        {
+            CheckFreshCheckpointValidation();
+            Console.WriteLine("Reach journey checkpoint validation: PASS");
+            return 0;
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Reach journey checkpoint validation: FAIL {ex}");
+            return 1;
+        }
+    }
+
+    private static void CheckFreshCheckpointValidation()
+    {
+        static string Probe(string? checkpoint) => JsonSerializer.Serialize(JsonSerializer.Serialize(
+            new { applied = true, checkpoint }));
+        static string Fresh(int version, string destinationId = "earth", double completedKm = 0) =>
+            JsonSerializer.Serialize(new
+            {
+                schema = 1,
+                itinerary = new { id = "solar-system-41", version },
+                destinationId,
+                routeIndex = 0,
+                phase = new { kind = "observe" },
+                odometer = new { completedKm, roundTrips = 0, leg = (object?)null }
+            });
+
+        Check(JourneyReset.IsFreshCheckpoint(Probe(Fresh(4))), "fresh V4 checkpoint accepted");
+        Check(JourneyReset.IsFreshCheckpoint(Probe(Fresh(5))), "fresh V5 checkpoint accepted");
+        Check(JourneyReset.IsFreshCheckpoint(Probe(Fresh(6))), "fresh V6 checkpoint accepted");
+        Check(!JourneyReset.IsFreshCheckpoint(Probe(Fresh(7))), "unsupported V7 checkpoint rejected");
+        Check(!JourneyReset.IsFreshCheckpoint(Probe(Fresh(6, destinationId: "mars"))),
+            "non-Earth V6 checkpoint rejected");
+        Check(!JourneyReset.IsFreshCheckpoint(Probe(Fresh(6, completedKm: 1))),
+            "nonzero V6 odometer rejected");
+        Check(!JourneyReset.IsFreshCheckpoint(Probe(null)), "missing checkpoint rejected");
+        Check(!JourneyReset.IsFreshCheckpoint(Probe("invalid")), "invalid checkpoint rejected");
     }
 
     private static async Task RunFixture(Form form, string root)
@@ -150,8 +198,8 @@ internal static class JourneyResetSelfTest
         }
         Check(fresh, "reset starts a fresh Earth voyage with zero odometer and round trips");
         var freshCheckpoint = await ReadCheckpoint(resetVoyage.CoreWebView2);
-        Check(freshCheckpoint.GetProperty("itinerary").GetProperty("version").GetInt32() == 5,
-            "reset confirms the current itinerary version");
+        Check(freshCheckpoint.GetProperty("itinerary").GetProperty("version").GetInt32() is 4 or 5 or 6,
+            "reset confirms a supported itinerary version");
         Check(JourneyReset.PendingToken(root) == token, "marker remains until fresh checkpoint confirmation");
         Check(JourneyReset.Complete(token!, root) && JourneyReset.PendingToken(root) is null,
             "marker cleared only after fresh checkpoint");

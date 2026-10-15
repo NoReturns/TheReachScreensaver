@@ -28,6 +28,8 @@ internal static class Program
         }
         if (args.Length == 1 && string.Equals(args[0], "--reach-journey-reset-self-test", StringComparison.OrdinalIgnoreCase))
             return JourneyResetSelfTest.Run();
+        if (args.Length == 1 && string.Equals(args[0], "--reach-journey-checkpoint-self-test", StringComparison.OrdinalIgnoreCase))
+            return JourneyResetSelfTest.RunCheckpointValidation();
         if (args.Length == 1 && string.Equals(args[0], "--reach-web-display-self-test", StringComparison.OrdinalIgnoreCase))
             return ReachWebApplication.RunDisplayFixtures();
         if (args.Any(a => string.Equals(a, "--path-audit", StringComparison.OrdinalIgnoreCase)))
