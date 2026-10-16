@@ -1,12 +1,12 @@
 # The Reach Screensaver
 
-**A free, open-source cinematic space screensaver for Windows 10/11.**
+**A free, open-source cinematic space screensaver for Windows 11, with Windows 10 support intended.**
 
 Let your idle desktop take you from Earth through the Solar System and nearby stars to WOH G64 in the Large Magellanic Cloud. The Reach follows a persistent **64-stop voyage** over 126 travel legs: 63 outbound and 63 returning to Earth. It resumes from saved checkpoints when it starts again.
 
 Created by **NoReturns**, The Reach Screensaver is an independent project based on *Your Eyes In Space* by **Berk Comba / BigBrains**. The original author is credited for the engine, but this fork is not presented as endorsed by him or BigBrains.
 
-**Latest published version: 1.0.0.** Version 1.1.0 is in release preparation; its installer and ZIP are not yet published. Use [GitHub Releases](https://github.com/NoReturns/TheReachScreensaver/releases) for available downloads.
+This README describes the **v1.1.0 feature set**. Get the latest published installer or portable ZIP from [GitHub Releases](https://github.com/NoReturns/TheReachScreensaver/releases).
 
 ## Why does this exist?
 
@@ -34,19 +34,9 @@ Just a stubborn monitor, a Windows sleep/wake handshake problem I couldn't solve
 
 Hopefully others enjoy it as much as I do.
 
-**41 destinations shipped in v1.0. The v1.1.0 release candidate has 64 stops.**
+**41 destinations shipped in v1.0. The v1.1.0 route has 64 stops.**
 
 Enjoy the journey.
-
-## Screenshots
-
-Screenshots are planned for:
-
-- **Three-monitor panoramic voyage** - one view of space spanning three displays.
-- **Close-up planetary encounter** - a destination during observation.
-- **Native Screensaver Settings** - imagery downloads, journey reset, and project information.
-
-Screenshots are not yet included in this repository.
 
 ## Features
 
@@ -64,12 +54,12 @@ Screenshots are not yet included in this repository.
 
 ## Download and installation
 
-The published v1.0.0 packages and `SHA256SUMS.txt` are on [GitHub Releases](https://github.com/NoReturns/TheReachScreensaver/releases). Check a downloaded file's SHA-256 against the matching checksum file. Version 1.1.0 packages will be listed there only after release approval.
+Get the latest available package and its `SHA256SUMS.txt` from [GitHub Releases](https://github.com/NoReturns/TheReachScreensaver/releases). Check the downloaded file's SHA-256 against the checksum listed for that release.
 
 | Option | What to expect |
 | --- | --- |
-| Windows installer | The currently published `TheReachScreensaver-1.0.0-Setup-backup-fix.exe` installs for the current user without administrator rights. |
-| Manual ZIP | The currently published `TheReachScreensaver-1.0.0-win-x64-backup-fix.zip` contains the screensaver, local visual assets, installation scripts, and license notices. |
+| Windows installer | Installs for the current user without administrator rights. |
+| Portable ZIP | Contains the screensaver, local visual assets, installation scripts, and license notices. |
 | Build from source | Build the native host and Universe fork yourself using the public repositories. Follow the source-build guide. |
 
 **Installing the files and selecting the screensaver are separate actions.** The installer does not automatically select or enable Reach, and it leaves the existing idle timeout and resume security setting unchanged. For the normal installer:
@@ -96,7 +86,7 @@ To build your own package, follow [Build from source](BUILD_FROM_SOURCE.md).
 
 ## Requirements
 
-- **Windows 10 or Windows 11, x64.**
+- **Windows 11 x64 tested for v1.1.0.** Windows 10 x64 is an intended supported platform but was not part of this release's installation certification.
 - **Microsoft Edge WebView2 Evergreen Runtime**, installed separately.
 - **WebGL-capable graphics hardware** for playback and preview.
 - One monitor; additional monitors are optional. Rendering on multiple monitors uses more graphics resources.
@@ -160,7 +150,7 @@ The [source-build guide](BUILD_FROM_SOURCE.md) explains how to build both compon
 - Astronomical imagery has uneven coverage and resolution. Some maps contain seams or missing polar regions; others use processed colour, grayscale, near-infrared, or radar-derived data rather than natural visible colour. See [image sources and limitations](VisualAssets/REACH_IMAGERY_V1.md).
 - Multi-monitor rendering is **not hardware frame-locked**. Displays render independently, so moving seams may differ between frames. Bloom is clipped at window edges, and physical bezel compensation is not applied.
 - Journey progress is checkpointed rather than saved every frame. A crash or forced termination can resume from an older checkpoint.
-- The complete 64-stop, 126-leg route passed accelerated deterministic state certification. Uninterrupted real-time playback and final owner visual acceptance on the intended one-monitor and three-monitor displays remain open.
+- The complete 64-stop, 126-leg route passed accelerated deterministic state certification. The owner accepted the one-monitor and three-monitor presentation, framing, HUD, and journey restoration. Uninterrupted full-route real-time playback and prolonged WebGL endurance remain unverified.
 - Windows 11 VM checks passed clean installation, v1.0.0-to-v1.1.0 upgrade, playback, uninstall, and portable execution. Backup-based rollback has not been independently certified.
 - Historical v1.0.0 owner testing found an unrecognized `pending-upgrade.json.*.previous` backup artifact; uninstall preserved backups. Backup deletion was verified only in synthetic tests.
 
