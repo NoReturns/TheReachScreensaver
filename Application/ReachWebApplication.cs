@@ -167,6 +167,26 @@ internal static class ReachWebApplication
         public int ViewportOffsetY => Monitor.Bounds.Y - VirtualBounds.Y;
     }
 
+    private static void ValidatePanoramaStatus(JsonElement status, PanoramaDisplay panorama,
+        bool isPrimaryDisplay, bool countdownEnabled)
+    {
+        var view = status.GetProperty("viewOffset");
+        var monitor = panorama.Monitor.Bounds;
+        var desktop = panorama.VirtualBounds;
+        var shift = status.GetProperty("compositionShiftX").GetDouble();
+        if (!double.IsFinite(shift) || Math.Abs(shift) > desktop.Width / 2.0
+            || !view.GetProperty("enabled").GetBoolean()
+            || view.GetProperty("fullWidth").GetInt32() != desktop.Width
+            || view.GetProperty("fullHeight").GetInt32() != desktop.Height
+            || Math.Abs(view.GetProperty("offsetX").GetDouble() - (panorama.ViewportOffsetX - shift)) > 0.001
+            || view.GetProperty("offsetY").GetInt32() != panorama.ViewportOffsetY
+            || view.GetProperty("width").GetInt32() != monitor.Width
+            || view.GetProperty("height").GetInt32() != monitor.Height
+            || status.GetProperty("primary").GetBoolean() != isPrimaryDisplay
+            || status.GetProperty("countdown").GetBoolean() != (isPrimaryDisplay && countdownEnabled))
+            throw new InvalidOperationException("The web camera did not apply its assigned panorama slice.");
+    }
+
     public static int RunDisplayFixtures()
     {
         try
@@ -206,6 +226,24 @@ internal static class ReachWebApplication
                     || slices.Select(slice => (slice.ViewportOffsetX, slice.ViewportOffsetY,
                         slice.Monitor.Bounds.Width, slice.Monitor.Bounds.Height)).Distinct().Count() != monitors.Length)
                     throw new InvalidOperationException($"Fixture {index + 1} has an invalid or duplicate viewport.");
+                foreach (var shift in new[] { 0.0, desktop.Width * 0.1, -desktop.Width * 0.1,
+                    index == 2 ? 1216.0 : 0.25 })
+                {
+                    foreach (var slice in slices)
+                    {
+                        var primary = slice.Monitor.IsPrimary;
+                        using var valid = StatusFixture(slice, primary, shift, shift);
+                        ValidatePanoramaStatus(valid.RootElement, slice, primary, true);
+                        using var wrongOffset = StatusFixture(slice, primary, shift, shift + 1);
+                        ExpectRejected(wrongOffset.RootElement, slice, primary);
+                        using var wrongShift = StatusFixture(slice, primary, shift + 1, shift);
+                        ExpectRejected(wrongShift.RootElement, slice, primary);
+                    }
+                }
+                using (var excessive = StatusFixture(slices[0], slices[0].Monitor.IsPrimary,
+                    desktop.Width, desktop.Width))
+                    ExpectRejected(excessive.RootElement, slices[0], slices[0].Monitor.IsPrimary);
+                Console.WriteLine($"PASS {monitors.Length}-display panorama status: shared shifts and invalid offsets rejected");
                 Console.WriteLine($"PASS {monitors.Length}-display native layout: {(monitors.Length == 1 ? "normal" : "panorama")}");
             }
             try { RequiresPanorama(DisplayLayout.Fallback()); throw new InvalidOperationException("Fabricated display was accepted."); }
@@ -220,6 +258,29 @@ internal static class ReachWebApplication
             Console.Error.WriteLine($"FAIL native display fixture: {ex.Message}");
             return 1;
         }
+    }
+
+    private static JsonDocument StatusFixture(PanoramaDisplay slice, bool primary, double reportedShift,
+        double appliedShift)
+    {
+        var monitor = slice.Monitor.Bounds;
+        return JsonDocument.Parse(JsonSerializer.Serialize(new
+        {
+            primary, countdown = primary, compositionShiftX = reportedShift,
+            viewOffset = new
+            {
+                enabled = true, fullWidth = slice.VirtualBounds.Width, fullHeight = slice.VirtualBounds.Height,
+                offsetX = slice.ViewportOffsetX - appliedShift, offsetY = slice.ViewportOffsetY,
+                width = monitor.Width, height = monitor.Height
+            }
+        }));
+    }
+
+    private static void ExpectRejected(JsonElement status, PanoramaDisplay slice, bool primary)
+    {
+        try { ValidatePanoramaStatus(status, slice, primary, true); }
+        catch (InvalidOperationException ex) when (ex.Message.Contains("assigned panorama slice")) { return; }
+        throw new InvalidOperationException("Invalid panorama view offset was accepted.");
     }
 
     private sealed class ReachWebMultiContext : System.Windows.Forms.ApplicationContext
@@ -580,19 +641,8 @@ internal static class ReachWebApplication
                                 var status = await core.ExecuteScriptAsync("window.__reachPanoramaStatus?.() ?? null");
                                 Log.Info($"Reach panorama {_panorama.Monitor.Name} status: {status}");
                                 using var state = JsonDocument.Parse(status);
-                                var view = state.RootElement.GetProperty("viewOffset");
-                                var monitor = _panorama.Monitor.Bounds;
-                                var desktop = _panorama.VirtualBounds;
-                                if (!view.GetProperty("enabled").GetBoolean()
-                                    || view.GetProperty("fullWidth").GetInt32() != desktop.Width
-                                    || view.GetProperty("fullHeight").GetInt32() != desktop.Height
-                                    || view.GetProperty("offsetX").GetInt32() != monitor.X - desktop.X
-                                    || view.GetProperty("offsetY").GetInt32() != monitor.Y - desktop.Y
-                                    || view.GetProperty("width").GetInt32() != monitor.Width
-                                    || view.GetProperty("height").GetInt32() != monitor.Height
-                                    || state.RootElement.GetProperty("primary").GetBoolean() != _isPrimaryDisplay
-                                    || state.RootElement.GetProperty("countdown").GetBoolean() != (_isPrimaryDisplay && _visualConfiguration.CountdownEnabled))
-                                    throw new InvalidOperationException("The web camera did not apply its assigned panorama slice.");
+                                ValidatePanoramaStatus(state.RootElement, _panorama, _isPrimaryDisplay,
+                                    _visualConfiguration.CountdownEnabled);
                                 if (Environment.GetEnvironmentVariable("REACH_WEB_VERIFY_PANORAMA") == "1")
                                 {
                                     var captures = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
