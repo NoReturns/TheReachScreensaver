@@ -2,11 +2,11 @@
 
 **A free, open-source cinematic space screensaver for Windows 10/11.**
 
-Let your idle desktop take you through the Solar System. The Reach follows a persistent **41-stop voyage**, visiting planets, moons, dwarf planets, Halley's Comet, and historic spacecraft. Watch close-up encounters and cinematic journeys between destinations, then pick up from your saved progress the next time it starts.
+Let your idle desktop take you from Earth through the Solar System and nearby stars to WOH G64 in the Large Magellanic Cloud. The Reach follows a persistent **64-stop voyage** over 126 outbound and return legs. It resumes from saved checkpoints when it starts again.
 
 Created by **NoReturns**, The Reach Screensaver is an independent project based on *Your Eyes In Space* by **Berk Comba / BigBrains**.
 
-**Current version: 1.0.0.** Download the Windows installer or manual ZIP from [GitHub Releases](https://github.com/NoReturns/TheReachScreensaver/releases).
+**Latest published version: 1.0.0.** Version 1.1.0 is in release preparation; its installer and ZIP are not yet published. Use [GitHub Releases](https://github.com/NoReturns/TheReachScreensaver/releases) for available downloads.
 
 ## Why does this exist?
 
@@ -34,7 +34,7 @@ Just a stubborn monitor, a Windows sleep/wake handshake problem I couldn't solve
 
 Hopefully others enjoy it as much as I do.
 
-**41 destinations in v1.0. Another 200+ are planned.**
+**41 destinations shipped in v1.0. The planned v1.1.0 route has 64 stops.**
 
 Enjoy the journey.
 
@@ -50,13 +50,13 @@ Screenshots are not yet included in this repository.
 
 ## Features
 
-- **41 Solar System destinations.** Explore a route that starts at Earth and includes the Moon, giant planets and their moons, dwarf planets, the Sun, Halley's Comet, and the Pioneer and Voyager spacecraft.
+- **64 destinations.** The route starts at Earth, visits Solar System bodies and spacecraft, then nearby and distant stars including Alpha Centauri, Polaris, Betelgeuse, R136a1, and WOH G64. It reverses at WOH G64 and returns to Earth before repeating.
 - **Cinematic travel and observation.** Automated departures, travel, planetary observation, and moon flybys make the voyage a passive experience.
-- **One screen or a panorama.** The screensaver detects active monitors at launch. Multiple displays share the same voyage and camera view, including a three-monitor panoramic layout.
+- **One screen or a panorama.** The screensaver detects active monitors at launch. A primary display leads one shared camera view; secondary displays show adjoining panorama slices, including a three-monitor layout. Composition shifts toward the primary display to keep destinations there.
 - **Windows screensaver integration.** Fullscreen playback, a native Settings window, and an embedded preview in Windows Screen Saver Settings. Preview uses a separate profile and leaves your fullscreen journey untouched.
 - **Persistent journey progress.** Saved checkpoints let subsequent sessions resume the voyage instead of starting over. Secondary monitors follow the primary journey.
-- **Astronomical distance odometer.** A cumulative distance display tracks progress across destination-to-destination legs. It measures geometric separation sampled at departure, rather than the camera's exact flight path.
-- **Destination countdown.** See the time remaining for the current observation, departure, or travel phase. Countdown and distance overlays appear only on the primary monitor.
+- **Astronomical distance odometer.** A cumulative distance display tracks progress across destination-to-destination legs, with units adapted to the scale of travel. It measures geometric separation sampled at departure, rather than the camera's exact flight path. Cruise speed is sampled from the active leg.
+- **Destination information and countdown.** A passive information card appears during observation. The countdown, odometer, speed, and information card appear only on the primary monitor.
 - **Imagery with a fallback.** Bundled planetary textures work offline. Procedural surfaces cover bodies without maps, while optional verified high-resolution imagery adds detail where available.
 - **Verified downloads.** Optional images must match their expected file size and SHA-256 fingerprint before they can be used.
 - **Settings and Reset Trip.** Review imagery status, approve downloads, restart your journey, and open privacy, credits, licensing, and source information.
@@ -64,18 +64,18 @@ Screenshots are not yet included in this repository.
 
 ## Download and installation
 
-Get the v1.0.0 packages and `SHA256SUMS.txt` from [GitHub Releases](https://github.com/NoReturns/TheReachScreensaver/releases). Check the downloaded file's SHA-256 against the checksum file.
+The published v1.0.0 packages and `SHA256SUMS.txt` are on [GitHub Releases](https://github.com/NoReturns/TheReachScreensaver/releases). Check a downloaded file's SHA-256 against the matching checksum file. Version 1.1.0 packages will be listed there only after release approval.
 
 | Option | What to expect |
 | --- | --- |
-| Windows installer | `TheReachScreensaver-1.0.0-Setup-backup-fix.exe`. Recommended for most Windows users. Installs for the current user without administrator rights. |
-| Manual ZIP | `TheReachScreensaver-1.0.0-win-x64-backup-fix.zip`. Complete package with screensaver, local visual assets, installation scripts, and license notices for manual installation. |
+| Windows installer | The currently published `TheReachScreensaver-1.0.0-Setup-backup-fix.exe` installs for the current user without administrator rights. |
+| Manual ZIP | The currently published `TheReachScreensaver-1.0.0-win-x64-backup-fix.zip` contains the screensaver, local visual assets, installation scripts, and license notices. |
 | Build from source | Build the native host and Universe fork yourself using the public repositories. Follow the source-build guide. |
 
 **Installing the files and selecting the screensaver are separate actions.** The installer does not automatically select or enable Reach, and it leaves the existing idle timeout and resume security setting unchanged. For the normal installer:
 
 1. Install Microsoft Edge WebView2 Evergreen Runtime if it is not already available.
-2. Run `TheReachScreensaver-1.0.0-Setup-backup-fix.exe` and complete Setup. Close any running Reach windows before upgrading an older copy.
+2. Run the installer matching the version you downloaded and complete Setup. Close any running Reach windows before upgrading an older copy.
 3. On Setup's final page, optionally check **Set The Reach as my Windows screensaver**. It is unchecked by default. You can select Reach later through **Start > The Reach Screensaver > Select The Reach Screensaver**.
 4. Open Windows **Change screen saver** settings to review the preview, idle timeout, and resume security options. Use Reach's Settings action to open its native configuration window.
 
@@ -156,11 +156,12 @@ The [source-build guide](BUILD_FROM_SOURCE.md) explains how to build both compon
 
 ## Known limitations
 
-- The current **41-stop route repeats in the same forward order**. Interstellar travel is not part of v1.0. Reverse traversal and round-trip counting are future features.
+- The v1.1.0 route contains 64 stops and 126 legs per round trip. The final destination is WOH G64 in the Large Magellanic Cloud. The owner estimates its route distance at approximately 157,586 light-years; that exact figure has not been independently checked for this release. This is an authored itinerary, not a complete astronomy catalogue.
 - Astronomical imagery has uneven coverage and resolution. Some maps contain seams or missing polar regions; others use processed colour, grayscale, near-infrared, or radar-derived data rather than natural visible colour. See [image sources and limitations](VisualAssets/REACH_IMAGERY_V1.md).
 - Multi-monitor rendering is **not hardware frame-locked**. Displays render independently, so moving seams may differ between frames. Bloom is clipped at window edges, and physical bezel compensation is not applied.
 - Journey progress is checkpointed rather than saved every frame. A crash or forced termination can resume from an older checkpoint.
-- The v1.0.0 installer passed owner acceptance on Windows 11 Home in VM-Chewy. Backup cleanup was disabled there when inspection found an unrecognized historical `pending-upgrade.json.*.previous` artifact. The uninstaller reported the issue and preserved the backups. Actual backup deletion was verified in synthetic tests, not in VM-Chewy.
+- Version 1.1.0 still needs a complete 64-stop playback and final owner visual acceptance on the intended three-monitor display. Automated and native smoke checks do not establish those outcomes.
+- Historical v1.0.0 owner testing found an unrecognized `pending-upgrade.json.*.previous` backup artifact; uninstall preserved backups. Backup deletion was verified only in synthetic tests.
 
 ## Credits and licensing
 

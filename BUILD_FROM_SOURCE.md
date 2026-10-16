@@ -10,7 +10,9 @@ The original Universe project is https://github.com/berkcomba/youreyesinspace.
 Use the exact revisions selected for a release candidate. The commands below
 assume sibling checkouts at `C:\Storage\Screensaver` and `C:\Storage\Universe`.
 Record both commit IDs and any working-tree changes with the release evidence.
-The v1.0.0 release uses host version 1.0.0.
+The v1.1.0 candidate uses host version 1.1.0. Build from the exact approved
+commits in both repositories; the Universe fork's upstream npm package version
+is independent of the Windows product version.
 
 ## Tools
 
@@ -26,7 +28,7 @@ Microsoft Edge WebView2 Evergreen Runtime and WebGL-capable graphics hardware.
 ```powershell
 Set-Location C:\Storage\Universe
 npm ci
-$env:BUILD_ID = 'reach-v1-candidate'
+$env:BUILD_ID = 'reach-v1.1.0-candidate'
 $env:REACH_PACKAGE = '1'
 npm run build
 Remove-Item Env:REACH_PACKAGE
@@ -39,14 +41,13 @@ dotnet publish .\TheReachScreensaver.csproj -c Release -r win-x64 --self-contain
 
 Set a fixed `BUILD_ID` for a repeatable bundle reference. `npm ci` uses
 Universe's lockfile. The Reach package build removes upstream logo, favicon,
-and social preview files from `dist`, and removes their HTML references. With
+social preview, `robots.txt`, and `sitemap.xml` files from `dist`, removes
+their HTML references, and replaces the upstream help product claim with
+accurate MIT attribution. With
 `REACH_PACKAGE=1`, it also omits `tours`, `tour-media`, `models/dawn.glb`, and
 `models/galileo.glb`. It does not delete source assets or affect an ordinary
 Universe build.
-For the offline release package, omit `robots.txt` and `sitemap.xml`, which
-refer to the upstream website. Replace the upstream product claim in the
-`index.html` help credits with an accurate MIT attribution to Your Eyes In
-Space by Berk Comba / BigBrains. Keep the full upstream license and notice.
+Keep the full upstream license and notice with the offline package.
 The host publish produces both `.exe` and `.scr`; the `.scr` is a copy of the
 published executable.
 Byte-for-byte reproducibility across machines has not been established;
@@ -76,7 +77,7 @@ licenses\WebView2-NOTICE.txt
 licenses\DotNet-ThirdPartyNotices.txt
 windows\...              (production scripts from packaging/windows)
 docs\...                 (native map, imagery, and asset-manifest documentation)
-RELEASE-NOTES.md         (copy of Docs/Releases/v1.0.0.md)
+RELEASE-NOTES.md         (copy of Docs/Releases/v1.1.0.md)
 RELEASE-METADATA.txt    (candidate source and build identity)
 PAYLOAD-SHA256.json      (SHA-256 manifest for staged installer validation)
 ```
@@ -94,7 +95,7 @@ Copy-Item "$webRepo\dist" -Destination $packageRoot -Recurse
 Copy-Item "$hostRepo\packaging\ATTRIBUTION.md", "$hostRepo\packaging\INSTALL.md" -Destination $packageRoot
 Copy-Item "$hostRepo\packaging\windows" -Destination $packageRoot -Recurse
 Remove-Item "$packageRoot\windows\tests" -Recurse -Force
-Copy-Item "$hostRepo\Docs\Releases\v1.0.0.md" "$packageRoot\RELEASE-NOTES.md"
+Copy-Item "$hostRepo\Docs\Releases\v1.1.0.md" "$packageRoot\RELEASE-NOTES.md"
 Copy-Item "$hostRepo\Assets\Planets\SOURCES.md" "$packageRoot\docs\NativeMapSources.md"
 Copy-Item "$hostRepo\VisualAssets\reach-assets.manifest.json" "$packageRoot\docs\reach-assets.manifest.json"
 Copy-Item "$hostRepo\VisualAssets\REACH_IMAGERY_V1.md" "$packageRoot\docs\REACH_IMAGERY_V1.md"
@@ -129,7 +130,7 @@ if ((Get-Content "$packageRoot\CREDITS.txt" -Raw) -notmatch 'CC BY-SA 4\.0' -or
 $hostRevision = git -C $hostRepo rev-parse HEAD
 $webRevision = git -C $webRepo rev-parse HEAD
 @(
-  'The Reach Screensaver v1.0.0 source build'
+  'The Reach Screensaver v1.1.0 source build'
   "Native Screensaver: $hostRevision"
   "Universe: $webRevision"
   'Record any local changes, tool versions, and build ID alongside this package.'

@@ -8,7 +8,7 @@ for playback.
 
 ## Windows installer
 
-`TheReachScreensaver-1.0.0-Setup-backup-fix.exe` installs this complete package to
+The installer for the selected release installs this complete package to
 `%LOCALAPPDATA%\Programs\TheReachScreensaver` for the current user. The final
 page offers "Set The Reach as my Windows screensaver" and "Open The Reach
 Screensaver Settings". Both are unchecked by default. If selection is checked,
@@ -56,7 +56,7 @@ directory exists. Close Reach, inspect the backup, and run:
 & .\windows\Complete-ReachUpgrade.ps1 -Recover
 ```
 
-Run this from the extracted v1.0.0 package. For a completed upgrade that must
+Run this from the extracted package. For a completed upgrade that must
 be rolled back, pass `-BackupPath` with the exact verified `pre-inno-v1.0.0-*`
 directory reported by Setup under `DeploymentBackups`. Recovery copies and
 hash-verifies that backup before moving the current install aside; it keeps
