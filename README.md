@@ -2,9 +2,9 @@
 
 **A free, open-source cinematic space screensaver for Windows 10/11.**
 
-Let your idle desktop take you from Earth through the Solar System and nearby stars to WOH G64 in the Large Magellanic Cloud. The Reach follows a persistent **64-stop voyage** over 126 outbound and return legs. It resumes from saved checkpoints when it starts again.
+Let your idle desktop take you from Earth through the Solar System and nearby stars to WOH G64 in the Large Magellanic Cloud. The Reach follows a persistent **64-stop voyage** over 126 travel legs: 63 outbound and 63 returning to Earth. It resumes from saved checkpoints when it starts again.
 
-Created by **NoReturns**, The Reach Screensaver is an independent project based on *Your Eyes In Space* by **Berk Comba / BigBrains**.
+Created by **NoReturns**, The Reach Screensaver is an independent project based on *Your Eyes In Space* by **Berk Comba / BigBrains**. The original author is credited for the engine, but this fork is not presented as endorsed by him or BigBrains.
 
 **Latest published version: 1.0.0.** Version 1.1.0 is in release preparation; its installer and ZIP are not yet published. Use [GitHub Releases](https://github.com/NoReturns/TheReachScreensaver/releases) for available downloads.
 
@@ -34,7 +34,7 @@ Just a stubborn monitor, a Windows sleep/wake handshake problem I couldn't solve
 
 Hopefully others enjoy it as much as I do.
 
-**41 destinations shipped in v1.0. The planned v1.1.0 route has 64 stops.**
+**41 destinations shipped in v1.0. The v1.1.0 release candidate has 64 stops.**
 
 Enjoy the journey.
 
@@ -160,7 +160,8 @@ The [source-build guide](BUILD_FROM_SOURCE.md) explains how to build both compon
 - Astronomical imagery has uneven coverage and resolution. Some maps contain seams or missing polar regions; others use processed colour, grayscale, near-infrared, or radar-derived data rather than natural visible colour. See [image sources and limitations](VisualAssets/REACH_IMAGERY_V1.md).
 - Multi-monitor rendering is **not hardware frame-locked**. Displays render independently, so moving seams may differ between frames. Bloom is clipped at window edges, and physical bezel compensation is not applied.
 - Journey progress is checkpointed rather than saved every frame. A crash or forced termination can resume from an older checkpoint.
-- Version 1.1.0 still needs a complete 64-stop playback and final owner visual acceptance on the intended three-monitor display. Automated and native smoke checks do not establish those outcomes.
+- The complete 64-stop, 126-leg route passed accelerated deterministic state certification. Uninterrupted real-time playback and final owner visual acceptance on the intended one-monitor and three-monitor displays remain open.
+- Windows 11 VM checks passed clean installation, v1.0.0-to-v1.1.0 upgrade, playback, uninstall, and portable execution. Backup-based rollback has not been independently certified.
 - Historical v1.0.0 owner testing found an unrecognized `pending-upgrade.json.*.previous` backup artifact; uninstall preserved backups. Backup deletion was verified only in synthetic tests.
 
 ## Credits and licensing
