@@ -7,10 +7,10 @@ This describes a Windows x64 build from the two public repositories:
 
 The original Universe project is https://github.com/berkcomba/youreyesinspace.
 
-Use the exact revisions selected for a release candidate. The commands below
+Use the exact revisions selected for a release. The commands below
 assume sibling checkouts at `C:\Storage\Screensaver` and `C:\Storage\Universe`.
 Record both commit IDs and any working-tree changes with the release evidence.
-The v1.1.0 candidate uses host version 1.1.0. Build from the exact approved
+The v1.2.0 release uses host version 1.2.0. Build from the exact approved
 commits in both repositories; the Universe fork's upstream npm package version
 is independent of the Windows product version.
 
@@ -28,7 +28,7 @@ Microsoft Edge WebView2 Evergreen Runtime and WebGL-capable graphics hardware.
 ```powershell
 Set-Location C:\Storage\Universe
 npm ci
-$env:BUILD_ID = 'reach-v1.1.0-candidate'
+$env:BUILD_ID = 'reach-v1.2.0'
 $env:REACH_PACKAGE = '1'
 npm run build
 Remove-Item Env:REACH_PACKAGE
@@ -51,7 +51,7 @@ Keep the full upstream license and notice with the offline package.
 The host publish produces both `.exe` and `.scr`; the `.scr` is a copy of the
 published executable.
 Byte-for-byte reproducibility across machines has not been established;
-record the SDK, Node.js, npm, and source revisions used for each candidate.
+record the SDK, Node.js, npm, and source revisions used for each release.
 
 ## Assemble an offline folder
 
@@ -77,8 +77,8 @@ licenses\WebView2-NOTICE.txt
 licenses\DotNet-ThirdPartyNotices.txt
 windows\...              (production scripts from packaging/windows)
 docs\...                 (native map, imagery, and asset-manifest documentation)
-RELEASE-NOTES.md         (copy of Docs/Releases/v1.1.0.md)
-RELEASE-METADATA.txt    (candidate source and build identity)
+RELEASE-NOTES.md         (copy of Docs/Releases/v1.2.0.md)
+RELEASE-METADATA.txt    (release source and build identity)
 PAYLOAD-SHA256.json      (SHA-256 manifest for staged installer validation)
 ```
 
@@ -87,7 +87,7 @@ For example, from PowerShell after both builds (choose a fresh destination):
 ```powershell
 $hostRepo = 'C:\Storage\Screensaver'
 $webRepo = 'C:\Storage\Universe'
-$packageRoot = 'C:\Storage\ReachCandidate'
+$packageRoot = 'C:\Storage\Screensaver\artifacts\v1.2.0\TheReachScreensaver-1.2.0-win-x64'
 New-Item -ItemType Directory -Path $packageRoot, "$packageRoot\licenses", "$packageRoot\docs" | Out-Null
 Copy-Item "$hostRepo\publish\win-x64\TheReachScreensaver.scr", "$hostRepo\publish\win-x64\TheReachScreensaver.exe", "$hostRepo\publish\win-x64\LICENSE", "$hostRepo\publish\win-x64\PRIVACY.md", "$hostRepo\publish\win-x64\CREDITS.txt" -Destination $packageRoot
 Copy-Item "$hostRepo\README.md", "$hostRepo\BUILD_FROM_SOURCE.md" -Destination $packageRoot
@@ -95,7 +95,7 @@ Copy-Item "$webRepo\dist" -Destination $packageRoot -Recurse
 Copy-Item "$hostRepo\packaging\ATTRIBUTION.md", "$hostRepo\packaging\INSTALL.md" -Destination $packageRoot
 Copy-Item "$hostRepo\packaging\windows" -Destination $packageRoot -Recurse
 Remove-Item "$packageRoot\windows\tests" -Recurse -Force
-Copy-Item "$hostRepo\Docs\Releases\v1.1.0.md" "$packageRoot\RELEASE-NOTES.md"
+Copy-Item "$hostRepo\Docs\Releases\v1.2.0.md" "$packageRoot\RELEASE-NOTES.md"
 Copy-Item "$hostRepo\Assets\Planets\SOURCES.md" "$packageRoot\docs\NativeMapSources.md"
 Copy-Item "$hostRepo\VisualAssets\reach-assets.manifest.json" "$packageRoot\docs\reach-assets.manifest.json"
 Copy-Item "$hostRepo\VisualAssets\REACH_IMAGERY_V1.md" "$packageRoot\docs\REACH_IMAGERY_V1.md"
@@ -130,7 +130,7 @@ if ((Get-Content "$packageRoot\CREDITS.txt" -Raw) -notmatch 'CC BY-SA 4\.0' -or
 $hostRevision = git -C $hostRepo rev-parse HEAD
 $webRevision = git -C $webRepo rev-parse HEAD
 @(
-  'The Reach Screensaver v1.1.0 source build'
+  'The Reach Screensaver v1.2.0 source build'
   "Native Screensaver: $hostRevision"
   "Universe: $webRevision"
   'Record any local changes, tool versions, and build ID alongside this package.'

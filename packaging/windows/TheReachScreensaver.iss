@@ -1,12 +1,12 @@
-#define AppVersion "1.1.0"
+#define AppVersion "1.2.0"
 #ifndef PackageRoot
-  #define PackageRoot "..\..\artifacts\v1.1.0\TheReachScreensaver-1.1.0-win-x64"
+  #define PackageRoot "..\..\artifacts\v1.2.0\TheReachScreensaver-1.2.0-win-x64"
 #endif
 #ifndef CandidateOutput
-  #define CandidateOutput "..\..\artifacts\v1.1.0"
+  #define CandidateOutput "..\..\artifacts\v1.2.0"
 #endif
 #ifndef CandidateName
-  #define CandidateName "TheReachScreensaver-1.1.0-Setup"
+  #define CandidateName "TheReachScreensaver-1.2.0-Setup"
 #endif
 
 [Setup]
@@ -27,8 +27,8 @@ OutputBaseFilename={#CandidateName}
 OutputManifestFile={#CandidateName}-Manifest.txt
 Compression=lzma2
 SolidCompression=yes
-VersionInfoVersion=1.1.0.0
-VersionInfoProductVersion=1.1.0.0
+VersionInfoVersion=1.2.0.0
+VersionInfoProductVersion=1.2.0.0
 VersionInfoDescription=The Reach Screensaver installer
 UninstallDisplayIcon={app}\TheReachScreensaver.exe
 LicenseFile={#PackageRoot}\LICENSE

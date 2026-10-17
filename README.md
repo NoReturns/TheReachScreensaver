@@ -6,7 +6,7 @@ Let your idle desktop take you from Earth through the Solar System and nearby st
 
 Created by **NoReturns**, The Reach Screensaver is an independent project based on *Your Eyes In Space* by **Berk Comba / BigBrains**. The original author is credited for the engine, but this fork is not presented as endorsed by him or BigBrains.
 
-This README describes the **v1.1.0 feature set**. Get the latest published installer or portable ZIP from [GitHub Releases](https://github.com/NoReturns/TheReachScreensaver/releases).
+This README describes the **v1.2.0 feature set**. Get the latest published installer or portable ZIP from [GitHub Releases](https://github.com/NoReturns/TheReachScreensaver/releases).
 
 ## Why does this exist?
 
@@ -34,19 +34,19 @@ Just a stubborn monitor, a Windows sleep/wake handshake problem I couldn't solve
 
 Hopefully others enjoy it as much as I do.
 
-**41 destinations shipped in v1.0. The v1.1.0 route has 64 stops.**
+**41 destinations shipped in v1.0. The v1.2.0 route has 71 stops.**
 
 Enjoy the journey.
 
 ## Features
 
-- **64 destinations.** The route starts at Earth, visits Solar System bodies and spacecraft, then nearby and distant stars including Alpha Centauri, Polaris, Betelgeuse, R136a1, and WOH G64. It reverses at WOH G64 and returns to Earth before repeating.
+- **71 destinations.** The route starts at Earth, visits Solar System bodies and spacecraft, then nearby and distant stars and photographic landmarks including Alpha Centauri, the Pleiades, Orion Nebula, Tarantula Nebula, and WOH G64. It reverses at WOH G64 and returns to Earth before repeating.
 - **Cinematic travel and observation.** Automated departures, travel, planetary observation, and moon flybys make the voyage a passive experience.
 - **One screen or a panorama.** The screensaver detects active monitors at launch. A primary display leads one shared camera view; secondary displays show adjoining panorama slices, including a three-monitor layout. Composition shifts toward the primary display to keep destinations there.
 - **Windows screensaver integration.** Fullscreen playback, a native Settings window, and an embedded preview in Windows Screen Saver Settings. Preview uses a separate profile and leaves your fullscreen journey untouched.
 - **Persistent journey progress.** Saved checkpoints let subsequent sessions resume the voyage instead of starting over. Secondary monitors follow the primary journey.
 - **Astronomical distance odometer.** A cumulative distance display tracks progress across destination-to-destination legs, with units adapted to the scale of travel. It measures geometric separation sampled at departure, rather than the camera's exact flight path. Cruise speed is sampled from the active leg.
-- **Destination information and countdown.** A passive information card appears during observation. The countdown, odometer, speed, and information card appear only on the primary monitor.
+- **Destination information and countdown.** A passive information card appears during observation and shows light travel time from the camera. The countdown, odometer, speed, and information card appear only on the primary monitor.
 - **Imagery with a fallback.** Bundled planetary textures work offline. Procedural surfaces cover bodies without maps, while optional verified high-resolution imagery adds detail where available.
 - **Verified downloads.** Optional images must match their expected file size and SHA-256 fingerprint before they can be used.
 - **Settings and Reset Trip.** Review imagery status, approve downloads, restart your journey, and open privacy, credits, licensing, and source information.
@@ -86,7 +86,7 @@ To build your own package, follow [Build from source](BUILD_FROM_SOURCE.md).
 
 ## Requirements
 
-- **Windows 11 x64 tested for v1.1.0.** Windows 10 x64 is an intended supported platform but was not part of this release's installation certification.
+- **Windows 11 x64 tested for the prior release.** Windows 10 x64 is an intended supported platform but has not been installation certified for this release.
 - **Microsoft Edge WebView2 Evergreen Runtime**, installed separately.
 - **WebGL-capable graphics hardware** for playback and preview.
 - One monitor; additional monitors are optional. Rendering on multiple monitors uses more graphics resources.
@@ -146,12 +146,12 @@ The [source-build guide](BUILD_FROM_SOURCE.md) explains how to build both compon
 
 ## Known limitations
 
-- The v1.1.0 route contains 64 stops and 126 legs per round trip. The final destination is WOH G64 in the Large Magellanic Cloud. The owner estimates its route distance at approximately 157,586 light-years; that exact figure has not been independently checked for this release. This is an authored itinerary, not a complete astronomy catalogue.
+- The v1.2.0 route contains 71 stops and 140 legs per round trip. The final destination is WOH G64 in the Large Magellanic Cloud. This is an authored itinerary, not a complete astronomy catalogue.
 - Astronomical imagery has uneven coverage and resolution. Some maps contain seams or missing polar regions; others use processed colour, grayscale, near-infrared, or radar-derived data rather than natural visible colour. See [image sources and limitations](VisualAssets/REACH_IMAGERY_V1.md).
 - Multi-monitor rendering is **not hardware frame-locked**. Displays render independently, so moving seams may differ between frames. Bloom is clipped at window edges, and physical bezel compensation is not applied.
 - Journey progress is checkpointed rather than saved every frame. A crash or forced termination can resume from an older checkpoint.
-- The complete 64-stop, 126-leg route passed accelerated deterministic state certification. The owner accepted the one-monitor and three-monitor presentation, framing, HUD, and journey restoration. Uninterrupted full-route real-time playback and prolonged WebGL endurance remain unverified.
-- Windows 11 VM checks passed clean installation, v1.0.0-to-v1.1.0 upgrade, playback, uninstall, and portable execution. Backup-based rollback has not been independently certified.
+- The 71-stop route has focused deterministic journey coverage. The owner accepted the one-monitor and three-monitor V7 presentation. Uninterrupted full-route real-time playback and prolonged WebGL endurance remain unverified.
+- Prior Windows 11 VM checks passed clean installation, v1.0.0-to-v1.1.0 upgrade, playback, uninstall, and portable execution. Backup-based rollback has not been independently certified.
 - Historical v1.0.0 owner testing found an unrecognized `pending-upgrade.json.*.previous` backup artifact; uninstall preserved backups. Backup deletion was verified only in synthetic tests.
 
 ## Credits and licensing
