@@ -3,6 +3,7 @@ using TheReachScreensaver.Diagnostics;
 using TheReachScreensaver.Journey;
 using TheReachScreensaver.Persistence;
 using TheReachScreensaver.VisualAssets;
+using System.Globalization;
 
 namespace TheReachScreensaver;
 
@@ -32,6 +33,24 @@ internal static class Program
             return JourneyResetSelfTest.RunCheckpointValidation();
         if (args.Length == 1 && string.Equals(args[0], "--reach-web-display-self-test", StringComparison.OrdinalIgnoreCase))
             return ReachWebApplication.RunDisplayFixtures();
+        if (args.Length > 0 && string.Equals(args[0], "--reach-dev-pluto-sgra", StringComparison.OrdinalIgnoreCase))
+        {
+            if (args.Length != 2 || !string.Equals(args[1], "/s", StringComparison.OrdinalIgnoreCase))
+                return 1;
+            Log.Initialize(new JourneyStateStore().RootDirectory);
+            return RunScreensaver(new ReachDevTest("pluto-to-sgra"));
+        }
+        if (args.Length > 0 && string.Equals(args[0], "--reach-dev-route", StringComparison.OrdinalIgnoreCase))
+        {
+            if (args.Length != 5 || !int.TryParse(args[1], NumberStyles.None, CultureInfo.InvariantCulture, out var from)
+                || !int.TryParse(args[2], NumberStyles.None, CultureInfo.InvariantCulture, out var to)
+                || !int.TryParse(args[3], NumberStyles.None, CultureInfo.InvariantCulture, out var cruise)
+                || from < 0 || to < 0 || from == to || cruise is < 2 or > 120
+                || !string.Equals(args[4], "/s", StringComparison.OrdinalIgnoreCase))
+                return 1;
+            Log.Initialize(new JourneyStateStore().RootDirectory);
+            return RunScreensaver(new ReachDevTest("destination-jump", from, to, cruise));
+        }
         if (args.Any(a => string.Equals(a, "--path-audit", StringComparison.OrdinalIgnoreCase)))
         {
             Console.WriteLine(PathAuditor.Run());
@@ -97,7 +116,7 @@ internal static class Program
         return 0;
     }
 
-    private static int RunScreensaver()
+    private static int RunScreensaver(ReachDevTest? test = null)
     {
         using var mutex = new Mutex(false, JourneyReset.FullscreenMutexName);
         bool acquired;
@@ -108,7 +127,7 @@ internal static class Program
             Log.Warn("A fullscreen Reach voyage is already running.");
             return 0;
         }
-        try { return ReachWebApplication.Run(fullscreen: true); }
+        try { return ReachWebApplication.Run(fullscreen: true, test: test); }
         finally { mutex.ReleaseMutex(); }
     }
 }

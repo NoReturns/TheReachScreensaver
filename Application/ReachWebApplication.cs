@@ -12,6 +12,9 @@ using TheReachScreensaver.Persistence;
 
 namespace TheReachScreensaver.Application;
 
+internal sealed record ReachDevTest(string PreviewId, int? FromIndex = null, int? ToIndex = null,
+    int? CruiseSeconds = null);
+
 internal static class ReachWebApplication
 {
     private const string Host = "reach.example";
@@ -33,7 +36,7 @@ internal static class ReachWebApplication
         return Run(fullscreen: false, previewParent: parentHwnd);
     }
 
-    public static int Run(bool fullscreen, IntPtr previewParent = default)
+    public static int Run(bool fullscreen, IntPtr previewParent = default, ReachDevTest? test = null)
     {
         if (!OperatingSystem.IsWindows())
         {
@@ -87,14 +90,14 @@ internal static class ReachWebApplication
                 var layout = DisplayLayout.Query();
                 if (RequiresPanorama(layout))
                 {
-                    using var context = new ReachWebMultiContext(dist, configuration, verifiedAssets, layout);
+                    using var context = new ReachWebMultiContext(dist, configuration, verifiedAssets, layout, test);
                     System.Windows.Forms.Application.Run(context);
                     return context.ExitCode;
                 }
                 Log.Info("Reach fullscreen found one display; using the single-monitor path.");
             }
             using var window = new ReachWebWindow(dist, fullscreen, previewParent == IntPtr.Zero,
-                configuration, verifiedAssets, previewParent: previewParent);
+                configuration, verifiedAssets, previewParent: previewParent, test: test);
             if (previewParent != IntPtr.Zero && !window.TryAttachPreview())
                 return 0;
             System.Windows.Forms.Application.Run(window);
@@ -290,6 +293,7 @@ internal static class ReachWebApplication
         private readonly ReachVisualConfiguration _configuration;
         private readonly IReadOnlyList<ReachAsset> _assets;
         private readonly DisplayLayout _layout;
+        private readonly ReachDevTest? _test;
         private readonly string _sessionId = Guid.NewGuid().ToString("N");
         private Task<CoreWebView2Environment>? _environment;
         private ReachWebInputMonitor? _inputMonitor;
@@ -301,12 +305,13 @@ internal static class ReachWebApplication
         public int ExitCode { get; private set; }
 
         public ReachWebMultiContext(string dist, ReachVisualConfiguration configuration,
-            IReadOnlyList<ReachAsset> assets, DisplayLayout layout)
+            IReadOnlyList<ReachAsset> assets, DisplayLayout layout, ReachDevTest? test)
         {
             _dist = dist;
             _configuration = configuration;
             _assets = assets;
             _layout = layout;
+            _test = test;
             System.Windows.Forms.Application.Idle += Start;
             _armTimer.Tick += ArmInput;
         }
@@ -315,7 +320,7 @@ internal static class ReachWebApplication
         {
             if (_environment is not null) return _environment;
             var profile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-                "TheReachScreensaver", "WebView2Prototype");
+                "TheReachScreensaver", _test is null ? "WebView2Prototype" : "WebView2DestinationTest");
             Directory.CreateDirectory(profile);
             return _environment = CoreWebView2Environment.CreateAsync(userDataFolder: profile,
                 options: new CoreWebView2EnvironmentOptions("--no-proxy-server"));
@@ -329,7 +334,8 @@ internal static class ReachWebApplication
                 foreach (var display in _layout.Displays.OrderByDescending(display => display.IsPrimary))
                 {
                     var window = new ReachWebWindow(_dist, true, display.IsPrimary, _configuration, _assets,
-                        new PanoramaDisplay(display, _layout.VirtualBounds, _sessionId), SharedEnvironment, CloseAll);
+                        new PanoramaDisplay(display, _layout.VirtualBounds, _sessionId), SharedEnvironment, CloseAll,
+                        test: _test);
                     window.FormClosed += WindowClosed;
                     _windows.Add(window);
                 }
@@ -410,6 +416,7 @@ internal static class ReachWebApplication
         private readonly string _dist;
         private readonly bool _fullscreen;
         private readonly bool _isPrimaryDisplay;
+        private readonly ReachDevTest? _test;
         private readonly IntPtr _previewParent;
         private readonly PanoramaDisplay? _panorama;
         private readonly Func<Task<CoreWebView2Environment>>? _sharedEnvironment;
@@ -432,11 +439,12 @@ internal static class ReachWebApplication
         public ReachWebWindow(string dist, bool fullscreen, bool isPrimaryDisplay, ReachVisualConfiguration visualConfiguration,
             IReadOnlyList<ReachAsset> verifiedAssets, PanoramaDisplay? panorama = null,
             Func<Task<CoreWebView2Environment>>? sharedEnvironment = null, Action<string>? closeGroup = null,
-            IntPtr previewParent = default)
+            IntPtr previewParent = default, ReachDevTest? test = null)
         {
             _dist = dist;
             _fullscreen = fullscreen;
             _isPrimaryDisplay = isPrimaryDisplay;
+            _test = test;
             _previewParent = previewParent;
             _panorama = panorama;
             _sharedEnvironment = sharedEnvironment;
@@ -560,7 +568,8 @@ internal static class ReachWebApplication
                 }
                 var profile = Path.Combine(
                     Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-                    "TheReachScreensaver", _previewParent == IntPtr.Zero ? "WebView2Prototype" : "WebView2Preview");
+                    "TheReachScreensaver", _test is not null ? "WebView2DestinationTest"
+                        : _previewParent == IntPtr.Zero ? "WebView2Prototype" : "WebView2Preview");
                 if (_previewParent != IntPtr.Zero)
                     Log.Info($"Reach preview uses isolated WebView2 profile {profile}.");
                 Directory.CreateDirectory(profile);
@@ -731,7 +740,7 @@ internal static class ReachWebApplication
                       else hideCursor();
                     })();
                     """);
-                if (_fullscreen && _isPrimaryDisplay)
+                if (_fullscreen && _isPrimaryDisplay && _test is null)
                 {
                     _pendingResetToken = JourneyReset.PendingToken();
                     if (!string.IsNullOrEmpty(_pendingResetToken))
@@ -798,7 +807,12 @@ internal static class ReachWebApplication
                     if (_shutdownRequested || IsDisposed) return;
                 }
                 core.SetVirtualHostNameToFolderMapping(Host, _dist, CoreWebView2HostResourceAccessKind.DenyCors);
-                var url = _panorama is null ? StartUrl : StartUrl + "&panorama=1";
+                var url = StartUrl + (_test is null ? "" : "&reachPreview=" + Uri.EscapeDataString(_test.PreviewId)
+                    + "&reachTestStart=departure"
+                    + (_test.FromIndex is int from ? "&reachTestFrom=" + from : "")
+                    + (_test.ToIndex is int to ? "&reachTestTo=" + to : "")
+                    + (_test.CruiseSeconds is int cruise ? "&reachTestCruise=" + cruise : ""))
+                    + (_panorama is null ? "" : "&panorama=1");
                 core.Navigate(url);
                 Log.Info($"Navigating to {url} using local dist {_dist}.");
             }
