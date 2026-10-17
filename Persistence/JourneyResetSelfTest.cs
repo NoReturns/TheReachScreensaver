@@ -104,7 +104,8 @@ internal static class JourneyResetSelfTest
         Check(JourneyReset.IsFreshCheckpoint(Probe(Fresh(4))), "fresh V4 checkpoint accepted");
         Check(JourneyReset.IsFreshCheckpoint(Probe(Fresh(5))), "fresh V5 checkpoint accepted");
         Check(JourneyReset.IsFreshCheckpoint(Probe(Fresh(6))), "fresh V6 checkpoint accepted");
-        Check(!JourneyReset.IsFreshCheckpoint(Probe(Fresh(7))), "unsupported V7 checkpoint rejected");
+        Check(JourneyReset.IsFreshCheckpoint(Probe(Fresh(7))), "fresh V7 checkpoint accepted");
+        Check(!JourneyReset.IsFreshCheckpoint(Probe(Fresh(8))), "unsupported V8 checkpoint rejected");
         Check(!JourneyReset.IsFreshCheckpoint(Probe(Fresh(6, destinationId: "mars"))),
             "non-Earth V6 checkpoint rejected");
         Check(!JourneyReset.IsFreshCheckpoint(Probe(Fresh(6, completedKm: 1))),
@@ -115,9 +116,13 @@ internal static class JourneyResetSelfTest
 
     private static async Task RunFixture(Form form, string root)
     {
-        var dist = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "Universe", "dist"));
-        if (!File.Exists(Path.Combine(dist, "index.html")))
-            dist = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, "..", "Universe", "dist"));
+        var dist = Environment.GetEnvironmentVariable("REACH_RESET_FIXTURE_DIST");
+        if (string.IsNullOrWhiteSpace(dist))
+        {
+            dist = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "Universe", "dist"));
+            if (!File.Exists(Path.Combine(dist, "index.html")))
+                dist = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, "..", "Universe", "dist"));
+        }
         Check(File.Exists(Path.Combine(dist, "index.html")), "Universe dist is required for the reset fixture");
 
         Directory.CreateDirectory(root);
@@ -173,7 +178,8 @@ internal static class JourneyResetSelfTest
         await Navigate(oldVoyage.CoreWebView2, Url);
         await WaitForReady(oldVoyage.CoreWebView2);
         var old = await ReadCheckpoint(oldVoyage.CoreWebView2);
-        Check(old.GetProperty("destinationId").GetString() == "mars"
+        Check(old.GetProperty("itinerary").GetProperty("version").GetInt32() == 7
+            && old.GetProperty("destinationId").GetString() == "mars"
             && old.GetProperty("odometer").GetProperty("completedKm").GetDouble() == 123456789
             && old.GetProperty("odometer").GetProperty("roundTrips").GetInt32() == 3,
             "Universe restores populated voyage, distance, and round trips");
@@ -198,8 +204,8 @@ internal static class JourneyResetSelfTest
         }
         Check(fresh, "reset starts a fresh Earth voyage with zero odometer and round trips");
         var freshCheckpoint = await ReadCheckpoint(resetVoyage.CoreWebView2);
-        Check(freshCheckpoint.GetProperty("itinerary").GetProperty("version").GetInt32() is 4 or 5 or 6,
-            "reset confirms a supported itinerary version");
+        Check(freshCheckpoint.GetProperty("itinerary").GetProperty("version").GetInt32() == 7,
+            "reset confirms a fresh V7 itinerary");
         Check(JourneyReset.PendingToken(root) == token, "marker remains until fresh checkpoint confirmation");
         Check(JourneyReset.Complete(token!, root) && JourneyReset.PendingToken(root) is null,
             "marker cleared only after fresh checkpoint");

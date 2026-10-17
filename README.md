@@ -2,7 +2,7 @@
 
 **A free, open-source cinematic space screensaver for Windows 11, with Windows 10 support intended.**
 
-Let your idle desktop take you from Earth through the Solar System and nearby stars to WOH G64 in the Large Magellanic Cloud. The Reach follows a persistent **64-stop voyage** over 126 travel legs: 63 outbound and 63 returning to Earth. It resumes from saved checkpoints when it starts again.
+Let your idle desktop take you from Earth through the Solar System and nearby stars to WOH G64 in the Large Magellanic Cloud. The current source follows a persistent **71-stop voyage** over 140 travel legs: 70 outbound and 70 returning to Earth. It resumes from saved checkpoints when it starts again.
 
 Created by **NoReturns**, The Reach Screensaver is an independent project based on *Your Eyes In Space* by **Berk Comba / BigBrains**. The original author is credited for the engine, but this fork is not presented as endorsed by him or BigBrains.
 
