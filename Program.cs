@@ -51,6 +51,19 @@ internal static class Program
             Log.Initialize(new JourneyStateStore().RootDirectory);
             return RunScreensaver(new ReachDevTest("destination-jump", from, to, cruise));
         }
+        if (args.Length > 0 && string.Equals(args[0], "--reach-dev-queue", StringComparison.OrdinalIgnoreCase))
+        {
+            if (args.Length != 5 || !int.TryParse(args[1], NumberStyles.None, CultureInfo.InvariantCulture, out var from)
+                || from < 0 || !int.TryParse(args[3], NumberStyles.None, CultureInfo.InvariantCulture, out var cruise)
+                || cruise is < 2 or > 120 || !string.Equals(args[4], "/s", StringComparison.OrdinalIgnoreCase))
+                return 1;
+            var queue = args[2].Split(',');
+            if (queue.Length == 0 || queue.Any(token => token != "sgra"
+                && (!int.TryParse(token, NumberStyles.None, CultureInfo.InvariantCulture, out var index) || index < 0)))
+                return 1;
+            Log.Initialize(new JourneyStateStore().RootDirectory);
+            return RunScreensaver(new ReachDevTest("destination-queue", from, null, cruise, args[2]));
+        }
         if (args.Any(a => string.Equals(a, "--path-audit", StringComparison.OrdinalIgnoreCase)))
         {
             Console.WriteLine(PathAuditor.Run());

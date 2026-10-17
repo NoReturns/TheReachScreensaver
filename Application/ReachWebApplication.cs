@@ -13,7 +13,7 @@ using TheReachScreensaver.Persistence;
 namespace TheReachScreensaver.Application;
 
 internal sealed record ReachDevTest(string PreviewId, int? FromIndex = null, int? ToIndex = null,
-    int? CruiseSeconds = null);
+    int? CruiseSeconds = null, string? Queue = null);
 
 internal static class ReachWebApplication
 {
@@ -173,6 +173,8 @@ internal static class ReachWebApplication
     private static void ValidatePanoramaStatus(JsonElement status, PanoramaDisplay panorama,
         bool isPrimaryDisplay, bool countdownEnabled)
     {
+        if (status.ValueKind != JsonValueKind.Object)
+            throw new InvalidOperationException($"Reach panorama status is unavailable (received {status.ValueKind}); window.__reachPanoramaStatus is missing, failed, or returned a non-object.");
         var view = status.GetProperty("viewOffset");
         var monitor = panorama.Monitor.Bounds;
         var desktop = panorama.VirtualBounds;
@@ -188,6 +190,23 @@ internal static class ReachWebApplication
             || status.GetProperty("primary").GetBoolean() != isPrimaryDisplay
             || status.GetProperty("countdown").GetBoolean() != (isPrimaryDisplay && countdownEnabled))
             throw new InvalidOperationException("The web camera did not apply its assigned panorama slice.");
+    }
+
+    private static void LogBrowserDiagnostic(string displayName, string source, string json)
+    {
+        try
+        {
+            using var message = JsonDocument.Parse(json);
+            var level = source == "console"
+                ? message.RootElement.GetProperty("type").GetString()
+                : message.RootElement.GetProperty("entry").GetProperty("level").GetString();
+            if (level is not ("error" or "warning" or "assert")) return;
+            Log.Error($"Reach {source} on {displayName}: {json[..Math.Min(json.Length, 16384)]}");
+        }
+        catch (Exception ex)
+        {
+            Log.Warn($"Could not read Reach {source} diagnostic on {displayName}: {ex.Message}");
+        }
     }
 
     public static int RunDisplayFixtures()
@@ -253,6 +272,20 @@ internal static class ReachWebApplication
             catch (InvalidOperationException ex) when (ex.Message.Contains("display enumeration failed"))
             {
                 Console.WriteLine("PASS failed enumeration does not silently select one display");
+            }
+            using (var missing = JsonDocument.Parse("null"))
+            {
+                try
+                {
+                    ValidatePanoramaStatus(missing.RootElement,
+                        new PanoramaDisplay(new DisplayRegion { Name = "primary", Bounds = new PixelRect(0, 0, 1920, 1080), IsPrimary = true },
+                            new PixelRect(0, 0, 1920, 1080), "fixture"), true, true);
+                    throw new InvalidOperationException("Null panorama status was accepted.");
+                }
+                catch (InvalidOperationException ex) when (ex.Message.Contains("window.__reachPanoramaStatus"))
+                {
+                    Console.WriteLine("PASS null panorama status reports missing registration");
+                }
             }
             return 0;
         }
@@ -589,6 +622,28 @@ internal static class ReachWebApplication
                 core.Settings.IsStatusBarEnabled = false;
                 core.Settings.AreHostObjectsAllowed = false;
                 core.Settings.IsWebMessageEnabled = false;
+                var displayName = _panorama?.Monitor.Name ?? "single display";
+                try
+                {
+                    core.GetDevToolsProtocolEventReceiver("Runtime.exceptionThrown")
+                        .DevToolsProtocolEventReceived += (_, args) =>
+                            Log.Error($"Reach browser exception on {displayName}: {args.ParameterObjectAsJson}");
+                    core.GetDevToolsProtocolEventReceiver("Runtime.consoleAPICalled")
+                        .DevToolsProtocolEventReceived += (_, args) =>
+                            LogBrowserDiagnostic(displayName, "console", args.ParameterObjectAsJson);
+                    core.GetDevToolsProtocolEventReceiver("Log.entryAdded")
+                        .DevToolsProtocolEventReceived += (_, args) =>
+                            LogBrowserDiagnostic(displayName, "browser log", args.ParameterObjectAsJson);
+                    await core.CallDevToolsProtocolMethodAsync("Runtime.enable", "{}");
+                    await core.CallDevToolsProtocolMethodAsync("Log.enable", "{}");
+                    await core.AddScriptToExecuteOnDocumentCreatedAsync(
+                        "window.addEventListener('unhandledrejection', event => " +
+                        "console.error('Reach unhandled promise rejection', event.reason));");
+                }
+                catch (Exception ex)
+                {
+                    Log.Warn($"Reach browser diagnostics unavailable on {displayName}: {ex.Message}");
+                }
                 core.NewWindowRequested += (_, args) => args.Handled = true;
                 core.NavigationStarting += (_, args) =>
                 {
@@ -650,6 +705,21 @@ internal static class ReachWebApplication
                                 var status = await core.ExecuteScriptAsync("window.__reachPanoramaStatus?.() ?? null");
                                 Log.Info($"Reach panorama {_panorama.Monitor.Name} status: {status}");
                                 using var state = JsonDocument.Parse(status);
+                                if (state.RootElement.ValueKind != JsonValueKind.Object)
+                                {
+                                    try
+                                    {
+                                        var diagnostic = await core.ExecuteScriptAsync(
+                                            "JSON.stringify({readyState:document.readyState,statusType:typeof window.__reachPanoramaStatus," +
+                                            "panoramaInjected:!!window.__reachPanorama,loadError:document.documentElement.classList.contains('reach-load-error')," +
+                                            "loader:document.querySelector('#loader .loader-text')?.textContent?.slice(0,300) ?? null})");
+                                        Log.Error($"Reach panorama {_panorama.Monitor.Name} startup diagnostic: {diagnostic}");
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Log.Warn($"Could not inspect Reach startup on {_panorama.Monitor.Name}: {ex.Message}");
+                                    }
+                                }
                                 ValidatePanoramaStatus(state.RootElement, _panorama, _isPrimaryDisplay,
                                     _visualConfiguration.CountdownEnabled);
                                 if (Environment.GetEnvironmentVariable("REACH_WEB_VERIFY_PANORAMA") == "1")
@@ -811,7 +881,8 @@ internal static class ReachWebApplication
                     + "&reachTestStart=departure"
                     + (_test.FromIndex is int from ? "&reachTestFrom=" + from : "")
                     + (_test.ToIndex is int to ? "&reachTestTo=" + to : "")
-                    + (_test.CruiseSeconds is int cruise ? "&reachTestCruise=" + cruise : ""))
+                    + (_test.CruiseSeconds is int cruise ? "&reachTestCruise=" + cruise : "")
+                    + (_test.Queue is { } queue ? "&reachTestQueue=" + Uri.EscapeDataString(queue) : ""))
                     + (_panorama is null ? "" : "&panorama=1");
                 core.Navigate(url);
                 Log.Info($"Navigating to {url} using local dist {_dist}.");
