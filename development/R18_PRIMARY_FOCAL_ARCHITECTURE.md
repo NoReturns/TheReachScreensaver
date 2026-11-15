@@ -1,0 +1,93 @@
+# R18 primary-anchored focal architecture
+
+Date: 2026-10-28. Mode: read-only architecture analysis plus one isolated developer visual and memory pilot. B1 remains NO-GO.
+
+## Decision
+
+**REVISE.** A primary-height focal is mathematically coherent if its perspective sources expand their vertical field while retaining one source texel per output pixel near the sector center. In the current three-monitor layout it changes the projection substantially: the 26-radii black hole and peripheral planet appear smaller, the black hole moves from the left-primary boundary into the primary display, and global sectors increase from four to six. The isolated 2x-MSAA pilot rendered complete native frames without a reported WebGL error or obvious magenta source clipping. A warmed moving-hole run measured about **3983 MiB** process-attributed dedicated GPU usage versus **4418 MiB** for the prior full-quality bounding-height control, an approximate **435 MiB reduction**. This is useful evidence, not visual acceptance or an arbitrary-layout guarantee.
+
+Primary-height alone does not meet the owner's primary-display focal intent vertically: it keeps the optical Y origin at the virtual bounding center, which shifts when a monitor is added above. A stable reference focal with explicit primary X/Y anchoring fixes that composition rule but can require very tall source textures for upper monitors. The fourth-above model still reaches about **8260 MiB of nominal sector storage** under that policy. Neither alternative is ready for B1 or production.
+
+## Source facts and architecture contracts
+
+- `Universe/src/reach/CylindricalGeometry.ts`: `cylinderFocal(H,50) = H/(2 tan 25 degrees)`; `sectorCenters` steps 50 degrees with 35-degree horizontal half-coverage; `displaySectorCenters` selects overlapping sources by padded display X. The declared maximum is eight, but the loop can return a ninth global center when its last iteration completes coverage. Each local renderer still has eight source samplers. `projectCylindricalDirection` uses the same focal but centers Y on virtual height/2.
+- `Universe/src/reach/CylindricalRenderer.ts`: constructor and `setVerticalFov` take focal from total virtual height. `ensureSectors` sizes each 60-degree vertical perspective source as `ceil(2 f tan 35 degrees)` by `ceil(2 f tan 30 degrees)` at physical output scale. It selects sources separately in each WebView2 context, renders the scene once per selected source, then performs black-hole cube rendering when enabled, warp/lens, native bloom, and physical crop. The lens and warp uniforms receive `uDesktop`, `uShift`, `uFocal`, sector centers, and 35/30-degree source tangent values. Target size is coupled to focal to maintain center sampling density.
+- `Universe/src/reach/CylindricalLens.ts`: lens output rays use `(p.x-W/2-shift)/f` and `(H/2-p.y)/f`; background samples use sector angular directions and tangent FOV values. The accepted geodesic, disc, shadow and weak-field mathematics remain separate. Changing focal changes rays entering those equations and changes black-hole size and composition even if the equations themselves stay untouched.
+- `Universe/src/core/Engine.ts`: `localVerticalFovRad` and `Universe/src/reach/ReachPanorama.ts:localPanoramaFovRad` still derive local FOV from total virtual height. `BlackHolePass.target` uses that local FOV for its pixel-scale visibility threshold and copies the camera projection. A production focal-reference change must align these contracts; the isolated fixture's black hole is large enough that the stale threshold did not suppress it.
+- `Universe/src/main.ts` computes a horizontal composition shift from the primary controller's viewport center and sends that scalar to followers. This already places the current fixture's horizontal optical center at primary center plus 0.1 primary width, but the shift is stop-dependent. There is no equivalent primary Y anchor in the shared frame. `Screensaver/Display/DisplayLayout.cs` gets the actual Windows primary flag from `GetMonitorInfoW`; the native panorama contract currently carries only each window's `isPrimaryDisplay` flag and local/virtual rectangles, not the primary rectangle for every follower. A production implementation would need a shared validated primary reference before followers allocate targets. Neither monitor number nor horizontal order identifies the primary reliably.
+
+The source claims above are **proven by code**. The layout and allocation outcomes below are **source-derived models**. The pilot observations and GPU counters are **direct measurements**. No fourth display was rendered.
+
+## Focal alternatives
+
+Let physical virtual-desktop coordinates be `p`, the horizontal optical origin be `Cx = primary center X + 0.1 primary width` for this fixed fixture, and `Cy` the vertical optical origin. A final ray has `theta = (p.x-Cx)/f`, `v = (Cy-p.y)/f`, then direction proportional to `(sin theta, v, -cos theta)`. The 0.1-width offset is a fixture composition choice, not a universal destination rule.
+
+| Policy | Focal `f` | Vertical origin `Cy` | Projection and field of view | Source representation |
+| --- | --- | --- | --- | --- |
+| A. Bounding height | `Hvirtual/(2 tan 25 deg)` | `Hvirtual/2` | Current accepted screen rays; 50-degree vertical span across the bounding height. Adding height changes all existing rays and apparent sizes. | Fixed 70-degree horizontal by 60-degree vertical sources cover the modeled layouts; full-quality target scales with `f`. |
+| B. Primary height | `Hprimary/(2 tan 25 deg)` | `Hvirtual/2` | Primary height sets angular pixel scale, but the primary may sit above or below optical center. Current three-monitor focal falls from 2316 to 1544 px, making objects about two-thirds as large near center. | A 60-degree vertical source clips valid current rays. The model needs at least 80.134 degrees vertically in the current layout, 118.54 degrees for fourth-above. Target height must grow with the required tangent, at full source density. |
+| C. Fixed 1440-px reference with primary X/Y anchoring | `1440/(2 tan 25 deg)` | Windows primary center Y | Stable pixel angular scale and primary-centered vertical composition for a 1440-px reference. Other primary sizes intentionally have a different vertical FOV; single 4K is about 70 degrees on the physical panel. | Required source vertical FOV is 91.639 degrees in the current layout and 137.516 degrees fourth-above. Maintaining sampling can erase the nominal focal-size saving. |
+
+The sector source horizontal half-angle remains 35 degrees in all models. The perspective sector camera's vertical FOV and aspect must match the source UV tangent and raster dimensions. A focal substitution without that coordinated source change is **invalid**, not a memory optimization. Source resolution is never capped in this model. Near each sector center, source pixels per physical output pixel remain approximately one; density and star footprints vary with ray angle, source FOV, rounding and shader point-size behavior. The source-size rule preserves the current center-density convention, not a proven quality guarantee at extreme off-axis rays. Changed focal also changes global sector placement and each display's selected identities, so scene submission, tile frusta/LOD, and cube/source background relationships need review. Native bloom/post targets still follow physical display rectangles and 512-pixel guard; separate WebView2 contexts remain.
+
+## Layout model
+
+[The full machine-readable model](r18-model.json) records every rectangle, primary flag, focal, optical anchor, horizontal and vertical viewing-angle endpoints, global sector center, per-monitor selected sector index/angle, padded rect, required source FOV, full-quality dimensions, and resource ratio. [Model code](r18_model.py) is read-only geometry arithmetic. The current-layout primary is Windows `DISPLAY3`, the 2560x1440 rectangle at normalized (3840,720); it is neither display number 1 nor inferred from horizontal position.
+
+All MiB below are **nominal sector color/depth plus 2x-MSAA storage** at 36 bytes per source pixel, following R16. They omit resolve/driver backing, bloom, cube, assets, extra contexts and memory pressure. `N` is global angular sectors / summed per-context sector instances. The ratio is all sector source pixels divided by all physical output pixels.
+
+| Layout, primary | Policy | `f` px | N | Full-quality sector px | 2x sector MiB | Source/physical px | Required source vertical FOV |
+| --- | --- | ---: | ---: | --- | ---: | ---: | ---: |
+| Single 3840x2160, that 4K primary | A/B | 2316 | 2 / 2 | 3244x2675 | 596 | 2.09 | 60 deg |
+| Single 4K | C | 1544 | 3 / 3 | 2163x2384 | 531 | 1.87 | 75.32 deg |
+| Current 8320x2160, `DISPLAY3` primary | A | 2316 | 4 / 8 | 3244x2675 | 2383 | 4.94 | 60 deg |
+| Current | B | 1544 | 6 / 10 | about 2163x2598 | 1929 | 4.00 | 80.134 deg |
+| Current | C | 1544 | 6 / 10 | 2163x3178 | 2360 | 4.89 | 91.639 deg |
+| Fourth 3840x2160 above left, 8320x4320, same primary | A | 4632 | 2 / 7 | 6487x5349 | 8339 | 10.87 | 60 deg |
+| Fourth-above | B | 1544 | 6 / 14 | 2163x5195 | 5401 | 7.04 | 118.54 deg |
+| Fourth-above | C | 1544 | 6 / 14 | 2163x7945 | 8260 | 10.77 | 137.516 deg |
+| Four horizontal, 10240x2160, same primary | A | 2316 | 5 / 11 | 3244x2675 | 3277 | 5.92 | 60 deg |
+| Four horizontal | B | 1544 | 8 / 14 | 2163x2384 | 2479 | 4.48 | 75.32 deg |
+| Four horizontal | C | 1544 | 8 / 14 | 2163x3178 | 3304 | 5.97 | 91.639 deg |
+| Mixed asymmetric 9600x3600, 1920x1080 primary | A | 3860 | 3 / 6 | 5406x4458 | 4964 | 9.41 | 60 deg |
+| Mixed asymmetric | B | 1158 | 9 / 15 | 1622x5598 | 4676 | 8.86 | 135.047 deg; **beyond declared eight-global-sector policy** |
+| Mixed asymmetric | C | 1544 | 7 / 13 | 2163x6753 | 6519 | 12.36 | 130.849 deg |
+
+The four-horizontal extension is a modeled 1920x1080 display immediately right of the existing right display. The mixed asymmetric model deliberately includes a 2560x1440 left, Windows-primary 1920x1080 near the lower center, 3840x2160 upper right and 1280x1024 lower right; it is not a measured arrangement. The fourth-above model adds no physical or simulated rendering window.
+
+Current three-monitor per-display viewing-angle endpoints, in degrees relative to the fixture's optical axes, show the projection change explicitly:
+
+| Monitor | A horizontal / vertical | B horizontal / vertical | C horizontal / vertical | Sector instances A/B/C |
+| --- | --- | --- | --- | --- |
+| Left 3840x2160 | -66.69 to -33.55 / -25 to 25 | -73.98 to -44.85 / -34.97 to 34.97 | -73.98 to -44.85 / -25 to 43.00 | 3 / 4 / 4 |
+| Windows primary 2560x1440 | -33.55 to 23.85 / -25 to 8.84 | -44.85 to 33.55 / -34.97 to 13.12 | -44.85 to 33.55 / -25 to 25 | 3 / 4 / 4 |
+| Right 1920x1080 | 23.85 to 51.81 / -25 to 0 | 33.55 to 62.32 / -34.97 to 0 | 33.55 to 62.32 / -25 to 13.12 | 2 / 2 / 2 |
+
+At any fixed focal and shared X/Y origin, adjoining physical pixels remain adjacent rays across horizontal and vertical monitor joins, regardless of mixed resolution or DPI. That is a **geometric continuity proof**, not a rendered seam-parity proof. Adding/removing monitors under A changes focal and centers for all existing windows. B keeps focal only while the Windows primary height stays fixed, but moving the virtual bounding center changes vertical composition. C keeps the chosen 1440-px focal while reference policy stays fixed, but primary changes/repositioning intentionally move the optical anchor. No physical-size or DPI calibration is used.
+
+Resource growth is still disproportionate for vertical layouts. Adding the modeled 4K above increases physical output pixels by about 59%. A's nominal sector storage rises from 2383 to 8339 MiB; B rises from 1929 to 5401 MiB; C rises from 2360 to 8260 MiB. B reduces the growth but requires 14 scene-source instances and a perspective source FOV near 119 degrees. C's explicit primary-centered composition requires nearly 138 degrees and an almost 8K-tall target. The declared eight-global-sector limit is reached in the four-horizontal B/C layout and exceeded by mixed-asymmetric B; the current loop's ninth-center behavior and local eight-sampler limit require explicit contract validation before relying on that layout. These are practical limits, not measured VRAM outcomes for those layouts.
+
+## Isolated current-layout feasibility pilot
+
+The pilot compared the unchanged R16 full-quality unbounded 2x-MSAA bundle with a copied [developer-only primary-height bundle](r18-variants/manifest.json). Only the focal reference, source vertical FOV/tangent, matching source-camera FOV and tile-camera FOV were patched in the copied bundle. The pilot used `f=1544.045`, a source vertical FOV of **80.184 degrees** (0.05 degree above the model minimum to avoid rounding-edge coverage loss), and **2163x2600** targets. This is about **1931 MiB nominal sector storage** across ten instances versus 2383 MiB across eight for control. Source center pixel density remains about one; the smaller physical objects result from different screen rays, not a raster cap. The native fixture kept scene state, camera pose, shader time, black-hole mathematics, bloom, exposure and 512-pixel guard. All three WebView2 profiles were isolated.
+
+The [capture index](r18-runs/review/capture-index.json) gives absolute source PNG paths for every full physical monitor frame, fixture state key and physical size. State keys match the R16 control for black-hole yaw 0, peripheral planet and deep-space scenes. Downscaled overviews are only navigation aids; judge the original full-resolution PNGs. Representative pairs: [black-hole left](r18-runs/review/hole-yaw0-left-overview.png), [black-hole primary](r18-runs/review/hole-yaw0-primary-overview.png), [peripheral planet left](r18-runs/review/peripheral-left-overview.png), [deep-space left](r18-runs/review/deep-space-left-overview.png). The candidate's three complete captures and initial fixture status are in [black-hole](r18-runs/run-507fe03a2465435581959a35ab98379a), [peripheral](r18-runs/run-8a68f77aa4224ba1b17cf484107bf0ba) and [deep-space](r18-runs/run-56209950859141308806a231cc78d251) runs.
+
+| Inspection | Observation | Limit |
+| --- | --- | --- |
+| Black hole | The shadow/disc is visibly smaller and largely in the primary frame instead of straddling the left-primary boundary. Lensing and disc shapes render; this is an intentional projection difference, not a parity proof. | Static yaw 0 only; R8/R9 sector-versus-cube source mismatch near moving joins remains. |
+| Planet | The peripheral planet is smaller and moves toward the left monitor's right edge at the same pose. Limb is present without the R17 cap's known forced downsampling. | Different apparent scale prevents a direct same-pixel sharpness comparison; no motion or owner preference test. |
+| Stars | Full-density source textures render stars across complete frames. No broad magenta unsupported-source region appeared; exact magenta RGB triplets counted zero in the nine candidate PNGs. | Star angular placement and apparent size change. No matched angular-point or temporal shimmer acceptance was run. |
+| Physical joins | The same focal and source-sector centers are used by all three contexts, and complete output frames were captured. | Static screenshots do not establish synchronized scanout, vertical-join quality, or B1 source consistency. |
+
+The warmed [30-second moving-hole measurement](r18-runs/run-3bf042bd89fc439a822a0e7e128b7329) used 10 seconds of warmup and the existing R14 rAF path. Eleven Windows PID-attributed dedicated counter samples in the measured interval have median **3982.6 MiB** (range 3893.6-4028.9). The NVIDIA adapter-wide median was 5764 MiB and 40% utilization; it is not process-specific. All three reports ended with zero WebGL error and no context loss. Left/right produced 1799 measured callbacks each, with 16.7-ms median intervals; primary produced 2223, an irregular scheduling result that must not be interpreted as isolated GPU speed. The R16 full-quality control measured 4418 MiB PID-attributed dedicated, giving an approximate cross-run **435 MiB saving**. The nominal target model predicts about 453 MiB. Different run times, other desktop activity, browser allocation and driver accounting prevent a precise attribution. Browser callback intervals are not GPU frame times or scanout timing.
+
+One preliminary R18 attempt [failed after writing full frames](r18-runs/run-10ecc04a353645f0bb369a329bb9f1f9) when the developer host's periodic readiness check collided with the optional R13 repeated-render measurement. Another attempt [rejected an invalid host option](r18-runs/run-101e4c76e06741d0bddfff4c9e45b5c7). Both run directories were preserved and excluded from successful pilot conclusions. The three clean static cases and separate memory run completed normally.
+
+## Remaining B1 problems and smallest safe path
+
+Changing focal does not solve the R8/R9 sector-versus-cube source parity defect at a moving black-hole join, R10 sector-selection popping, R11 caustic classification, R12 zero-target/ghosting artifacts, or native bloom residual questions summarized by R13. More sectors may increase source-boundary opportunities. B1 remains NO-GO independently of focal choice.
+
+The smallest safe implementation path is to keep the current production rectilinear renderer, then prototype a **shared, explicit primary rectangle and focal policy** in developer fixtures. Apply one optical X/Y anchor consistently to CPU projection, warp/lens rays, source-sector selection, source FOV/UV, tile frusta, local FOV and black-hole visibility logic. Derive source FOV from the required physical ray envelope with a guarded limit; do not cap source pixels to meet memory. Reject layouts that exceed the eight-sector, max-texture, FOV or measured memory limits rather than silently losing stars. Compare the same scene across single, current three-monitor, horizontal and vertical modeled layouts with deterministic native visual fixtures, then obtain owner visual review of changed object scale. That work is **not authorized or performed in R18**.
+
+Validation: repository-local guidance, relevant source and `BUILD_FROM_SOURCE.md` were read; both dirty worktrees were inspected and preserved. The model was generated with `r18_model.py`; the copied pilot bundle passed `node --check`; three isolated final-frame cases and one warmed memory run completed; frame state keys and intended target dimensions were checked; native PNGs were inspected; no full suite was run. No production source, installation, monitor layout, journey, existing R8-R17 evidence, Git state or remote was changed.

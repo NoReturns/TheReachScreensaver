@@ -1,0 +1,338 @@
+{
+  "-12": {
+    "controlRun": "C:\\Storage\\Screensaver\\development\\r22-runs\\run-1fd4dc8ebf9d4810b3fab5294c83a76c",
+    "staticRun": "C:\\Storage\\Screensaver\\development\\r22-runs\\run-723f52c451cc4f80b0b3719bb536c5ee",
+    "pixelVirtual": [
+      3081,
+      1019
+    ],
+    "stateKeyEqual": true,
+    "originalRay": [
+      -0.8359375,
+      0.0261077880859375,
+      -0.5478515625
+    ],
+    "deflectedRay": [
+      0.464111328125,
+      -0.2122802734375,
+      -0.859375
+    ],
+    "cubeWorldDirection": [
+      0.6326434913753606,
+      -0.2122802734375,
+      -0.7441014234224697
+    ],
+    "cubeFace": "-Z",
+    "cubeUVInferred": [
+      0.07489431449711659,
+      0.6426420288655839
+    ],
+    "controlSource": "cube",
+    "staticSource": "sector:42.00641751582297",
+    "sectorUV": [
+      0.326787484975257,
+      0.30631393622167463
+    ],
+    "cubeRGB": [
+      0.87939453125,
+      0.79736328125,
+      0.669921875
+    ],
+    "sectorRGB": [
+      0.1702880859375,
+      0.155517578125,
+      0.1319580078125
+    ],
+    "reference324RGB": [
+      0.174072265625,
+      0.1585693359375,
+      0.1339111328125
+    ],
+    "reference648RGB": [
+      0.08221435546875,
+      0.08135986328125,
+      0.08184814453125
+    ],
+    "reference1024RGB": [
+      0.014373779296875,
+      0.0135498046875,
+      0.0119781494140625
+    ],
+    "reference2048RGB": [
+      0.0006780624389648438,
+      0.0006432533264160156,
+      0.0005736351013183594
+    ],
+    "galaxyCandidate": {
+      "index": 0,
+      "angleDeg": 0.4480806688666182,
+      "radiusPc": 1,
+      "absMag": -7,
+      "type": 2
+    },
+    "emissionRGB": [
+      0,
+      0,
+      0
+    ],
+    "transmittance": 1,
+    "lensControlRGB": [
+      0.8701171875,
+      0.7890625,
+      0.66259765625
+    ],
+    "lensStaticRGB": [
+      0.16845703125,
+      0.15380859375,
+      0.1304931640625
+    ],
+    "finalControlRGB8": [
+      229,
+      228,
+      226
+    ],
+    "finalStaticRGB8": [
+      186,
+      187,
+      190
+    ],
+    "rawLensControlRGB": [
+      0.8701171875,
+      0.7890625,
+      0.66259765625
+    ],
+    "rawLensStaticRGB": [
+      0.16845703125,
+      0.15380859375,
+      0.1304931640625
+    ],
+    "nativeComparison": "C:\\Storage\\Screensaver\\development\\r22-review\\native-final-yaw--12.png",
+    "sourceDiagnostic": "C:\\Storage\\Screensaver\\development\\r22-review\\source-diagnostic-yaw--12.png",
+    "cubeToSectorMeanRatio": 5.1264,
+    "reference324SectorMeanRelativeError": 0.0192
+  },
+  "-6": {
+    "controlRun": "C:\\Storage\\Screensaver\\development\\r22-runs\\run-daf4e212600348f78d58407d1bb4cdf9",
+    "staticRun": "C:\\Storage\\Screensaver\\development\\r22-runs\\run-1a7ed6e06ded4ab087f5b24361a203fc",
+    "pixelVirtual": [
+      3322,
+      1023
+    ],
+    "stateKeyEqual": true,
+    "originalRay": [
+      -0.7744140625,
+      0.024383544921875,
+      -0.6318359375
+    ],
+    "deflectedRay": [
+      0.544921875,
+      -0.1973876953125,
+      -0.814453125
+    ],
+    "cubeWorldDirection": [
+      0.6270702695124214,
+      -0.1973876953125,
+      -0.7530316193689349
+    ],
+    "cubeFace": "-Z",
+    "cubeUVInferred": [
+      0.08363616255720657,
+      0.6310620233171067
+    ],
+    "controlSource": "cube",
+    "staticSource": "sector:42.00641751582297",
+    "sectorUV": [
+      0.3968289668933169,
+      0.32374579288102245
+    ],
+    "cubeRGB": [
+      0.8310546875,
+      0.7548828125,
+      0.6357421875
+    ],
+    "sectorRGB": [
+      0.107421875,
+      0.09954833984375,
+      0.086181640625
+    ],
+    "reference324RGB": [
+      0.1103515625,
+      0.10211181640625,
+      0.088134765625
+    ],
+    "reference648RGB": [
+      0.041229248046875,
+      0.0404052734375,
+      0.0394287109375
+    ],
+    "reference1024RGB": [
+      0.00653839111328125,
+      0.006195068359375,
+      0.0055084228515625
+    ],
+    "reference2048RGB": [
+      0,
+      0,
+      0
+    ],
+    "galaxyCandidate": {
+      "index": 0,
+      "angleDeg": 0.6465585811789937,
+      "radiusPc": 1,
+      "absMag": -7,
+      "type": 2
+    },
+    "emissionRGB": [
+      0,
+      0,
+      0
+    ],
+    "transmittance": 1,
+    "lensControlRGB": [
+      0.82861328125,
+      0.7529296875,
+      0.6337890625
+    ],
+    "lensStaticRGB": [
+      0.10711669921875,
+      0.09930419921875,
+      0.0859375
+    ],
+    "finalControlRGB8": [
+      228,
+      227,
+      225
+    ],
+    "finalStaticRGB8": [
+      177,
+      179,
+      184
+    ],
+    "rawLensControlRGB": [
+      0.82861328125,
+      0.7529296875,
+      0.6337890625
+    ],
+    "rawLensStaticRGB": [
+      0.10711669921875,
+      0.09930419921875,
+      0.0859375
+    ],
+    "nativeComparison": "C:\\Storage\\Screensaver\\development\\r22-review\\native-final-yaw--6.png",
+    "sourceDiagnostic": "C:\\Storage\\Screensaver\\development\\r22-review\\source-diagnostic-yaw--6.png",
+    "cubeToSectorMeanRatio": 7.57859671038934,
+    "reference324SectorMeanRelativeError": 0.0254007911721841
+  },
+  "0": {
+    "controlRun": "C:\\Storage\\Screensaver\\development\\r22-runs\\run-5a7a36159d234d6cbee5a30e481894d6",
+    "staticRun": "C:\\Storage\\Screensaver\\development\\r22-runs\\run-8f1c091bcab94820b3d1a4949d72bd52",
+    "pixelVirtual": [
+      3566,
+      1016
+    ],
+    "stateKeyEqual": true,
+    "originalRay": [
+      -0.70361328125,
+      0.02740478515625,
+      -0.70947265625
+    ],
+    "deflectedRay": [
+      0.6220703125,
+      -0.2216796875,
+      -0.75048828125
+    ],
+    "cubeWorldDirection": [
+      0.6220703125,
+      -0.2216796875,
+      -0.75048828125
+    ],
+    "cubeFace": "-Z",
+    "cubeUVInferred": [
+      0.08555627846454134,
+      0.647690305790501
+    ],
+    "controlSource": "cube",
+    "staticSource": "sector:42.00641751582297",
+    "sectorUV": [
+      0.4706768201707252,
+      0.30288760166457906
+    ],
+    "cubeRGB": [
+      0.78076171875,
+      0.7109375,
+      0.6005859375
+    ],
+    "sectorRGB": [
+      0.07171630859375,
+      0.0672607421875,
+      0.05908203125
+    ],
+    "reference324RGB": [
+      0.07623291015625,
+      0.07135009765625,
+      0.0625
+    ],
+    "reference648RGB": [
+      0.031951904296875,
+      0.033172607421875,
+      0.036651611328125
+    ],
+    "reference1024RGB": [
+      0.0026798248291015625,
+      0.0025386810302734375,
+      0.0022563934326171875
+    ],
+    "reference2048RGB": [
+      0,
+      0,
+      0
+    ],
+    "galaxyCandidate": {
+      "index": 0,
+      "angleDeg": 0.879137247670483,
+      "radiusPc": 1,
+      "absMag": -7,
+      "type": 2
+    },
+    "emissionRGB": [
+      0,
+      0,
+      0
+    ],
+    "transmittance": 1,
+    "lensControlRGB": [
+      0.7783203125,
+      0.708984375,
+      0.5986328125
+    ],
+    "lensStaticRGB": [
+      0.071533203125,
+      0.06707763671875,
+      0.058929443359375
+    ],
+    "finalControlRGB8": [
+      227,
+      225,
+      223
+    ],
+    "finalStaticRGB8": [
+      168,
+      170,
+      178
+    ],
+    "rawLensControlRGB": [
+      0.7783203125,
+      0.708984375,
+      0.5986328125
+    ],
+    "rawLensStaticRGB": [
+      0.071533203125,
+      0.06707763671875,
+      0.058929443359375
+    ],
+    "nativeComparison": "C:\\Storage\\Screensaver\\development\\r22-review\\native-final-yaw-+0.png",
+    "sourceDiagnostic": "C:\\Storage\\Screensaver\\development\\r22-review\\source-diagnostic-yaw-+0.png",
+    "cubeToSectorMeanRatio": 10.563944530046223,
+    "reference324SectorMeanRelativeError": 0.060708782742680906
+  }
+}

@@ -1,0 +1,2325 @@
+{
+  "single-4k": {
+    "A-bounding": {
+      "desktop": [
+        3840,
+        2160
+      ],
+      "primary": "primary-4k",
+      "mode": "A-bounding",
+      "opticalAnchor": [
+        2304.0,
+        1080.0
+      ],
+      "focal": 2316.067,
+      "globalSectorCount": 2,
+      "globalCentersDegrees": [
+        -31.997,
+        18.003
+      ],
+      "capacityValid": true,
+      "sectorInstances": 2,
+      "fixed60SourceCoversOutput": true,
+      "requiredSourceVerticalFovDegrees": 60.0,
+      "fixed60Sector": [
+        3244,
+        2675
+      ],
+      "fullQualitySector": [
+        3244,
+        2675
+      ],
+      "physicalPixels": 8294400,
+      "sectorPixelsFull": 17355400,
+      "sectorToPhysicalPixelRatio": 2.092,
+      "sector2xMiB": 595.9,
+      "monitors": [
+        {
+          "name": "primary-4k",
+          "primary": true,
+          "rect": [
+            0,
+            0,
+            3840,
+            2160
+          ],
+          "horizontalDegrees": [
+            -44.85,
+            33.552
+          ],
+          "verticalDegrees": [
+            -25.0,
+            25.0
+          ],
+          "sectorIndices": [
+            0,
+            1
+          ],
+          "selectedCentersDegrees": [
+            -31.997,
+            18.003
+          ],
+          "paddedRect": [
+            0,
+            0,
+            3840,
+            2160
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 27.226
+        }
+      ]
+    },
+    "B-primary-height": {
+      "desktop": [
+        3840,
+        2160
+      ],
+      "primary": "primary-4k",
+      "mode": "B-primary-height",
+      "opticalAnchor": [
+        2304.0,
+        1080.0
+      ],
+      "focal": 2316.067,
+      "globalSectorCount": 2,
+      "globalCentersDegrees": [
+        -31.997,
+        18.003
+      ],
+      "capacityValid": true,
+      "sectorInstances": 2,
+      "fixed60SourceCoversOutput": true,
+      "requiredSourceVerticalFovDegrees": 60.0,
+      "fixed60Sector": [
+        3244,
+        2675
+      ],
+      "fullQualitySector": [
+        3244,
+        2675
+      ],
+      "physicalPixels": 8294400,
+      "sectorPixelsFull": 17355400,
+      "sectorToPhysicalPixelRatio": 2.092,
+      "sector2xMiB": 595.9,
+      "monitors": [
+        {
+          "name": "primary-4k",
+          "primary": true,
+          "rect": [
+            0,
+            0,
+            3840,
+            2160
+          ],
+          "horizontalDegrees": [
+            -44.85,
+            33.552
+          ],
+          "verticalDegrees": [
+            -25.0,
+            25.0
+          ],
+          "sectorIndices": [
+            0,
+            1
+          ],
+          "selectedCentersDegrees": [
+            -31.997,
+            18.003
+          ],
+          "paddedRect": [
+            0,
+            0,
+            3840,
+            2160
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 27.226
+        }
+      ]
+    },
+    "C-fixed1440-primary-anchor": {
+      "desktop": [
+        3840,
+        2160
+      ],
+      "primary": "primary-4k",
+      "mode": "C-fixed1440-primary-anchor",
+      "opticalAnchor": [
+        2304.0,
+        1080.0
+      ],
+      "focal": 1544.045,
+      "globalSectorCount": 3,
+      "globalCentersDegrees": [
+        -60.496,
+        -10.496,
+        39.504
+      ],
+      "capacityValid": true,
+      "sectorInstances": 3,
+      "fixed60SourceCoversOutput": false,
+      "requiredSourceVerticalFovDegrees": 75.32,
+      "fixed60Sector": [
+        2163,
+        1783
+      ],
+      "fullQualitySector": [
+        2163,
+        2384
+      ],
+      "physicalPixels": 8294400,
+      "sectorPixelsFull": 15469776,
+      "sectorToPhysicalPixelRatio": 1.865,
+      "sector2xMiB": 531.1,
+      "monitors": [
+        {
+          "name": "primary-4k",
+          "primary": true,
+          "rect": [
+            0,
+            0,
+            3840,
+            2160
+          ],
+          "horizontalDegrees": [
+            -56.172,
+            44.85
+          ],
+          "verticalDegrees": [
+            -34.971,
+            34.971
+          ],
+          "sectorIndices": [
+            0,
+            1,
+            2
+          ],
+          "selectedCentersDegrees": [
+            -60.496,
+            -10.496,
+            39.504
+          ],
+          "paddedRect": [
+            0,
+            0,
+            3840,
+            2160
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 37.66
+        }
+      ]
+    }
+  },
+  "current-three": {
+    "A-bounding": {
+      "desktop": [
+        8320,
+        2160
+      ],
+      "primary": "Windows-primary",
+      "mode": "A-bounding",
+      "opticalAnchor": [
+        5376.0,
+        1080.0
+      ],
+      "focal": 2316.067,
+      "globalSectorCount": 4,
+      "globalCentersDegrees": [
+        -107.994,
+        -57.994,
+        -7.994,
+        42.006
+      ],
+      "capacityValid": true,
+      "sectorInstances": 8,
+      "fixed60SourceCoversOutput": true,
+      "requiredSourceVerticalFovDegrees": 60.0,
+      "fixed60Sector": [
+        3244,
+        2675
+      ],
+      "fullQualitySector": [
+        3244,
+        2675
+      ],
+      "physicalPixels": 14054400,
+      "sectorPixelsFull": 69421600,
+      "sectorToPhysicalPixelRatio": 4.939,
+      "sector2xMiB": 2383.4,
+      "monitors": [
+        {
+          "name": "left-4k",
+          "primary": false,
+          "rect": [
+            0,
+            0,
+            3840,
+            2160
+          ],
+          "horizontalDegrees": [
+            -66.693,
+            -33.552
+          ],
+          "verticalDegrees": [
+            -25.0,
+            25.0
+          ],
+          "sectorIndices": [
+            0,
+            1,
+            2
+          ],
+          "selectedCentersDegrees": [
+            -107.994,
+            -57.994,
+            -7.994
+          ],
+          "paddedRect": [
+            0,
+            0,
+            4352,
+            2160
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 27.226
+        },
+        {
+          "name": "Windows-primary",
+          "primary": true,
+          "rect": [
+            3840,
+            720,
+            2560,
+            1440
+          ],
+          "horizontalDegrees": [
+            -33.552,
+            23.852
+          ],
+          "verticalDegrees": [
+            -25.0,
+            8.835
+          ],
+          "sectorIndices": [
+            1,
+            2,
+            3
+          ],
+          "selectedCentersDegrees": [
+            -57.994,
+            -7.994,
+            42.006
+          ],
+          "paddedRect": [
+            3328,
+            208,
+            3584,
+            1952
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 27.226
+        },
+        {
+          "name": "right-1080p",
+          "primary": false,
+          "rect": [
+            6400,
+            1080,
+            1920,
+            1080
+          ],
+          "horizontalDegrees": [
+            23.852,
+            51.808
+          ],
+          "verticalDegrees": [
+            -25.0,
+            0.0
+          ],
+          "sectorIndices": [
+            2,
+            3
+          ],
+          "selectedCentersDegrees": [
+            -7.994,
+            42.006
+          ],
+          "paddedRect": [
+            5888,
+            568,
+            2432,
+            1592
+          ],
+          "maxDeltaDegrees": 30.823,
+          "requiredSourceHalfFovDegrees": 28.502
+        }
+      ]
+    },
+    "B-primary-height": {
+      "desktop": [
+        8320,
+        2160
+      ],
+      "primary": "Windows-primary",
+      "mode": "B-primary-height",
+      "opticalAnchor": [
+        5376.0,
+        1080.0
+      ],
+      "focal": 1544.045,
+      "globalSectorCount": 6,
+      "globalCentersDegrees": [
+        -174.49,
+        -124.49,
+        -74.49,
+        -24.49,
+        25.51,
+        75.51
+      ],
+      "capacityValid": true,
+      "sectorInstances": 10,
+      "fixed60SourceCoversOutput": false,
+      "requiredSourceVerticalFovDegrees": 80.134,
+      "fixed60Sector": [
+        2163,
+        1783
+      ],
+      "fullQualitySector": [
+        2163,
+        2598
+      ],
+      "physicalPixels": 14054400,
+      "sectorPixelsFull": 56194740,
+      "sectorToPhysicalPixelRatio": 3.998,
+      "sector2xMiB": 1929.3,
+      "monitors": [
+        {
+          "name": "left-4k",
+          "primary": false,
+          "rect": [
+            0,
+            0,
+            3840,
+            2160
+          ],
+          "horizontalDegrees": [
+            -73.975,
+            -44.85
+          ],
+          "verticalDegrees": [
+            -34.971,
+            34.971
+          ],
+          "sectorIndices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "selectedCentersDegrees": [
+            -174.49,
+            -124.49,
+            -74.49,
+            -24.49
+          ],
+          "paddedRect": [
+            0,
+            0,
+            4352,
+            2160
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 37.66
+        },
+        {
+          "name": "Windows-primary",
+          "primary": true,
+          "rect": [
+            3840,
+            720,
+            2560,
+            1440
+          ],
+          "horizontalDegrees": [
+            -44.85,
+            33.552
+          ],
+          "verticalDegrees": [
+            -34.971,
+            13.124
+          ],
+          "sectorIndices": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "selectedCentersDegrees": [
+            -74.49,
+            -24.49,
+            25.51,
+            75.51
+          ],
+          "paddedRect": [
+            3328,
+            208,
+            3584,
+            1952
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 37.66
+        },
+        {
+          "name": "right-1080p",
+          "primary": false,
+          "rect": [
+            6400,
+            1080,
+            1920,
+            1080
+          ],
+          "horizontalDegrees": [
+            33.552,
+            62.324
+          ],
+          "verticalDegrees": [
+            -34.971,
+            0.0
+          ],
+          "sectorIndices": [
+            4,
+            5
+          ],
+          "selectedCentersDegrees": [
+            25.51,
+            75.51
+          ],
+          "paddedRect": [
+            5888,
+            568,
+            2432,
+            1592
+          ],
+          "maxDeltaDegrees": 33.735,
+          "requiredSourceHalfFovDegrees": 40.067
+        }
+      ]
+    },
+    "C-fixed1440-primary-anchor": {
+      "desktop": [
+        8320,
+        2160
+      ],
+      "primary": "Windows-primary",
+      "mode": "C-fixed1440-primary-anchor",
+      "opticalAnchor": [
+        5376.0,
+        1440.0
+      ],
+      "focal": 1544.045,
+      "globalSectorCount": 6,
+      "globalCentersDegrees": [
+        -174.49,
+        -124.49,
+        -74.49,
+        -24.49,
+        25.51,
+        75.51
+      ],
+      "capacityValid": true,
+      "sectorInstances": 10,
+      "fixed60SourceCoversOutput": false,
+      "requiredSourceVerticalFovDegrees": 91.639,
+      "fixed60Sector": [
+        2163,
+        1783
+      ],
+      "fullQualitySector": [
+        2163,
+        3178
+      ],
+      "physicalPixels": 14054400,
+      "sectorPixelsFull": 68740140,
+      "sectorToPhysicalPixelRatio": 4.891,
+      "sector2xMiB": 2360.0,
+      "monitors": [
+        {
+          "name": "left-4k",
+          "primary": false,
+          "rect": [
+            0,
+            0,
+            3840,
+            2160
+          ],
+          "horizontalDegrees": [
+            -73.975,
+            -44.85
+          ],
+          "verticalDegrees": [
+            -25.0,
+            43.003
+          ],
+          "sectorIndices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "selectedCentersDegrees": [
+            -174.49,
+            -124.49,
+            -74.49,
+            -24.49
+          ],
+          "paddedRect": [
+            0,
+            0,
+            4352,
+            2160
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 45.82
+        },
+        {
+          "name": "Windows-primary",
+          "primary": true,
+          "rect": [
+            3840,
+            720,
+            2560,
+            1440
+          ],
+          "horizontalDegrees": [
+            -44.85,
+            33.552
+          ],
+          "verticalDegrees": [
+            -25.0,
+            25.0
+          ],
+          "sectorIndices": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "selectedCentersDegrees": [
+            -74.49,
+            -24.49,
+            25.51,
+            75.51
+          ],
+          "paddedRect": [
+            3328,
+            208,
+            3584,
+            1952
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 41.36
+        },
+        {
+          "name": "right-1080p",
+          "primary": false,
+          "rect": [
+            6400,
+            1080,
+            1920,
+            1080
+          ],
+          "horizontalDegrees": [
+            33.552,
+            62.324
+          ],
+          "verticalDegrees": [
+            -25.0,
+            13.124
+          ],
+          "sectorIndices": [
+            4,
+            5
+          ],
+          "selectedCentersDegrees": [
+            25.51,
+            75.51
+          ],
+          "paddedRect": [
+            5888,
+            568,
+            2432,
+            1592
+          ],
+          "maxDeltaDegrees": 33.735,
+          "requiredSourceHalfFovDegrees": 34.18
+        }
+      ]
+    }
+  },
+  "fourth-above": {
+    "A-bounding": {
+      "desktop": [
+        8320,
+        4320
+      ],
+      "primary": "Windows-primary",
+      "mode": "A-bounding",
+      "opticalAnchor": [
+        5376.0,
+        2160.0
+      ],
+      "focal": 4632.135,
+      "globalSectorCount": 2,
+      "globalCentersDegrees": [
+        -41.497,
+        8.503
+      ],
+      "capacityValid": true,
+      "sectorInstances": 7,
+      "fixed60SourceCoversOutput": true,
+      "requiredSourceVerticalFovDegrees": 60.0,
+      "fixed60Sector": [
+        6487,
+        5349
+      ],
+      "fullQualitySector": [
+        6487,
+        5349
+      ],
+      "physicalPixels": 22348800,
+      "sectorPixelsFull": 242892741,
+      "sectorToPhysicalPixelRatio": 10.868,
+      "sector2xMiB": 8339.1,
+      "monitors": [
+        {
+          "name": "new-above-left",
+          "primary": false,
+          "rect": [
+            0,
+            0,
+            3840,
+            2160
+          ],
+          "horizontalDegrees": [
+            -49.251,
+            -18.345
+          ],
+          "verticalDegrees": [
+            0.0,
+            25.0
+          ],
+          "sectorIndices": [
+            0,
+            1
+          ],
+          "selectedCentersDegrees": [
+            -41.497,
+            8.503
+          ],
+          "paddedRect": [
+            0,
+            0,
+            4352,
+            2672
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 27.226
+        },
+        {
+          "name": "left-4k",
+          "primary": false,
+          "rect": [
+            0,
+            2160,
+            3840,
+            2160
+          ],
+          "horizontalDegrees": [
+            -49.251,
+            -18.345
+          ],
+          "verticalDegrees": [
+            -25.0,
+            0.0
+          ],
+          "sectorIndices": [
+            0,
+            1
+          ],
+          "selectedCentersDegrees": [
+            -41.497,
+            8.503
+          ],
+          "paddedRect": [
+            0,
+            1648,
+            4352,
+            2672
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 27.226
+        },
+        {
+          "name": "Windows-primary",
+          "primary": true,
+          "rect": [
+            3840,
+            2880,
+            2560,
+            1440
+          ],
+          "horizontalDegrees": [
+            -18.345,
+            12.466
+          ],
+          "verticalDegrees": [
+            -25.0,
+            -8.835
+          ],
+          "sectorIndices": [
+            0,
+            1
+          ],
+          "selectedCentersDegrees": [
+            -41.497,
+            8.503
+          ],
+          "paddedRect": [
+            3328,
+            2368,
+            3584,
+            1952
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 27.226
+        },
+        {
+          "name": "right-1080p",
+          "primary": false,
+          "rect": [
+            6400,
+            3240,
+            1920,
+            1080
+          ],
+          "horizontalDegrees": [
+            12.466,
+            32.438
+          ],
+          "verticalDegrees": [
+            -25.0,
+            -13.124
+          ],
+          "sectorIndices": [
+            1
+          ],
+          "selectedCentersDegrees": [
+            8.503
+          ],
+          "paddedRect": [
+            5888,
+            2728,
+            2432,
+            1592
+          ],
+          "maxDeltaDegrees": 27.912,
+          "requiredSourceHalfFovDegrees": 27.82
+        }
+      ]
+    },
+    "B-primary-height": {
+      "desktop": [
+        8320,
+        4320
+      ],
+      "primary": "Windows-primary",
+      "mode": "B-primary-height",
+      "opticalAnchor": [
+        5376.0,
+        2160.0
+      ],
+      "focal": 1544.045,
+      "globalSectorCount": 6,
+      "globalCentersDegrees": [
+        -174.49,
+        -124.49,
+        -74.49,
+        -24.49,
+        25.51,
+        75.51
+      ],
+      "capacityValid": true,
+      "sectorInstances": 14,
+      "fixed60SourceCoversOutput": false,
+      "requiredSourceVerticalFovDegrees": 118.54,
+      "fixed60Sector": [
+        2163,
+        1783
+      ],
+      "fullQualitySector": [
+        2163,
+        5195
+      ],
+      "physicalPixels": 22348800,
+      "sectorPixelsFull": 157314990,
+      "sectorToPhysicalPixelRatio": 7.039,
+      "sector2xMiB": 5401.0,
+      "monitors": [
+        {
+          "name": "new-above-left",
+          "primary": false,
+          "rect": [
+            0,
+            0,
+            3840,
+            2160
+          ],
+          "horizontalDegrees": [
+            -73.975,
+            -44.85
+          ],
+          "verticalDegrees": [
+            0.0,
+            54.441
+          ],
+          "sectorIndices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "selectedCentersDegrees": [
+            -174.49,
+            -124.49,
+            -74.49,
+            -24.49
+          ],
+          "paddedRect": [
+            0,
+            0,
+            4352,
+            2672
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 57.062
+        },
+        {
+          "name": "left-4k",
+          "primary": false,
+          "rect": [
+            0,
+            2160,
+            3840,
+            2160
+          ],
+          "horizontalDegrees": [
+            -73.975,
+            -44.85
+          ],
+          "verticalDegrees": [
+            -54.441,
+            0.0
+          ],
+          "sectorIndices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "selectedCentersDegrees": [
+            -174.49,
+            -124.49,
+            -74.49,
+            -24.49
+          ],
+          "paddedRect": [
+            0,
+            1648,
+            4352,
+            2672
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 57.062
+        },
+        {
+          "name": "Windows-primary",
+          "primary": true,
+          "rect": [
+            3840,
+            2880,
+            2560,
+            1440
+          ],
+          "horizontalDegrees": [
+            -44.85,
+            33.552
+          ],
+          "verticalDegrees": [
+            -54.441,
+            -25.0
+          ],
+          "sectorIndices": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "selectedCentersDegrees": [
+            -74.49,
+            -24.49,
+            25.51,
+            75.51
+          ],
+          "paddedRect": [
+            3328,
+            2368,
+            3584,
+            1952
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 57.062
+        },
+        {
+          "name": "right-1080p",
+          "primary": false,
+          "rect": [
+            6400,
+            3240,
+            1920,
+            1080
+          ],
+          "horizontalDegrees": [
+            33.552,
+            62.324
+          ],
+          "verticalDegrees": [
+            -54.441,
+            -34.971
+          ],
+          "sectorIndices": [
+            4,
+            5
+          ],
+          "selectedCentersDegrees": [
+            25.51,
+            75.51
+          ],
+          "paddedRect": [
+            5888,
+            2728,
+            2432,
+            1592
+          ],
+          "maxDeltaDegrees": 33.735,
+          "requiredSourceHalfFovDegrees": 59.27
+        }
+      ]
+    },
+    "C-fixed1440-primary-anchor": {
+      "desktop": [
+        8320,
+        4320
+      ],
+      "primary": "Windows-primary",
+      "mode": "C-fixed1440-primary-anchor",
+      "opticalAnchor": [
+        5376.0,
+        3600.0
+      ],
+      "focal": 1544.045,
+      "globalSectorCount": 6,
+      "globalCentersDegrees": [
+        -174.49,
+        -124.49,
+        -74.49,
+        -24.49,
+        25.51,
+        75.51
+      ],
+      "capacityValid": true,
+      "sectorInstances": 14,
+      "fixed60SourceCoversOutput": false,
+      "requiredSourceVerticalFovDegrees": 137.516,
+      "fixed60Sector": [
+        2163,
+        1783
+      ],
+      "fullQualitySector": [
+        2163,
+        7945
+      ],
+      "physicalPixels": 22348800,
+      "sectorPixelsFull": 240590490,
+      "sectorToPhysicalPixelRatio": 10.765,
+      "sector2xMiB": 8260.0,
+      "monitors": [
+        {
+          "name": "new-above-left",
+          "primary": false,
+          "rect": [
+            0,
+            0,
+            3840,
+            2160
+          ],
+          "horizontalDegrees": [
+            -73.975,
+            -44.85
+          ],
+          "verticalDegrees": [
+            43.003,
+            66.785
+          ],
+          "sectorIndices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "selectedCentersDegrees": [
+            -174.49,
+            -124.49,
+            -74.49,
+            -24.49
+          ],
+          "paddedRect": [
+            0,
+            0,
+            4352,
+            2672
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 68.758
+        },
+        {
+          "name": "left-4k",
+          "primary": false,
+          "rect": [
+            0,
+            2160,
+            3840,
+            2160
+          ],
+          "horizontalDegrees": [
+            -73.975,
+            -44.85
+          ],
+          "verticalDegrees": [
+            -25.0,
+            43.003
+          ],
+          "sectorIndices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "selectedCentersDegrees": [
+            -174.49,
+            -124.49,
+            -74.49,
+            -24.49
+          ],
+          "paddedRect": [
+            0,
+            1648,
+            4352,
+            2672
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 54.363
+        },
+        {
+          "name": "Windows-primary",
+          "primary": true,
+          "rect": [
+            3840,
+            2880,
+            2560,
+            1440
+          ],
+          "horizontalDegrees": [
+            -44.85,
+            33.552
+          ],
+          "verticalDegrees": [
+            -25.0,
+            25.0
+          ],
+          "sectorIndices": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "selectedCentersDegrees": [
+            -74.49,
+            -24.49,
+            25.51,
+            75.51
+          ],
+          "paddedRect": [
+            3328,
+            2368,
+            3584,
+            1952
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 41.36
+        },
+        {
+          "name": "right-1080p",
+          "primary": false,
+          "rect": [
+            6400,
+            3240,
+            1920,
+            1080
+          ],
+          "horizontalDegrees": [
+            33.552,
+            62.324
+          ],
+          "verticalDegrees": [
+            -25.0,
+            13.124
+          ],
+          "sectorIndices": [
+            4,
+            5
+          ],
+          "selectedCentersDegrees": [
+            25.51,
+            75.51
+          ],
+          "paddedRect": [
+            5888,
+            2728,
+            2432,
+            1592
+          ],
+          "maxDeltaDegrees": 33.735,
+          "requiredSourceHalfFovDegrees": 34.18
+        }
+      ]
+    }
+  },
+  "four-horizontal": {
+    "A-bounding": {
+      "desktop": [
+        10240,
+        2160
+      ],
+      "primary": "Windows-primary",
+      "mode": "A-bounding",
+      "opticalAnchor": [
+        5376.0,
+        1080.0
+      ],
+      "focal": 2316.067,
+      "globalSectorCount": 5,
+      "globalCentersDegrees": [
+        -107.994,
+        -57.994,
+        -7.994,
+        42.006,
+        92.006
+      ],
+      "capacityValid": true,
+      "sectorInstances": 11,
+      "fixed60SourceCoversOutput": true,
+      "requiredSourceVerticalFovDegrees": 60.0,
+      "fixed60Sector": [
+        3244,
+        2675
+      ],
+      "fullQualitySector": [
+        3244,
+        2675
+      ],
+      "physicalPixels": 16128000,
+      "sectorPixelsFull": 95454700,
+      "sectorToPhysicalPixelRatio": 5.919,
+      "sector2xMiB": 3277.2,
+      "monitors": [
+        {
+          "name": "left-4k",
+          "primary": false,
+          "rect": [
+            0,
+            0,
+            3840,
+            2160
+          ],
+          "horizontalDegrees": [
+            -66.693,
+            -33.552
+          ],
+          "verticalDegrees": [
+            -25.0,
+            25.0
+          ],
+          "sectorIndices": [
+            0,
+            1,
+            2
+          ],
+          "selectedCentersDegrees": [
+            -107.994,
+            -57.994,
+            -7.994
+          ],
+          "paddedRect": [
+            0,
+            0,
+            4352,
+            2160
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 27.226
+        },
+        {
+          "name": "Windows-primary",
+          "primary": true,
+          "rect": [
+            3840,
+            720,
+            2560,
+            1440
+          ],
+          "horizontalDegrees": [
+            -33.552,
+            23.852
+          ],
+          "verticalDegrees": [
+            -25.0,
+            8.835
+          ],
+          "sectorIndices": [
+            1,
+            2,
+            3
+          ],
+          "selectedCentersDegrees": [
+            -57.994,
+            -7.994,
+            42.006
+          ],
+          "paddedRect": [
+            3328,
+            208,
+            3584,
+            1952
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 27.226
+        },
+        {
+          "name": "right-1080p",
+          "primary": false,
+          "rect": [
+            6400,
+            1080,
+            1920,
+            1080
+          ],
+          "horizontalDegrees": [
+            23.852,
+            51.808
+          ],
+          "verticalDegrees": [
+            -25.0,
+            0.0
+          ],
+          "sectorIndices": [
+            2,
+            3,
+            4
+          ],
+          "selectedCentersDegrees": [
+            -7.994,
+            42.006,
+            92.006
+          ],
+          "paddedRect": [
+            5888,
+            568,
+            2944,
+            1592
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 27.226
+        },
+        {
+          "name": "new-right-1080p",
+          "primary": false,
+          "rect": [
+            8320,
+            1080,
+            1920,
+            1080
+          ],
+          "horizontalDegrees": [
+            51.808,
+            64.538
+          ],
+          "verticalDegrees": [
+            -25.0,
+            0.0
+          ],
+          "sectorIndices": [
+            3,
+            4
+          ],
+          "selectedCentersDegrees": [
+            42.006,
+            92.006
+          ],
+          "paddedRect": [
+            7808,
+            568,
+            2432,
+            1592
+          ],
+          "maxDeltaDegrees": 28.321,
+          "requiredSourceHalfFovDegrees": 27.911
+        }
+      ]
+    },
+    "B-primary-height": {
+      "desktop": [
+        10240,
+        2160
+      ],
+      "primary": "Windows-primary",
+      "mode": "B-primary-height",
+      "opticalAnchor": [
+        5376.0,
+        1080.0
+      ],
+      "focal": 1544.045,
+      "globalSectorCount": 8,
+      "globalCentersDegrees": [
+        -174.49,
+        -124.49,
+        -74.49,
+        -24.49,
+        25.51,
+        75.51,
+        125.51,
+        175.51
+      ],
+      "capacityValid": true,
+      "sectorInstances": 14,
+      "fixed60SourceCoversOutput": false,
+      "requiredSourceVerticalFovDegrees": 75.32,
+      "fixed60Sector": [
+        2163,
+        1783
+      ],
+      "fullQualitySector": [
+        2163,
+        2384
+      ],
+      "physicalPixels": 16128000,
+      "sectorPixelsFull": 72192288,
+      "sectorToPhysicalPixelRatio": 4.476,
+      "sector2xMiB": 2478.5,
+      "monitors": [
+        {
+          "name": "left-4k",
+          "primary": false,
+          "rect": [
+            0,
+            0,
+            3840,
+            2160
+          ],
+          "horizontalDegrees": [
+            -73.975,
+            -44.85
+          ],
+          "verticalDegrees": [
+            -34.971,
+            34.971
+          ],
+          "sectorIndices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "selectedCentersDegrees": [
+            -174.49,
+            -124.49,
+            -74.49,
+            -24.49
+          ],
+          "paddedRect": [
+            0,
+            0,
+            4352,
+            2160
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 37.66
+        },
+        {
+          "name": "Windows-primary",
+          "primary": true,
+          "rect": [
+            3840,
+            720,
+            2560,
+            1440
+          ],
+          "horizontalDegrees": [
+            -44.85,
+            33.552
+          ],
+          "verticalDegrees": [
+            -34.971,
+            13.124
+          ],
+          "sectorIndices": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "selectedCentersDegrees": [
+            -74.49,
+            -24.49,
+            25.51,
+            75.51
+          ],
+          "paddedRect": [
+            3328,
+            208,
+            3584,
+            1952
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 37.66
+        },
+        {
+          "name": "right-1080p",
+          "primary": false,
+          "rect": [
+            6400,
+            1080,
+            1920,
+            1080
+          ],
+          "horizontalDegrees": [
+            33.552,
+            62.324
+          ],
+          "verticalDegrees": [
+            -34.971,
+            0.0
+          ],
+          "sectorIndices": [
+            4,
+            5,
+            6
+          ],
+          "selectedCentersDegrees": [
+            25.51,
+            75.51,
+            125.51
+          ],
+          "paddedRect": [
+            5888,
+            568,
+            2944,
+            1592
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 37.66
+        },
+        {
+          "name": "new-right-1080p",
+          "primary": false,
+          "rect": [
+            8320,
+            1080,
+            1920,
+            1080
+          ],
+          "horizontalDegrees": [
+            62.324,
+            72.388
+          ],
+          "verticalDegrees": [
+            -34.971,
+            0.0
+          ],
+          "sectorIndices": [
+            5,
+            6,
+            7
+          ],
+          "selectedCentersDegrees": [
+            75.51,
+            125.51,
+            175.51
+          ],
+          "paddedRect": [
+            7808,
+            568,
+            2432,
+            1592
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 37.66
+        }
+      ]
+    },
+    "C-fixed1440-primary-anchor": {
+      "desktop": [
+        10240,
+        2160
+      ],
+      "primary": "Windows-primary",
+      "mode": "C-fixed1440-primary-anchor",
+      "opticalAnchor": [
+        5376.0,
+        1440.0
+      ],
+      "focal": 1544.045,
+      "globalSectorCount": 8,
+      "globalCentersDegrees": [
+        -174.49,
+        -124.49,
+        -74.49,
+        -24.49,
+        25.51,
+        75.51,
+        125.51,
+        175.51
+      ],
+      "capacityValid": true,
+      "sectorInstances": 14,
+      "fixed60SourceCoversOutput": false,
+      "requiredSourceVerticalFovDegrees": 91.639,
+      "fixed60Sector": [
+        2163,
+        1783
+      ],
+      "fullQualitySector": [
+        2163,
+        3178
+      ],
+      "physicalPixels": 16128000,
+      "sectorPixelsFull": 96236196,
+      "sectorToPhysicalPixelRatio": 5.967,
+      "sector2xMiB": 3304.0,
+      "monitors": [
+        {
+          "name": "left-4k",
+          "primary": false,
+          "rect": [
+            0,
+            0,
+            3840,
+            2160
+          ],
+          "horizontalDegrees": [
+            -73.975,
+            -44.85
+          ],
+          "verticalDegrees": [
+            -25.0,
+            43.003
+          ],
+          "sectorIndices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "selectedCentersDegrees": [
+            -174.49,
+            -124.49,
+            -74.49,
+            -24.49
+          ],
+          "paddedRect": [
+            0,
+            0,
+            4352,
+            2160
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 45.82
+        },
+        {
+          "name": "Windows-primary",
+          "primary": true,
+          "rect": [
+            3840,
+            720,
+            2560,
+            1440
+          ],
+          "horizontalDegrees": [
+            -44.85,
+            33.552
+          ],
+          "verticalDegrees": [
+            -25.0,
+            25.0
+          ],
+          "sectorIndices": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "selectedCentersDegrees": [
+            -74.49,
+            -24.49,
+            25.51,
+            75.51
+          ],
+          "paddedRect": [
+            3328,
+            208,
+            3584,
+            1952
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 41.36
+        },
+        {
+          "name": "right-1080p",
+          "primary": false,
+          "rect": [
+            6400,
+            1080,
+            1920,
+            1080
+          ],
+          "horizontalDegrees": [
+            33.552,
+            62.324
+          ],
+          "verticalDegrees": [
+            -25.0,
+            13.124
+          ],
+          "sectorIndices": [
+            4,
+            5,
+            6
+          ],
+          "selectedCentersDegrees": [
+            25.51,
+            75.51,
+            125.51
+          ],
+          "paddedRect": [
+            5888,
+            568,
+            2944,
+            1592
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 31.928
+        },
+        {
+          "name": "new-right-1080p",
+          "primary": false,
+          "rect": [
+            8320,
+            1080,
+            1920,
+            1080
+          ],
+          "horizontalDegrees": [
+            62.324,
+            72.388
+          ],
+          "verticalDegrees": [
+            -25.0,
+            13.124
+          ],
+          "sectorIndices": [
+            5,
+            6,
+            7
+          ],
+          "selectedCentersDegrees": [
+            75.51,
+            125.51,
+            175.51
+          ],
+          "paddedRect": [
+            7808,
+            568,
+            2432,
+            1592
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 31.928
+        }
+      ]
+    }
+  },
+  "mixed-asymmetric": {
+    "A-bounding": {
+      "desktop": [
+        9600,
+        3600
+      ],
+      "primary": "Windows-primary-1080p",
+      "mode": "A-bounding",
+      "opticalAnchor": [
+        3712.0,
+        1800.0
+      ],
+      "focal": 3860.112,
+      "globalSectorCount": 3,
+      "globalCentersDegrees": [
+        -30.097,
+        19.903,
+        69.903
+      ],
+      "capacityValid": true,
+      "sectorInstances": 6,
+      "fixed60SourceCoversOutput": true,
+      "requiredSourceVerticalFovDegrees": 60.0,
+      "fixed60Sector": [
+        5406,
+        4458
+      ],
+      "fullQualitySector": [
+        5406,
+        4458
+      ],
+      "physicalPixels": 15365120,
+      "sectorPixelsFull": 144599688,
+      "sectorToPhysicalPixelRatio": 9.411,
+      "sector2xMiB": 4964.4,
+      "monitors": [
+        {
+          "name": "left-1440p",
+          "primary": false,
+          "rect": [
+            0,
+            2160,
+            2560,
+            1440
+          ],
+          "horizontalDegrees": [
+            -43.879,
+            -16.617
+          ],
+          "verticalDegrees": [
+            -25.0,
+            -5.328
+          ],
+          "sectorIndices": [
+            0
+          ],
+          "selectedCentersDegrees": [
+            -30.097
+          ],
+          "paddedRect": [
+            0,
+            1648,
+            3072,
+            1952
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 27.226
+        },
+        {
+          "name": "Windows-primary-1080p",
+          "primary": true,
+          "rect": [
+            2560,
+            2520,
+            1920,
+            1080
+          ],
+          "horizontalDegrees": [
+            -16.617,
+            11.253
+          ],
+          "verticalDegrees": [
+            -25.0,
+            -10.566
+          ],
+          "sectorIndices": [
+            0,
+            1
+          ],
+          "selectedCentersDegrees": [
+            -30.097,
+            19.903
+          ],
+          "paddedRect": [
+            2048,
+            2008,
+            2944,
+            1592
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 27.226
+        },
+        {
+          "name": "upper-right-4k",
+          "primary": false,
+          "rect": [
+            4480,
+            0,
+            3840,
+            2160
+          ],
+          "horizontalDegrees": [
+            11.253,
+            50.047
+          ],
+          "verticalDegrees": [
+            -5.328,
+            25.0
+          ],
+          "sectorIndices": [
+            1,
+            2
+          ],
+          "selectedCentersDegrees": [
+            19.903,
+            69.903
+          ],
+          "paddedRect": [
+            3968,
+            0,
+            4864,
+            2672
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 27.226
+        },
+        {
+          "name": "lower-right",
+          "primary": false,
+          "rect": [
+            8320,
+            2160,
+            1280,
+            1024
+          ],
+          "horizontalDegrees": [
+            50.047,
+            56.752
+          ],
+          "verticalDegrees": [
+            -19.725,
+            -5.328
+          ],
+          "sectorIndices": [
+            2
+          ],
+          "selectedCentersDegrees": [
+            69.903
+          ],
+          "paddedRect": [
+            7808,
+            1648,
+            1792,
+            1952
+          ],
+          "maxDeltaDegrees": 17.493,
+          "requiredSourceHalfFovDegrees": 26.055
+        }
+      ]
+    },
+    "B-primary-height": {
+      "desktop": [
+        9600,
+        3600
+      ],
+      "primary": "Windows-primary-1080p",
+      "mode": "B-primary-height",
+      "opticalAnchor": [
+        3712.0,
+        1800.0
+      ],
+      "focal": 1158.034,
+      "globalSectorCount": 9,
+      "globalCentersDegrees": [
+        -158.658,
+        -108.658,
+        -58.658,
+        -8.658,
+        41.342,
+        91.342,
+        141.342,
+        191.342,
+        241.342
+      ],
+      "capacityValid": false,
+      "sectorInstances": 15,
+      "fixed60SourceCoversOutput": false,
+      "requiredSourceVerticalFovDegrees": 135.047,
+      "fixed60Sector": [
+        1622,
+        1338
+      ],
+      "fullQualitySector": [
+        1622,
+        5598
+      ],
+      "physicalPixels": 15365120,
+      "sectorPixelsFull": 136199340,
+      "sectorToPhysicalPixelRatio": 8.864,
+      "sector2xMiB": 4676.0,
+      "monitors": [
+        {
+          "name": "left-1440p",
+          "primary": false,
+          "rect": [
+            0,
+            2160,
+            2560,
+            1440
+          ],
+          "horizontalDegrees": [
+            -72.674,
+            -44.85
+          ],
+          "verticalDegrees": [
+            -57.245,
+            -17.269
+          ],
+          "sectorIndices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "selectedCentersDegrees": [
+            -158.658,
+            -108.658,
+            -58.658,
+            -8.658
+          ],
+          "paddedRect": [
+            0,
+            1648,
+            3072,
+            1952
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 59.755
+        },
+        {
+          "name": "Windows-primary-1080p",
+          "primary": true,
+          "rect": [
+            2560,
+            2520,
+            1920,
+            1080
+          ],
+          "horizontalDegrees": [
+            -44.85,
+            33.552
+          ],
+          "verticalDegrees": [
+            -57.245,
+            -31.871
+          ],
+          "sectorIndices": [
+            2,
+            3,
+            4
+          ],
+          "selectedCentersDegrees": [
+            -58.658,
+            -8.658,
+            41.342
+          ],
+          "paddedRect": [
+            2048,
+            2008,
+            2944,
+            1592
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 59.755
+        },
+        {
+          "name": "upper-right-4k",
+          "primary": false,
+          "rect": [
+            4480,
+            0,
+            3840,
+            2160
+          ],
+          "horizontalDegrees": [
+            33.552,
+            75.893
+          ],
+          "verticalDegrees": [
+            -17.269,
+            57.245
+          ],
+          "sectorIndices": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "selectedCentersDegrees": [
+            -8.658,
+            41.342,
+            91.342,
+            141.342,
+            191.342,
+            241.342
+          ],
+          "paddedRect": [
+            3968,
+            0,
+            4864,
+            2672
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 59.755
+        },
+        {
+          "name": "lower-right",
+          "primary": false,
+          "rect": [
+            8320,
+            2160,
+            1280,
+            1024
+          ],
+          "horizontalDegrees": [
+            75.893,
+            78.873
+          ],
+          "verticalDegrees": [
+            -50.08,
+            -17.269
+          ],
+          "sectorIndices": [
+            7,
+            8
+          ],
+          "selectedCentersDegrees": [
+            191.342,
+            241.342
+          ],
+          "paddedRect": [
+            7808,
+            1648,
+            1792,
+            1952
+          ],
+          "maxDeltaDegrees": 49.977,
+          "requiredSourceHalfFovDegrees": 67.523
+        }
+      ]
+    },
+    "C-fixed1440-primary-anchor": {
+      "desktop": [
+        9600,
+        3600
+      ],
+      "primary": "Windows-primary-1080p",
+      "mode": "C-fixed1440-primary-anchor",
+      "opticalAnchor": [
+        3712.0,
+        3060.0
+      ],
+      "focal": 1544.045,
+      "globalSectorCount": 7,
+      "globalCentersDegrees": [
+        -112.743,
+        -62.743,
+        -12.743,
+        37.257,
+        87.257,
+        137.257,
+        187.257
+      ],
+      "capacityValid": true,
+      "sectorInstances": 13,
+      "fixed60SourceCoversOutput": false,
+      "requiredSourceVerticalFovDegrees": 130.849,
+      "fixed60Sector": [
+        2163,
+        1783
+      ],
+      "fullQualitySector": [
+        2163,
+        6753
+      ],
+      "physicalPixels": 15365120,
+      "sectorPixelsFull": 189887607,
+      "sectorToPhysicalPixelRatio": 12.358,
+      "sector2xMiB": 6519.3,
+      "monitors": [
+        {
+          "name": "left-1440p",
+          "primary": false,
+          "rect": [
+            0,
+            2160,
+            2560,
+            1440
+          ],
+          "horizontalDegrees": [
+            -67.415,
+            -36.726
+          ],
+          "verticalDegrees": [
+            -19.276,
+            30.237
+          ],
+          "sectorIndices": [
+            0,
+            1,
+            2
+          ],
+          "selectedCentersDegrees": [
+            -112.743,
+            -62.743,
+            -12.743
+          ],
+          "paddedRect": [
+            0,
+            1648,
+            3072,
+            1952
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 45.257
+        },
+        {
+          "name": "Windows-primary-1080p",
+          "primary": true,
+          "rect": [
+            2560,
+            2520,
+            1920,
+            1080
+          ],
+          "horizontalDegrees": [
+            -36.726,
+            26.446
+          ],
+          "verticalDegrees": [
+            -19.276,
+            19.276
+          ],
+          "sectorIndices": [
+            1,
+            2,
+            3
+          ],
+          "selectedCentersDegrees": [
+            -62.743,
+            -12.743,
+            37.257
+          ],
+          "paddedRect": [
+            2048,
+            2008,
+            2944,
+            1592
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 36.934
+        },
+        {
+          "name": "upper-right-4k",
+          "primary": false,
+          "rect": [
+            4480,
+            0,
+            3840,
+            2160
+          ],
+          "horizontalDegrees": [
+            26.446,
+            71.475
+          ],
+          "verticalDegrees": [
+            30.237,
+            63.225
+          ],
+          "sectorIndices": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "selectedCentersDegrees": [
+            -12.743,
+            37.257,
+            87.257,
+            137.257,
+            187.257
+          ],
+          "paddedRect": [
+            3968,
+            0,
+            4864,
+            2672
+          ],
+          "maxDeltaDegrees": 25.0,
+          "requiredSourceHalfFovDegrees": 65.425
+        },
+        {
+          "name": "lower-right",
+          "primary": false,
+          "rect": [
+            8320,
+            2160,
+            1280,
+            1024
+          ],
+          "horizontalDegrees": [
+            71.475,
+            75.306
+          ],
+          "verticalDegrees": [
+            -4.591,
+            30.237
+          ],
+          "sectorIndices": [
+            5,
+            6
+          ],
+          "selectedCentersDegrees": [
+            137.257,
+            187.257
+          ],
+          "paddedRect": [
+            7808,
+            1648,
+            1792,
+            1952
+          ],
+          "maxDeltaDegrees": 31.233,
+          "requiredSourceHalfFovDegrees": 46.923
+        }
+      ]
+    }
+  }
+}

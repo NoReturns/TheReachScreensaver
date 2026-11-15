@@ -1,0 +1,4418 @@
+{
+  "join": {
+    "runs": {
+      "control": "046b63e635bd4c7ab2dba88dff0b0202",
+      "static": "556e529c796741dc8041f157d306670a"
+    },
+    "matchedTicks": 212,
+    "controlCallbacks": {
+      "1": 228,
+      "3": 230
+    },
+    "staticCallbacks": {
+      "1": 231,
+      "3": 232
+    },
+    "frames": [
+      {
+        "tick": 0,
+        "virtualMs": 0,
+        "yaw": -12,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 4.413,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 4.413
+      },
+      {
+        "tick": 1,
+        "virtualMs": 16.666666666666668,
+        "yaw": -11.8,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 3.886,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 3.886
+      },
+      {
+        "tick": 17,
+        "virtualMs": 283.33333333333337,
+        "yaw": -8.6,
+        "changedPixelsOver2": 51,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 18,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 4.2989999999999995,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 4.2989999999999995
+      },
+      {
+        "tick": 20,
+        "virtualMs": 333.33333333333337,
+        "yaw": -7.999999999999999,
+        "changedPixelsOver2": 55,
+        "changedPixelsOver20": 1,
+        "peakChannelDifference": 21,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 5.2989999999999995,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 5.2989999999999995
+      },
+      {
+        "tick": 21,
+        "virtualMs": 350,
+        "yaw": -7.8,
+        "changedPixelsOver2": 55,
+        "changedPixelsOver20": 8,
+        "peakChannelDifference": 95,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 5.185,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 5.185
+      },
+      {
+        "tick": 22,
+        "virtualMs": 366.6666666666667,
+        "yaw": -7.6,
+        "changedPixelsOver2": 59,
+        "changedPixelsOver20": 12,
+        "peakChannelDifference": 66,
+        "controlJoinRowsOver20": 6,
+        "controlPeakJoinLuma": 204.641,
+        "staticJoinRowsOver20": 6,
+        "staticPeakJoinLuma": 204.641
+      },
+      {
+        "tick": 24,
+        "virtualMs": 400,
+        "yaw": -7.2,
+        "changedPixelsOver2": 44,
+        "changedPixelsOver20": 3,
+        "peakChannelDifference": 114,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 6.886,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 6.886
+      },
+      {
+        "tick": 26,
+        "virtualMs": 433.33333333333337,
+        "yaw": -6.8,
+        "changedPixelsOver2": 38,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 20,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 6.772,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 6.772
+      },
+      {
+        "tick": 27,
+        "virtualMs": 450.00000000000006,
+        "yaw": -6.6,
+        "changedPixelsOver2": 42,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 19,
+        "controlJoinRowsOver20": 17,
+        "controlPeakJoinLuma": 84.419,
+        "staticJoinRowsOver20": 17,
+        "staticPeakJoinLuma": 84.419
+      },
+      {
+        "tick": 28,
+        "virtualMs": 466.6666666666667,
+        "yaw": -6.3999999999999995,
+        "changedPixelsOver2": 44,
+        "changedPixelsOver20": 1,
+        "peakChannelDifference": 133,
+        "controlJoinRowsOver20": 26,
+        "controlPeakJoinLuma": 67.038,
+        "staticJoinRowsOver20": 26,
+        "staticPeakJoinLuma": 67.038
+      },
+      {
+        "tick": 29,
+        "virtualMs": 483.33333333333337,
+        "yaw": -6.199999999999999,
+        "changedPixelsOver2": 51,
+        "changedPixelsOver20": 4,
+        "peakChannelDifference": 111,
+        "controlJoinRowsOver20": 28,
+        "controlPeakJoinLuma": 81.92399999999999,
+        "staticJoinRowsOver20": 28,
+        "staticPeakJoinLuma": 81.92399999999999
+      },
+      {
+        "tick": 30,
+        "virtualMs": 500.00000000000006,
+        "yaw": -5.999999999999999,
+        "changedPixelsOver2": 49,
+        "changedPixelsOver20": 2,
+        "peakChannelDifference": 31,
+        "controlJoinRowsOver20": 61,
+        "controlPeakJoinLuma": 108.55,
+        "staticJoinRowsOver20": 61,
+        "staticPeakJoinLuma": 108.55
+      },
+      {
+        "tick": 31,
+        "virtualMs": 516.6666666666667,
+        "yaw": -5.799999999999999,
+        "changedPixelsOver2": 50,
+        "changedPixelsOver20": 1,
+        "peakChannelDifference": 21,
+        "controlJoinRowsOver20": 17,
+        "controlPeakJoinLuma": 120.523,
+        "staticJoinRowsOver20": 17,
+        "staticPeakJoinLuma": 120.523
+      },
+      {
+        "tick": 32,
+        "virtualMs": 533.3333333333334,
+        "yaw": -5.6,
+        "changedPixelsOver2": 2,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 5,
+        "controlJoinRowsOver20": 22,
+        "controlPeakJoinLuma": 155.155,
+        "staticJoinRowsOver20": 22,
+        "staticPeakJoinLuma": 155.155
+      },
+      {
+        "tick": 33,
+        "virtualMs": 550,
+        "yaw": -5.3999999999999995,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 1,
+        "controlJoinRowsOver20": 19,
+        "controlPeakJoinLuma": 156.291,
+        "staticJoinRowsOver20": 19,
+        "staticPeakJoinLuma": 156.291
+      },
+      {
+        "tick": 34,
+        "virtualMs": 566.6666666666667,
+        "yaw": -5.199999999999999,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 13,
+        "controlPeakJoinLuma": 170.394,
+        "staticJoinRowsOver20": 13,
+        "staticPeakJoinLuma": 170.394
+      },
+      {
+        "tick": 35,
+        "virtualMs": 583.3333333333334,
+        "yaw": -4.999999999999999,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 10,
+        "controlPeakJoinLuma": 127.03899999999999,
+        "staticJoinRowsOver20": 10,
+        "staticPeakJoinLuma": 127.03899999999999
+      },
+      {
+        "tick": 36,
+        "virtualMs": 600,
+        "yaw": -4.8,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 8,
+        "controlPeakJoinLuma": 115.899,
+        "staticJoinRowsOver20": 8,
+        "staticPeakJoinLuma": 115.899
+      },
+      {
+        "tick": 37,
+        "virtualMs": 616.6666666666667,
+        "yaw": -4.599999999999999,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 6,
+        "controlPeakJoinLuma": 130.039,
+        "staticJoinRowsOver20": 6,
+        "staticPeakJoinLuma": 130.039
+      },
+      {
+        "tick": 38,
+        "virtualMs": 633.3333333333334,
+        "yaw": -4.3999999999999995,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 4,
+        "controlPeakJoinLuma": 143.153,
+        "staticJoinRowsOver20": 4,
+        "staticPeakJoinLuma": 143.153
+      },
+      {
+        "tick": 39,
+        "virtualMs": 650,
+        "yaw": -4.2,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 4,
+        "controlPeakJoinLuma": 108.555,
+        "staticJoinRowsOver20": 4,
+        "staticPeakJoinLuma": 108.555
+      },
+      {
+        "tick": 41,
+        "virtualMs": 683.3333333333334,
+        "yaw": -3.799999999999999,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 6,
+        "controlPeakJoinLuma": 126.55499999999999,
+        "staticJoinRowsOver20": 6,
+        "staticPeakJoinLuma": 126.55499999999999
+      },
+      {
+        "tick": 43,
+        "virtualMs": 716.6666666666667,
+        "yaw": -3.3999999999999986,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 4,
+        "controlPeakJoinLuma": 67.30499999999999,
+        "staticJoinRowsOver20": 4,
+        "staticPeakJoinLuma": 67.30499999999999
+      },
+      {
+        "tick": 44,
+        "virtualMs": 733.3333333333334,
+        "yaw": -3.1999999999999993,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 3,
+        "controlPeakJoinLuma": 155.885,
+        "staticJoinRowsOver20": 3,
+        "staticPeakJoinLuma": 155.885
+      },
+      {
+        "tick": 45,
+        "virtualMs": 750,
+        "yaw": -3,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 2,
+        "controlPeakJoinLuma": 140.25599999999997,
+        "staticJoinRowsOver20": 2,
+        "staticPeakJoinLuma": 140.25599999999997
+      },
+      {
+        "tick": 47,
+        "virtualMs": 783.3333333333334,
+        "yaw": -2.5999999999999996,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 1,
+        "controlJoinRowsOver20": 3,
+        "controlPeakJoinLuma": 135.48399999999998,
+        "staticJoinRowsOver20": 3,
+        "staticPeakJoinLuma": 135.48399999999998
+      },
+      {
+        "tick": 48,
+        "virtualMs": 800,
+        "yaw": -2.4000000000000004,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 3,
+        "controlPeakJoinLuma": 68.185,
+        "staticJoinRowsOver20": 3,
+        "staticPeakJoinLuma": 68.185
+      },
+      {
+        "tick": 49,
+        "virtualMs": 816.6666666666667,
+        "yaw": -2.1999999999999993,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 4,
+        "controlPeakJoinLuma": 53.0,
+        "staticJoinRowsOver20": 4,
+        "staticPeakJoinLuma": 53.0
+      },
+      {
+        "tick": 50,
+        "virtualMs": 833.3333333333334,
+        "yaw": -2,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 2,
+        "controlPeakJoinLuma": 53.163,
+        "staticJoinRowsOver20": 2,
+        "staticPeakJoinLuma": 53.163
+      },
+      {
+        "tick": 51,
+        "virtualMs": 850.0000000000001,
+        "yaw": -1.799999999999999,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 1,
+        "controlPeakJoinLuma": 72.0,
+        "staticJoinRowsOver20": 1,
+        "staticPeakJoinLuma": 72.0
+      },
+      {
+        "tick": 52,
+        "virtualMs": 866.6666666666667,
+        "yaw": -1.5999999999999996,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 3,
+        "controlPeakJoinLuma": 41.857,
+        "staticJoinRowsOver20": 3,
+        "staticPeakJoinLuma": 41.857
+      },
+      {
+        "tick": 53,
+        "virtualMs": 883.3333333333334,
+        "yaw": -1.3999999999999986,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 2,
+        "controlPeakJoinLuma": 45.138,
+        "staticJoinRowsOver20": 2,
+        "staticPeakJoinLuma": 45.138
+      },
+      {
+        "tick": 54,
+        "virtualMs": 900.0000000000001,
+        "yaw": -1.1999999999999993,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 3,
+        "controlPeakJoinLuma": 136.13799999999998,
+        "staticJoinRowsOver20": 3,
+        "staticPeakJoinLuma": 136.13799999999998
+      },
+      {
+        "tick": 55,
+        "virtualMs": 916.6666666666667,
+        "yaw": -0.9999999999999982,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 2,
+        "controlPeakJoinLuma": 27.288,
+        "staticJoinRowsOver20": 2,
+        "staticPeakJoinLuma": 27.288
+      },
+      {
+        "tick": 56,
+        "virtualMs": 933.3333333333334,
+        "yaw": -0.7999999999999989,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 1,
+        "controlPeakJoinLuma": 69.151,
+        "staticJoinRowsOver20": 1,
+        "staticPeakJoinLuma": 69.151
+      },
+      {
+        "tick": 57,
+        "virtualMs": 950.0000000000001,
+        "yaw": -0.5999999999999979,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 2,
+        "controlPeakJoinLuma": 42.489000000000004,
+        "staticJoinRowsOver20": 2,
+        "staticPeakJoinLuma": 42.489000000000004
+      },
+      {
+        "tick": 58,
+        "virtualMs": 966.6666666666667,
+        "yaw": -0.3999999999999986,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 10.701,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 10.701
+      },
+      {
+        "tick": 59,
+        "virtualMs": 983.3333333333334,
+        "yaw": -0.1999999999999993,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 10.701,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 10.701
+      },
+      {
+        "tick": 60,
+        "virtualMs": 1000.0000000000001,
+        "yaw": 1.7763568394002505e-15,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 2.7009999999999996,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 2.7009999999999996
+      },
+      {
+        "tick": 61,
+        "virtualMs": 1016.6666666666667,
+        "yaw": 0.20000000000000107,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 9.114,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 9.114
+      },
+      {
+        "tick": 62,
+        "virtualMs": 1033.3333333333335,
+        "yaw": 0.40000000000000213,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 19.11,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 19.11
+      },
+      {
+        "tick": 63,
+        "virtualMs": 1050,
+        "yaw": 0.5999999999999996,
+        "changedPixelsOver2": 2,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 17,
+        "controlJoinRowsOver20": 2,
+        "controlPeakJoinLuma": 27.811,
+        "staticJoinRowsOver20": 2,
+        "staticPeakJoinLuma": 27.811
+      },
+      {
+        "tick": 64,
+        "virtualMs": 1066.6666666666667,
+        "yaw": 0.8000000000000007,
+        "changedPixelsOver2": 3,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 17,
+        "controlJoinRowsOver20": 1,
+        "controlPeakJoinLuma": 119.78200000000001,
+        "staticJoinRowsOver20": 1,
+        "staticPeakJoinLuma": 119.78200000000001
+      },
+      {
+        "tick": 65,
+        "virtualMs": 1083.3333333333335,
+        "yaw": 1.0000000000000018,
+        "changedPixelsOver2": 18,
+        "changedPixelsOver20": 1,
+        "peakChannelDifference": 22,
+        "controlJoinRowsOver20": 2,
+        "controlPeakJoinLuma": 28.174,
+        "staticJoinRowsOver20": 2,
+        "staticPeakJoinLuma": 28.174
+      },
+      {
+        "tick": 66,
+        "virtualMs": 1100,
+        "yaw": 1.200000000000001,
+        "changedPixelsOver2": 207,
+        "changedPixelsOver20": 1,
+        "peakChannelDifference": 63,
+        "controlJoinRowsOver20": 2,
+        "controlPeakJoinLuma": 165.712,
+        "staticJoinRowsOver20": 2,
+        "staticPeakJoinLuma": 165.712
+      },
+      {
+        "tick": 67,
+        "virtualMs": 1116.6666666666667,
+        "yaw": 1.4000000000000004,
+        "changedPixelsOver2": 709,
+        "changedPixelsOver20": 4,
+        "peakChannelDifference": 93,
+        "controlJoinRowsOver20": 2,
+        "controlPeakJoinLuma": 79.071,
+        "staticJoinRowsOver20": 2,
+        "staticPeakJoinLuma": 79.071
+      },
+      {
+        "tick": 68,
+        "virtualMs": 1133.3333333333335,
+        "yaw": 1.6000000000000014,
+        "changedPixelsOver2": 1501,
+        "changedPixelsOver20": 29,
+        "peakChannelDifference": 94,
+        "controlJoinRowsOver20": 3,
+        "controlPeakJoinLuma": 76.273,
+        "staticJoinRowsOver20": 3,
+        "staticPeakJoinLuma": 76.273
+      },
+      {
+        "tick": 69,
+        "virtualMs": 1150,
+        "yaw": 1.8000000000000007,
+        "changedPixelsOver2": 2559,
+        "changedPixelsOver20": 190,
+        "peakChannelDifference": 88,
+        "controlJoinRowsOver20": 2,
+        "controlPeakJoinLuma": 34.157,
+        "staticJoinRowsOver20": 2,
+        "staticPeakJoinLuma": 34.157
+      },
+      {
+        "tick": 70,
+        "virtualMs": 1166.6666666666667,
+        "yaw": 2.0000000000000018,
+        "changedPixelsOver2": 3717,
+        "changedPixelsOver20": 579,
+        "peakChannelDifference": 89,
+        "controlJoinRowsOver20": 1,
+        "controlPeakJoinLuma": 70.586,
+        "staticJoinRowsOver20": 1,
+        "staticPeakJoinLuma": 70.586
+      },
+      {
+        "tick": 71,
+        "virtualMs": 1183.3333333333335,
+        "yaw": 2.200000000000003,
+        "changedPixelsOver2": 4825,
+        "changedPixelsOver20": 1004,
+        "peakChannelDifference": 71,
+        "controlJoinRowsOver20": 1,
+        "controlPeakJoinLuma": 73.223,
+        "staticJoinRowsOver20": 1,
+        "staticPeakJoinLuma": 73.223
+      },
+      {
+        "tick": 72,
+        "virtualMs": 1200,
+        "yaw": 2.4000000000000004,
+        "changedPixelsOver2": 5677,
+        "changedPixelsOver20": 1102,
+        "peakChannelDifference": 88,
+        "controlJoinRowsOver20": 3,
+        "controlPeakJoinLuma": 154.886,
+        "staticJoinRowsOver20": 3,
+        "staticPeakJoinLuma": 154.886
+      },
+      {
+        "tick": 73,
+        "virtualMs": 1216.6666666666667,
+        "yaw": 2.6000000000000014,
+        "changedPixelsOver2": 6132,
+        "changedPixelsOver20": 1101,
+        "peakChannelDifference": 90,
+        "controlJoinRowsOver20": 3,
+        "controlPeakJoinLuma": 151.385,
+        "staticJoinRowsOver20": 3,
+        "staticPeakJoinLuma": 151.385
+      },
+      {
+        "tick": 74,
+        "virtualMs": 1233.3333333333335,
+        "yaw": 2.8000000000000025,
+        "changedPixelsOver2": 6192,
+        "changedPixelsOver20": 1108,
+        "peakChannelDifference": 78,
+        "controlJoinRowsOver20": 5,
+        "controlPeakJoinLuma": 135.476,
+        "staticJoinRowsOver20": 5,
+        "staticPeakJoinLuma": 135.476
+      },
+      {
+        "tick": 75,
+        "virtualMs": 1250,
+        "yaw": 3,
+        "changedPixelsOver2": 6225,
+        "changedPixelsOver20": 1093,
+        "peakChannelDifference": 78,
+        "controlJoinRowsOver20": 3,
+        "controlPeakJoinLuma": 108.716,
+        "staticJoinRowsOver20": 3,
+        "staticPeakJoinLuma": 108.716
+      },
+      {
+        "tick": 76,
+        "virtualMs": 1266.6666666666667,
+        "yaw": 3.200000000000001,
+        "changedPixelsOver2": 6253,
+        "changedPixelsOver20": 1082,
+        "peakChannelDifference": 85,
+        "controlJoinRowsOver20": 4,
+        "controlPeakJoinLuma": 142.228,
+        "staticJoinRowsOver20": 4,
+        "staticPeakJoinLuma": 142.228
+      },
+      {
+        "tick": 77,
+        "virtualMs": 1283.3333333333335,
+        "yaw": 3.400000000000002,
+        "changedPixelsOver2": 6291,
+        "changedPixelsOver20": 1082,
+        "peakChannelDifference": 88,
+        "controlJoinRowsOver20": 2,
+        "controlPeakJoinLuma": 88.213,
+        "staticJoinRowsOver20": 2,
+        "staticPeakJoinLuma": 88.213
+      },
+      {
+        "tick": 78,
+        "virtualMs": 1300,
+        "yaw": 3.5999999999999996,
+        "changedPixelsOver2": 6339,
+        "changedPixelsOver20": 1090,
+        "peakChannelDifference": 74,
+        "controlJoinRowsOver20": 5,
+        "controlPeakJoinLuma": 93.80000000000001,
+        "staticJoinRowsOver20": 5,
+        "staticPeakJoinLuma": 93.80000000000001
+      },
+      {
+        "tick": 79,
+        "virtualMs": 1316.6666666666667,
+        "yaw": 3.8000000000000007,
+        "changedPixelsOver2": 6387,
+        "changedPixelsOver20": 1090,
+        "peakChannelDifference": 75,
+        "controlJoinRowsOver20": 3,
+        "controlPeakJoinLuma": 128.559,
+        "staticJoinRowsOver20": 3,
+        "staticPeakJoinLuma": 128.559
+      },
+      {
+        "tick": 80,
+        "virtualMs": 1333.3333333333335,
+        "yaw": 4.0000000000000036,
+        "changedPixelsOver2": 6403,
+        "changedPixelsOver20": 1097,
+        "peakChannelDifference": 73,
+        "controlJoinRowsOver20": 7,
+        "controlPeakJoinLuma": 146.815,
+        "staticJoinRowsOver20": 7,
+        "staticPeakJoinLuma": 146.815
+      },
+      {
+        "tick": 81,
+        "virtualMs": 1350,
+        "yaw": 4.199999999999999,
+        "changedPixelsOver2": 6456,
+        "changedPixelsOver20": 1106,
+        "peakChannelDifference": 92,
+        "controlJoinRowsOver20": 4,
+        "controlPeakJoinLuma": 146.815,
+        "staticJoinRowsOver20": 4,
+        "staticPeakJoinLuma": 146.815
+      },
+      {
+        "tick": 82,
+        "virtualMs": 1366.6666666666667,
+        "yaw": 4.400000000000002,
+        "changedPixelsOver2": 6478,
+        "changedPixelsOver20": 1108,
+        "peakChannelDifference": 85,
+        "controlJoinRowsOver20": 5,
+        "controlPeakJoinLuma": 118.445,
+        "staticJoinRowsOver20": 5,
+        "staticPeakJoinLuma": 118.445
+      },
+      {
+        "tick": 83,
+        "virtualMs": 1383.3333333333335,
+        "yaw": 4.600000000000001,
+        "changedPixelsOver2": 6498,
+        "changedPixelsOver20": 1117,
+        "peakChannelDifference": 72,
+        "controlJoinRowsOver20": 4,
+        "controlPeakJoinLuma": 149.957,
+        "staticJoinRowsOver20": 4,
+        "staticPeakJoinLuma": 149.957
+      },
+      {
+        "tick": 84,
+        "virtualMs": 1400,
+        "yaw": 4.800000000000001,
+        "changedPixelsOver2": 6538,
+        "changedPixelsOver20": 1116,
+        "peakChannelDifference": 93,
+        "controlJoinRowsOver20": 6,
+        "controlPeakJoinLuma": 133.886,
+        "staticJoinRowsOver20": 6,
+        "staticPeakJoinLuma": 133.886
+      },
+      {
+        "tick": 85,
+        "virtualMs": 1416.6666666666667,
+        "yaw": 5,
+        "changedPixelsOver2": 6555,
+        "changedPixelsOver20": 1106,
+        "peakChannelDifference": 93,
+        "controlJoinRowsOver20": 7,
+        "controlPeakJoinLuma": 124.47300000000001,
+        "staticJoinRowsOver20": 7,
+        "staticPeakJoinLuma": 124.47300000000001
+      },
+      {
+        "tick": 87,
+        "virtualMs": 1450,
+        "yaw": 5.400000000000002,
+        "changedPixelsOver2": 6641,
+        "changedPixelsOver20": 1095,
+        "peakChannelDifference": 84,
+        "controlJoinRowsOver20": 10,
+        "controlPeakJoinLuma": 122.84299999999999,
+        "staticJoinRowsOver20": 10,
+        "staticPeakJoinLuma": 122.84299999999999
+      },
+      {
+        "tick": 88,
+        "virtualMs": 1466.6666666666667,
+        "yaw": 5.600000000000001,
+        "changedPixelsOver2": 6673,
+        "changedPixelsOver20": 1097,
+        "peakChannelDifference": 85,
+        "controlJoinRowsOver20": 20,
+        "controlPeakJoinLuma": 109.84299999999999,
+        "staticJoinRowsOver20": 20,
+        "staticPeakJoinLuma": 109.84299999999999
+      },
+      {
+        "tick": 89,
+        "virtualMs": 1483.3333333333335,
+        "yaw": 5.800000000000001,
+        "changedPixelsOver2": 6640,
+        "changedPixelsOver20": 1089,
+        "peakChannelDifference": 83,
+        "controlJoinRowsOver20": 11,
+        "controlPeakJoinLuma": 108.91399999999999,
+        "staticJoinRowsOver20": 11,
+        "staticPeakJoinLuma": 108.91399999999999
+      },
+      {
+        "tick": 91,
+        "virtualMs": 1516.6666666666667,
+        "yaw": 6.200000000000003,
+        "changedPixelsOver2": 5877,
+        "changedPixelsOver20": 1101,
+        "peakChannelDifference": 72,
+        "controlJoinRowsOver20": 6,
+        "controlPeakJoinLuma": 59.09899999999999,
+        "staticJoinRowsOver20": 4,
+        "staticPeakJoinLuma": 59.09899999999999
+      },
+      {
+        "tick": 92,
+        "virtualMs": 1533.3333333333335,
+        "yaw": 6.400000000000002,
+        "changedPixelsOver2": 5035,
+        "changedPixelsOver20": 1043,
+        "peakChannelDifference": 76,
+        "controlJoinRowsOver20": 22,
+        "controlPeakJoinLuma": 46.870999999999995,
+        "staticJoinRowsOver20": 3,
+        "staticPeakJoinLuma": 46.870999999999995
+      },
+      {
+        "tick": 93,
+        "virtualMs": 1550,
+        "yaw": 6.600000000000001,
+        "changedPixelsOver2": 3982,
+        "changedPixelsOver20": 843,
+        "peakChannelDifference": 72,
+        "controlJoinRowsOver20": 45,
+        "controlPeakJoinLuma": 44.913999999999994,
+        "staticJoinRowsOver20": 1,
+        "staticPeakJoinLuma": 29.654
+      },
+      {
+        "tick": 94,
+        "virtualMs": 1566.6666666666667,
+        "yaw": 6.800000000000001,
+        "changedPixelsOver2": 2722,
+        "changedPixelsOver20": 424,
+        "peakChannelDifference": 64,
+        "controlJoinRowsOver20": 52,
+        "controlPeakJoinLuma": 61.53999999999999,
+        "staticJoinRowsOver20": 4,
+        "staticPeakJoinLuma": 52.355
+      },
+      {
+        "tick": 95,
+        "virtualMs": 1583.3333333333335,
+        "yaw": 7.0000000000000036,
+        "changedPixelsOver2": 1563,
+        "changedPixelsOver20": 74,
+        "peakChannelDifference": 35,
+        "controlJoinRowsOver20": 16,
+        "controlPeakJoinLuma": 28.772,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 5.0
+      },
+      {
+        "tick": 96,
+        "virtualMs": 1600,
+        "yaw": 7.199999999999999,
+        "changedPixelsOver2": 689,
+        "changedPixelsOver20": 5,
+        "peakChannelDifference": 36,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 13.772,
+        "staticJoinRowsOver20": 1,
+        "staticPeakJoinLuma": 32.8
+      },
+      {
+        "tick": 97,
+        "virtualMs": 1616.6666666666667,
+        "yaw": 7.400000000000002,
+        "changedPixelsOver2": 143,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 20,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 4.885999999999999,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 4.885999999999999
+      },
+      {
+        "tick": 98,
+        "virtualMs": 1633.3333333333335,
+        "yaw": 7.600000000000001,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 2,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 4.2989999999999995,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 4.2989999999999995
+      },
+      {
+        "tick": 99,
+        "virtualMs": 1650.0000000000002,
+        "yaw": 7.800000000000004,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 3.5869999999999997,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 3.5869999999999997
+      },
+      {
+        "tick": 101,
+        "virtualMs": 1683.3333333333335,
+        "yaw": 8.200000000000003,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 2.886,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 2.886
+      },
+      {
+        "tick": 102,
+        "virtualMs": 1700.0000000000002,
+        "yaw": 8.400000000000002,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 1,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 2.5869999999999997,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 2.5869999999999997
+      },
+      {
+        "tick": 103,
+        "virtualMs": 1716.6666666666667,
+        "yaw": 8.600000000000001,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 1.7009999999999998,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 1.7009999999999998
+      },
+      {
+        "tick": 104,
+        "virtualMs": 1733.3333333333335,
+        "yaw": 8.8,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 1.587,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 1.587
+      },
+      {
+        "tick": 105,
+        "virtualMs": 1750.0000000000002,
+        "yaw": 9.000000000000004,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 2.5869999999999997,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 2.5869999999999997
+      },
+      {
+        "tick": 106,
+        "virtualMs": 1766.6666666666667,
+        "yaw": 9.200000000000003,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 1.7009999999999998,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 1.7009999999999998
+      },
+      {
+        "tick": 107,
+        "virtualMs": 1783.3333333333335,
+        "yaw": 9.400000000000002,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 2.0,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 2.0
+      },
+      {
+        "tick": 108,
+        "virtualMs": 1800.0000000000002,
+        "yaw": 9.600000000000001,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 1.299,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 1.299
+      },
+      {
+        "tick": 109,
+        "virtualMs": 1816.6666666666667,
+        "yaw": 9.8,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 2.0,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 2.0
+      },
+      {
+        "tick": 110,
+        "virtualMs": 1833.3333333333335,
+        "yaw": 10.000000000000004,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 2.0,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 2.0
+      },
+      {
+        "tick": 111,
+        "virtualMs": 1850.0000000000002,
+        "yaw": 10.200000000000003,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 2.0,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 2.0
+      },
+      {
+        "tick": 112,
+        "virtualMs": 1866.6666666666667,
+        "yaw": 10.400000000000002,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 2.0,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 2.0
+      },
+      {
+        "tick": 113,
+        "virtualMs": 1883.3333333333335,
+        "yaw": 10.600000000000001,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 2.5869999999999997,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 2.5869999999999997
+      },
+      {
+        "tick": 114,
+        "virtualMs": 1900.0000000000002,
+        "yaw": 10.800000000000004,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 2.0,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 2.0
+      },
+      {
+        "tick": 115,
+        "virtualMs": 1916.6666666666667,
+        "yaw": 11,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 2.0,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 2.0
+      },
+      {
+        "tick": 116,
+        "virtualMs": 1933.3333333333335,
+        "yaw": 11.200000000000003,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 2.0,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 2.0
+      },
+      {
+        "tick": 118,
+        "virtualMs": 1966.6666666666667,
+        "yaw": 11.600000000000001,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 2.5869999999999997,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 2.5869999999999997
+      },
+      {
+        "tick": 119,
+        "virtualMs": 1983.3333333333335,
+        "yaw": 11.8,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 3.114,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 3.114
+      },
+      {
+        "tick": 120,
+        "virtualMs": 2000.0000000000002,
+        "yaw": 11.999999999999996,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 2.0,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 2.0
+      },
+      {
+        "tick": 121,
+        "virtualMs": 2016.6666666666667,
+        "yaw": 11.799999999999997,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 3.114,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 3.114
+      },
+      {
+        "tick": 122,
+        "virtualMs": 2033.3333333333335,
+        "yaw": 11.599999999999998,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 2.5869999999999997,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 2.5869999999999997
+      },
+      {
+        "tick": 123,
+        "virtualMs": 2050,
+        "yaw": 11.399999999999999,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 2.5869999999999997,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 2.5869999999999997
+      },
+      {
+        "tick": 124,
+        "virtualMs": 2066.666666666667,
+        "yaw": 11.199999999999996,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 2.0,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 2.0
+      },
+      {
+        "tick": 125,
+        "virtualMs": 2083.3333333333335,
+        "yaw": 10.999999999999996,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 2.0,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 2.0
+      },
+      {
+        "tick": 126,
+        "virtualMs": 2100,
+        "yaw": 10.8,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 2.0,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 2.0
+      },
+      {
+        "tick": 127,
+        "virtualMs": 2116.666666666667,
+        "yaw": 10.599999999999994,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 2.5869999999999997,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 2.5869999999999997
+      },
+      {
+        "tick": 128,
+        "virtualMs": 2133.3333333333335,
+        "yaw": 10.399999999999999,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 1,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 2.0,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 2.0
+      },
+      {
+        "tick": 129,
+        "virtualMs": 2150,
+        "yaw": 10.2,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 2.0,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 2.0
+      },
+      {
+        "tick": 130,
+        "virtualMs": 2166.666666666667,
+        "yaw": 9.999999999999996,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 2.0,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 2.0
+      },
+      {
+        "tick": 131,
+        "virtualMs": 2183.3333333333335,
+        "yaw": 9.799999999999997,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 2.0,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 2.0
+      },
+      {
+        "tick": 132,
+        "virtualMs": 2200,
+        "yaw": 9.599999999999998,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 1.299,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 1.299
+      },
+      {
+        "tick": 133,
+        "virtualMs": 2216.666666666667,
+        "yaw": 9.399999999999995,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 2.0,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 2.0
+      },
+      {
+        "tick": 134,
+        "virtualMs": 2233.3333333333335,
+        "yaw": 9.2,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 1.7009999999999998,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 1.7009999999999998
+      },
+      {
+        "tick": 135,
+        "virtualMs": 2250,
+        "yaw": 9,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 2.5869999999999997,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 2.5869999999999997
+      },
+      {
+        "tick": 136,
+        "virtualMs": 2266.666666666667,
+        "yaw": 8.799999999999997,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 1.587,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 1.587
+      },
+      {
+        "tick": 137,
+        "virtualMs": 2283.3333333333335,
+        "yaw": 8.599999999999998,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 1.7009999999999998,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 1.7009999999999998
+      },
+      {
+        "tick": 138,
+        "virtualMs": 2300,
+        "yaw": 8.399999999999999,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 2.5869999999999997,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 2.5869999999999997
+      },
+      {
+        "tick": 139,
+        "virtualMs": 2316.666666666667,
+        "yaw": 8.199999999999996,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 2.886,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 2.886
+      },
+      {
+        "tick": 140,
+        "virtualMs": 2333.3333333333335,
+        "yaw": 7.9999999999999964,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 3.2989999999999995,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 3.2989999999999995
+      },
+      {
+        "tick": 141,
+        "virtualMs": 2350,
+        "yaw": 7.800000000000001,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 3.5869999999999997,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 3.5869999999999997
+      },
+      {
+        "tick": 142,
+        "virtualMs": 2366.666666666667,
+        "yaw": 7.599999999999994,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 2,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 4.2989999999999995,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 4.2989999999999995
+      },
+      {
+        "tick": 143,
+        "virtualMs": 2383.3333333333335,
+        "yaw": 7.399999999999999,
+        "changedPixelsOver2": 143,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 20,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 4.885999999999999,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 4.885999999999999
+      },
+      {
+        "tick": 144,
+        "virtualMs": 2400,
+        "yaw": 7.199999999999999,
+        "changedPixelsOver2": 689,
+        "changedPixelsOver20": 5,
+        "peakChannelDifference": 36,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 13.772,
+        "staticJoinRowsOver20": 1,
+        "staticPeakJoinLuma": 32.8
+      },
+      {
+        "tick": 145,
+        "virtualMs": 2416.666666666667,
+        "yaw": 6.9999999999999964,
+        "changedPixelsOver2": 1563,
+        "changedPixelsOver20": 74,
+        "peakChannelDifference": 35,
+        "controlJoinRowsOver20": 16,
+        "controlPeakJoinLuma": 28.772,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 5.0
+      },
+      {
+        "tick": 146,
+        "virtualMs": 2433.3333333333335,
+        "yaw": 6.799999999999997,
+        "changedPixelsOver2": 2722,
+        "changedPixelsOver20": 424,
+        "peakChannelDifference": 64,
+        "controlJoinRowsOver20": 52,
+        "controlPeakJoinLuma": 61.53999999999999,
+        "staticJoinRowsOver20": 4,
+        "staticPeakJoinLuma": 52.355
+      },
+      {
+        "tick": 147,
+        "virtualMs": 2450,
+        "yaw": 6.599999999999998,
+        "changedPixelsOver2": 3982,
+        "changedPixelsOver20": 843,
+        "peakChannelDifference": 72,
+        "controlJoinRowsOver20": 45,
+        "controlPeakJoinLuma": 44.913999999999994,
+        "staticJoinRowsOver20": 1,
+        "staticPeakJoinLuma": 29.654
+      },
+      {
+        "tick": 148,
+        "virtualMs": 2466.666666666667,
+        "yaw": 6.399999999999995,
+        "changedPixelsOver2": 5035,
+        "changedPixelsOver20": 1043,
+        "peakChannelDifference": 76,
+        "controlJoinRowsOver20": 22,
+        "controlPeakJoinLuma": 46.870999999999995,
+        "staticJoinRowsOver20": 3,
+        "staticPeakJoinLuma": 46.870999999999995
+      },
+      {
+        "tick": 149,
+        "virtualMs": 2483.3333333333335,
+        "yaw": 6.199999999999999,
+        "changedPixelsOver2": 5877,
+        "changedPixelsOver20": 1101,
+        "peakChannelDifference": 72,
+        "controlJoinRowsOver20": 6,
+        "controlPeakJoinLuma": 59.09899999999999,
+        "staticJoinRowsOver20": 4,
+        "staticPeakJoinLuma": 59.09899999999999
+      },
+      {
+        "tick": 150,
+        "virtualMs": 2500,
+        "yaw": 6,
+        "changedPixelsOver2": 6411,
+        "changedPixelsOver20": 1099,
+        "peakChannelDifference": 79,
+        "controlJoinRowsOver20": 11,
+        "controlPeakJoinLuma": 77.84299999999999,
+        "staticJoinRowsOver20": 10,
+        "staticPeakJoinLuma": 77.84299999999999
+      },
+      {
+        "tick": 151,
+        "virtualMs": 2516.666666666667,
+        "yaw": 5.799999999999997,
+        "changedPixelsOver2": 6640,
+        "changedPixelsOver20": 1089,
+        "peakChannelDifference": 83,
+        "controlJoinRowsOver20": 11,
+        "controlPeakJoinLuma": 108.91399999999999,
+        "staticJoinRowsOver20": 11,
+        "staticPeakJoinLuma": 108.91399999999999
+      },
+      {
+        "tick": 152,
+        "virtualMs": 2533.3333333333335,
+        "yaw": 5.599999999999998,
+        "changedPixelsOver2": 6673,
+        "changedPixelsOver20": 1097,
+        "peakChannelDifference": 85,
+        "controlJoinRowsOver20": 20,
+        "controlPeakJoinLuma": 109.84299999999999,
+        "staticJoinRowsOver20": 20,
+        "staticPeakJoinLuma": 109.84299999999999
+      },
+      {
+        "tick": 153,
+        "virtualMs": 2550,
+        "yaw": 5.399999999999999,
+        "changedPixelsOver2": 6641,
+        "changedPixelsOver20": 1095,
+        "peakChannelDifference": 84,
+        "controlJoinRowsOver20": 10,
+        "controlPeakJoinLuma": 122.84299999999999,
+        "staticJoinRowsOver20": 10,
+        "staticPeakJoinLuma": 122.84299999999999
+      },
+      {
+        "tick": 154,
+        "virtualMs": 2566.666666666667,
+        "yaw": 5.199999999999996,
+        "changedPixelsOver2": 6596,
+        "changedPixelsOver20": 1091,
+        "peakChannelDifference": 66,
+        "controlJoinRowsOver20": 6,
+        "controlPeakJoinLuma": 119.65799999999999,
+        "staticJoinRowsOver20": 6,
+        "staticPeakJoinLuma": 119.65799999999999
+      },
+      {
+        "tick": 155,
+        "virtualMs": 2583.3333333333335,
+        "yaw": 4.9999999999999964,
+        "changedPixelsOver2": 6555,
+        "changedPixelsOver20": 1106,
+        "peakChannelDifference": 93,
+        "controlJoinRowsOver20": 7,
+        "controlPeakJoinLuma": 124.47300000000001,
+        "staticJoinRowsOver20": 7,
+        "staticPeakJoinLuma": 124.47300000000001
+      },
+      {
+        "tick": 156,
+        "virtualMs": 2600,
+        "yaw": 4.800000000000001,
+        "changedPixelsOver2": 6538,
+        "changedPixelsOver20": 1116,
+        "peakChannelDifference": 93,
+        "controlJoinRowsOver20": 6,
+        "controlPeakJoinLuma": 133.886,
+        "staticJoinRowsOver20": 6,
+        "staticPeakJoinLuma": 133.886
+      },
+      {
+        "tick": 157,
+        "virtualMs": 2616.666666666667,
+        "yaw": 4.599999999999994,
+        "changedPixelsOver2": 6498,
+        "changedPixelsOver20": 1117,
+        "peakChannelDifference": 72,
+        "controlJoinRowsOver20": 4,
+        "controlPeakJoinLuma": 149.957,
+        "staticJoinRowsOver20": 4,
+        "staticPeakJoinLuma": 149.957
+      },
+      {
+        "tick": 158,
+        "virtualMs": 2633.3333333333335,
+        "yaw": 4.399999999999999,
+        "changedPixelsOver2": 6478,
+        "changedPixelsOver20": 1108,
+        "peakChannelDifference": 85,
+        "controlJoinRowsOver20": 5,
+        "controlPeakJoinLuma": 118.445,
+        "staticJoinRowsOver20": 5,
+        "staticPeakJoinLuma": 118.445
+      },
+      {
+        "tick": 159,
+        "virtualMs": 2650,
+        "yaw": 4.199999999999999,
+        "changedPixelsOver2": 6456,
+        "changedPixelsOver20": 1106,
+        "peakChannelDifference": 92,
+        "controlJoinRowsOver20": 4,
+        "controlPeakJoinLuma": 146.815,
+        "staticJoinRowsOver20": 4,
+        "staticPeakJoinLuma": 146.815
+      },
+      {
+        "tick": 160,
+        "virtualMs": 2666.666666666667,
+        "yaw": 3.999999999999993,
+        "changedPixelsOver2": 6403,
+        "changedPixelsOver20": 1097,
+        "peakChannelDifference": 73,
+        "controlJoinRowsOver20": 7,
+        "controlPeakJoinLuma": 146.815,
+        "staticJoinRowsOver20": 7,
+        "staticPeakJoinLuma": 146.815
+      },
+      {
+        "tick": 161,
+        "virtualMs": 2683.3333333333335,
+        "yaw": 3.799999999999997,
+        "changedPixelsOver2": 6387,
+        "changedPixelsOver20": 1090,
+        "peakChannelDifference": 75,
+        "controlJoinRowsOver20": 3,
+        "controlPeakJoinLuma": 128.559,
+        "staticJoinRowsOver20": 3,
+        "staticPeakJoinLuma": 128.559
+      },
+      {
+        "tick": 162,
+        "virtualMs": 2700,
+        "yaw": 3.6000000000000014,
+        "changedPixelsOver2": 6339,
+        "changedPixelsOver20": 1090,
+        "peakChannelDifference": 74,
+        "controlJoinRowsOver20": 5,
+        "controlPeakJoinLuma": 93.80000000000001,
+        "staticJoinRowsOver20": 5,
+        "staticPeakJoinLuma": 93.80000000000001
+      },
+      {
+        "tick": 163,
+        "virtualMs": 2716.666666666667,
+        "yaw": 3.3999999999999986,
+        "changedPixelsOver2": 6291,
+        "changedPixelsOver20": 1082,
+        "peakChannelDifference": 88,
+        "controlJoinRowsOver20": 2,
+        "controlPeakJoinLuma": 88.213,
+        "staticJoinRowsOver20": 2,
+        "staticPeakJoinLuma": 88.213
+      },
+      {
+        "tick": 164,
+        "virtualMs": 2733.3333333333335,
+        "yaw": 3.1999999999999957,
+        "changedPixelsOver2": 6253,
+        "changedPixelsOver20": 1082,
+        "peakChannelDifference": 85,
+        "controlJoinRowsOver20": 4,
+        "controlPeakJoinLuma": 142.228,
+        "staticJoinRowsOver20": 4,
+        "staticPeakJoinLuma": 142.228
+      },
+      {
+        "tick": 165,
+        "virtualMs": 2750,
+        "yaw": 3,
+        "changedPixelsOver2": 6225,
+        "changedPixelsOver20": 1093,
+        "peakChannelDifference": 78,
+        "controlJoinRowsOver20": 3,
+        "controlPeakJoinLuma": 108.716,
+        "staticJoinRowsOver20": 3,
+        "staticPeakJoinLuma": 108.716
+      },
+      {
+        "tick": 166,
+        "virtualMs": 2766.666666666667,
+        "yaw": 2.799999999999997,
+        "changedPixelsOver2": 6192,
+        "changedPixelsOver20": 1108,
+        "peakChannelDifference": 78,
+        "controlJoinRowsOver20": 5,
+        "controlPeakJoinLuma": 135.476,
+        "staticJoinRowsOver20": 5,
+        "staticPeakJoinLuma": 135.476
+      },
+      {
+        "tick": 167,
+        "virtualMs": 2783.3333333333335,
+        "yaw": 2.5999999999999943,
+        "changedPixelsOver2": 6132,
+        "changedPixelsOver20": 1101,
+        "peakChannelDifference": 90,
+        "controlJoinRowsOver20": 3,
+        "controlPeakJoinLuma": 151.385,
+        "staticJoinRowsOver20": 3,
+        "staticPeakJoinLuma": 151.385
+      },
+      {
+        "tick": 168,
+        "virtualMs": 2800,
+        "yaw": 2.3999999999999986,
+        "changedPixelsOver2": 5677,
+        "changedPixelsOver20": 1102,
+        "peakChannelDifference": 88,
+        "controlJoinRowsOver20": 3,
+        "controlPeakJoinLuma": 154.886,
+        "staticJoinRowsOver20": 3,
+        "staticPeakJoinLuma": 154.886
+      },
+      {
+        "tick": 169,
+        "virtualMs": 2816.666666666667,
+        "yaw": 2.1999999999999957,
+        "changedPixelsOver2": 4825,
+        "changedPixelsOver20": 1004,
+        "peakChannelDifference": 71,
+        "controlJoinRowsOver20": 1,
+        "controlPeakJoinLuma": 73.223,
+        "staticJoinRowsOver20": 1,
+        "staticPeakJoinLuma": 73.223
+      },
+      {
+        "tick": 170,
+        "virtualMs": 2833.3333333333335,
+        "yaw": 2,
+        "changedPixelsOver2": 3717,
+        "changedPixelsOver20": 579,
+        "peakChannelDifference": 89,
+        "controlJoinRowsOver20": 1,
+        "controlPeakJoinLuma": 70.586,
+        "staticJoinRowsOver20": 1,
+        "staticPeakJoinLuma": 70.586
+      },
+      {
+        "tick": 171,
+        "virtualMs": 2850,
+        "yaw": 1.7999999999999972,
+        "changedPixelsOver2": 2559,
+        "changedPixelsOver20": 190,
+        "peakChannelDifference": 88,
+        "controlJoinRowsOver20": 2,
+        "controlPeakJoinLuma": 34.157,
+        "staticJoinRowsOver20": 2,
+        "staticPeakJoinLuma": 34.157
+      },
+      {
+        "tick": 172,
+        "virtualMs": 2866.666666666667,
+        "yaw": 1.5999999999999943,
+        "changedPixelsOver2": 1501,
+        "changedPixelsOver20": 29,
+        "peakChannelDifference": 94,
+        "controlJoinRowsOver20": 3,
+        "controlPeakJoinLuma": 76.273,
+        "staticJoinRowsOver20": 3,
+        "staticPeakJoinLuma": 76.273
+      },
+      {
+        "tick": 173,
+        "virtualMs": 2883.3333333333335,
+        "yaw": 1.3999999999999986,
+        "changedPixelsOver2": 709,
+        "changedPixelsOver20": 4,
+        "peakChannelDifference": 93,
+        "controlJoinRowsOver20": 2,
+        "controlPeakJoinLuma": 79.071,
+        "staticJoinRowsOver20": 2,
+        "staticPeakJoinLuma": 79.071
+      },
+      {
+        "tick": 174,
+        "virtualMs": 2900,
+        "yaw": 1.1999999999999957,
+        "changedPixelsOver2": 207,
+        "changedPixelsOver20": 1,
+        "peakChannelDifference": 63,
+        "controlJoinRowsOver20": 2,
+        "controlPeakJoinLuma": 165.712,
+        "staticJoinRowsOver20": 2,
+        "staticPeakJoinLuma": 165.712
+      },
+      {
+        "tick": 175,
+        "virtualMs": 2916.666666666667,
+        "yaw": 0.9999999999999929,
+        "changedPixelsOver2": 18,
+        "changedPixelsOver20": 1,
+        "peakChannelDifference": 22,
+        "controlJoinRowsOver20": 2,
+        "controlPeakJoinLuma": 28.174,
+        "staticJoinRowsOver20": 2,
+        "staticPeakJoinLuma": 28.174
+      },
+      {
+        "tick": 176,
+        "virtualMs": 2933.3333333333335,
+        "yaw": 0.7999999999999972,
+        "changedPixelsOver2": 3,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 17,
+        "controlJoinRowsOver20": 1,
+        "controlPeakJoinLuma": 119.78200000000001,
+        "staticJoinRowsOver20": 1,
+        "staticPeakJoinLuma": 119.78200000000001
+      },
+      {
+        "tick": 177,
+        "virtualMs": 2950,
+        "yaw": 0.6000000000000014,
+        "changedPixelsOver2": 2,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 17,
+        "controlJoinRowsOver20": 2,
+        "controlPeakJoinLuma": 27.811,
+        "staticJoinRowsOver20": 2,
+        "staticPeakJoinLuma": 27.811
+      },
+      {
+        "tick": 178,
+        "virtualMs": 2966.666666666667,
+        "yaw": 0.3999999999999986,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 19.11,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 19.11
+      },
+      {
+        "tick": 179,
+        "virtualMs": 2983.3333333333335,
+        "yaw": 0.19999999999999574,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 9.114,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 9.114
+      },
+      {
+        "tick": 180,
+        "virtualMs": 3000,
+        "yaw": 0,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 2.7009999999999996,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 2.7009999999999996
+      },
+      {
+        "tick": 181,
+        "virtualMs": 3016.666666666667,
+        "yaw": -0.20000000000000284,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 10.701,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 10.701
+      },
+      {
+        "tick": 182,
+        "virtualMs": 3033.3333333333335,
+        "yaw": -0.4000000000000057,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 10.701,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 10.701
+      },
+      {
+        "tick": 183,
+        "virtualMs": 3050,
+        "yaw": -0.6000000000000014,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 2,
+        "controlPeakJoinLuma": 42.489000000000004,
+        "staticJoinRowsOver20": 2,
+        "staticPeakJoinLuma": 42.489000000000004
+      },
+      {
+        "tick": 184,
+        "virtualMs": 3066.666666666667,
+        "yaw": -0.8000000000000043,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 1,
+        "controlPeakJoinLuma": 69.151,
+        "staticJoinRowsOver20": 1,
+        "staticPeakJoinLuma": 69.151
+      },
+      {
+        "tick": 185,
+        "virtualMs": 3083.3333333333335,
+        "yaw": -1,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 2,
+        "controlPeakJoinLuma": 27.288,
+        "staticJoinRowsOver20": 2,
+        "staticPeakJoinLuma": 27.288
+      },
+      {
+        "tick": 186,
+        "virtualMs": 3100,
+        "yaw": -1.2000000000000028,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 3,
+        "controlPeakJoinLuma": 136.13799999999998,
+        "staticJoinRowsOver20": 3,
+        "staticPeakJoinLuma": 136.13799999999998
+      },
+      {
+        "tick": 187,
+        "virtualMs": 3116.666666666667,
+        "yaw": -1.4000000000000057,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 2,
+        "controlPeakJoinLuma": 45.138,
+        "staticJoinRowsOver20": 2,
+        "staticPeakJoinLuma": 45.138
+      },
+      {
+        "tick": 188,
+        "virtualMs": 3133.3333333333335,
+        "yaw": -1.6000000000000014,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 3,
+        "controlPeakJoinLuma": 41.857,
+        "staticJoinRowsOver20": 3,
+        "staticPeakJoinLuma": 41.857
+      },
+      {
+        "tick": 189,
+        "virtualMs": 3150,
+        "yaw": -1.8000000000000043,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 1,
+        "controlPeakJoinLuma": 72.0,
+        "staticJoinRowsOver20": 1,
+        "staticPeakJoinLuma": 72.0
+      },
+      {
+        "tick": 190,
+        "virtualMs": 3166.666666666667,
+        "yaw": -2.000000000000007,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 2,
+        "controlPeakJoinLuma": 53.163,
+        "staticJoinRowsOver20": 2,
+        "staticPeakJoinLuma": 53.163
+      },
+      {
+        "tick": 191,
+        "virtualMs": 3183.3333333333335,
+        "yaw": -2.200000000000003,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 4,
+        "controlPeakJoinLuma": 53.0,
+        "staticJoinRowsOver20": 4,
+        "staticPeakJoinLuma": 53.0
+      },
+      {
+        "tick": 192,
+        "virtualMs": 3200,
+        "yaw": -2.3999999999999986,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 3,
+        "controlPeakJoinLuma": 68.185,
+        "staticJoinRowsOver20": 3,
+        "staticPeakJoinLuma": 68.185
+      },
+      {
+        "tick": 193,
+        "virtualMs": 3216.666666666667,
+        "yaw": -2.6000000000000014,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 3,
+        "controlPeakJoinLuma": 135.48399999999998,
+        "staticJoinRowsOver20": 3,
+        "staticPeakJoinLuma": 135.48399999999998
+      },
+      {
+        "tick": 194,
+        "virtualMs": 3233.3333333333335,
+        "yaw": -2.8000000000000043,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 2,
+        "controlPeakJoinLuma": 50.071,
+        "staticJoinRowsOver20": 2,
+        "staticPeakJoinLuma": 50.071
+      },
+      {
+        "tick": 195,
+        "virtualMs": 3250.0000000000005,
+        "yaw": -3.000000000000007,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 2,
+        "controlPeakJoinLuma": 140.25599999999997,
+        "staticJoinRowsOver20": 2,
+        "staticPeakJoinLuma": 140.25599999999997
+      },
+      {
+        "tick": 196,
+        "virtualMs": 3266.666666666667,
+        "yaw": -3.200000000000003,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 3,
+        "controlPeakJoinLuma": 155.885,
+        "staticJoinRowsOver20": 3,
+        "staticPeakJoinLuma": 155.885
+      },
+      {
+        "tick": 197,
+        "virtualMs": 3283.3333333333335,
+        "yaw": -3.4000000000000057,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 4,
+        "controlPeakJoinLuma": 67.30499999999999,
+        "staticJoinRowsOver20": 4,
+        "staticPeakJoinLuma": 67.30499999999999
+      },
+      {
+        "tick": 198,
+        "virtualMs": 3300.0000000000005,
+        "yaw": -3.6000000000000085,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 5,
+        "controlPeakJoinLuma": 156.81099999999998,
+        "staticJoinRowsOver20": 5,
+        "staticPeakJoinLuma": 156.81099999999998
+      },
+      {
+        "tick": 199,
+        "virtualMs": 3316.666666666667,
+        "yaw": -3.8000000000000043,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 6,
+        "controlPeakJoinLuma": 126.55499999999999,
+        "staticJoinRowsOver20": 6,
+        "staticPeakJoinLuma": 126.55499999999999
+      },
+      {
+        "tick": 200,
+        "virtualMs": 3333.3333333333335,
+        "yaw": -4,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 4,
+        "controlPeakJoinLuma": 87.36999999999999,
+        "staticJoinRowsOver20": 4,
+        "staticPeakJoinLuma": 87.36999999999999
+      },
+      {
+        "tick": 201,
+        "virtualMs": 3350.0000000000005,
+        "yaw": -4.200000000000003,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 4,
+        "controlPeakJoinLuma": 108.555,
+        "staticJoinRowsOver20": 4,
+        "staticPeakJoinLuma": 108.555
+      },
+      {
+        "tick": 202,
+        "virtualMs": 3366.666666666667,
+        "yaw": -4.400000000000006,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 4,
+        "controlPeakJoinLuma": 143.153,
+        "staticJoinRowsOver20": 4,
+        "staticPeakJoinLuma": 143.153
+      },
+      {
+        "tick": 204,
+        "virtualMs": 3400.0000000000005,
+        "yaw": -4.800000000000004,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 8,
+        "controlPeakJoinLuma": 115.899,
+        "staticJoinRowsOver20": 8,
+        "staticPeakJoinLuma": 115.899
+      },
+      {
+        "tick": 205,
+        "virtualMs": 3416.666666666667,
+        "yaw": -5.000000000000007,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 1,
+        "controlJoinRowsOver20": 10,
+        "controlPeakJoinLuma": 127.03899999999999,
+        "staticJoinRowsOver20": 10,
+        "staticPeakJoinLuma": 127.03899999999999
+      },
+      {
+        "tick": 206,
+        "virtualMs": 3433.3333333333335,
+        "yaw": -5.200000000000003,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 13,
+        "controlPeakJoinLuma": 170.394,
+        "staticJoinRowsOver20": 13,
+        "staticPeakJoinLuma": 170.394
+      },
+      {
+        "tick": 207,
+        "virtualMs": 3450.0000000000005,
+        "yaw": -5.400000000000006,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 1,
+        "controlJoinRowsOver20": 19,
+        "controlPeakJoinLuma": 156.291,
+        "staticJoinRowsOver20": 19,
+        "staticPeakJoinLuma": 156.291
+      },
+      {
+        "tick": 209,
+        "virtualMs": 3483.3333333333335,
+        "yaw": -5.800000000000004,
+        "changedPixelsOver2": 50,
+        "changedPixelsOver20": 1,
+        "peakChannelDifference": 21,
+        "controlJoinRowsOver20": 17,
+        "controlPeakJoinLuma": 120.523,
+        "staticJoinRowsOver20": 17,
+        "staticPeakJoinLuma": 120.523
+      },
+      {
+        "tick": 210,
+        "virtualMs": 3500.0000000000005,
+        "yaw": -6.000000000000007,
+        "changedPixelsOver2": 49,
+        "changedPixelsOver20": 2,
+        "peakChannelDifference": 31,
+        "controlJoinRowsOver20": 61,
+        "controlPeakJoinLuma": 108.55,
+        "staticJoinRowsOver20": 61,
+        "staticPeakJoinLuma": 108.55
+      },
+      {
+        "tick": 211,
+        "virtualMs": 3516.666666666667,
+        "yaw": -6.200000000000003,
+        "changedPixelsOver2": 51,
+        "changedPixelsOver20": 4,
+        "peakChannelDifference": 111,
+        "controlJoinRowsOver20": 28,
+        "controlPeakJoinLuma": 81.92399999999999,
+        "staticJoinRowsOver20": 28,
+        "staticPeakJoinLuma": 81.92399999999999
+      },
+      {
+        "tick": 212,
+        "virtualMs": 3533.3333333333335,
+        "yaw": -6.400000000000006,
+        "changedPixelsOver2": 44,
+        "changedPixelsOver20": 1,
+        "peakChannelDifference": 133,
+        "controlJoinRowsOver20": 26,
+        "controlPeakJoinLuma": 67.038,
+        "staticJoinRowsOver20": 26,
+        "staticPeakJoinLuma": 67.038
+      },
+      {
+        "tick": 213,
+        "virtualMs": 3550.0000000000005,
+        "yaw": -6.6000000000000085,
+        "changedPixelsOver2": 42,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 19,
+        "controlJoinRowsOver20": 17,
+        "controlPeakJoinLuma": 84.419,
+        "staticJoinRowsOver20": 17,
+        "staticPeakJoinLuma": 84.419
+      },
+      {
+        "tick": 215,
+        "virtualMs": 3583.3333333333335,
+        "yaw": -7,
+        "changedPixelsOver2": 46,
+        "changedPixelsOver20": 4,
+        "peakChannelDifference": 52,
+        "controlJoinRowsOver20": 6,
+        "controlPeakJoinLuma": 178.074,
+        "staticJoinRowsOver20": 6,
+        "staticPeakJoinLuma": 178.074
+      },
+      {
+        "tick": 216,
+        "virtualMs": 3600.0000000000005,
+        "yaw": -7.200000000000003,
+        "changedPixelsOver2": 44,
+        "changedPixelsOver20": 3,
+        "peakChannelDifference": 114,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 6.886,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 6.886
+      },
+      {
+        "tick": 217,
+        "virtualMs": 3616.666666666667,
+        "yaw": -7.400000000000006,
+        "changedPixelsOver2": 53,
+        "changedPixelsOver20": 6,
+        "peakChannelDifference": 138,
+        "controlJoinRowsOver20": 4,
+        "controlPeakJoinLuma": 110.50800000000001,
+        "staticJoinRowsOver20": 4,
+        "staticPeakJoinLuma": 110.50800000000001
+      },
+      {
+        "tick": 218,
+        "virtualMs": 3633.3333333333335,
+        "yaw": -7.600000000000001,
+        "changedPixelsOver2": 59,
+        "changedPixelsOver20": 12,
+        "peakChannelDifference": 66,
+        "controlJoinRowsOver20": 6,
+        "controlPeakJoinLuma": 204.641,
+        "staticJoinRowsOver20": 6,
+        "staticPeakJoinLuma": 204.641
+      },
+      {
+        "tick": 219,
+        "virtualMs": 3650.0000000000005,
+        "yaw": -7.800000000000004,
+        "changedPixelsOver2": 55,
+        "changedPixelsOver20": 8,
+        "peakChannelDifference": 95,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 5.185,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 5.185
+      },
+      {
+        "tick": 220,
+        "virtualMs": 3666.666666666667,
+        "yaw": -8.000000000000007,
+        "changedPixelsOver2": 55,
+        "changedPixelsOver20": 1,
+        "peakChannelDifference": 21,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 5.2989999999999995,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 5.2989999999999995
+      },
+      {
+        "tick": 221,
+        "virtualMs": 3683.3333333333335,
+        "yaw": -8.200000000000003,
+        "changedPixelsOver2": 49,
+        "changedPixelsOver20": 2,
+        "peakChannelDifference": 45,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 4.885999999999999,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 4.885999999999999
+      },
+      {
+        "tick": 222,
+        "virtualMs": 3700.0000000000005,
+        "yaw": -8.400000000000006,
+        "changedPixelsOver2": 50,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 19,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 5.2989999999999995,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 5.2989999999999995
+      },
+      {
+        "tick": 223,
+        "virtualMs": 3716.666666666667,
+        "yaw": -8.600000000000001,
+        "changedPixelsOver2": 51,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 18,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 4.2989999999999995,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 4.2989999999999995
+      },
+      {
+        "tick": 224,
+        "virtualMs": 3733.3333333333335,
+        "yaw": -8.800000000000004,
+        "changedPixelsOver2": 44,
+        "changedPixelsOver20": 1,
+        "peakChannelDifference": 80,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 4.0,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 4.0
+      },
+      {
+        "tick": 225,
+        "virtualMs": 3750.0000000000005,
+        "yaw": -9.000000000000007,
+        "changedPixelsOver2": 38,
+        "changedPixelsOver20": 3,
+        "peakChannelDifference": 58,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 4.0,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 4.0
+      },
+      {
+        "tick": 226,
+        "virtualMs": 3766.666666666667,
+        "yaw": -9.200000000000003,
+        "changedPixelsOver2": 35,
+        "changedPixelsOver20": 1,
+        "peakChannelDifference": 21,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 3.0,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 3.0
+      },
+      {
+        "tick": 227,
+        "virtualMs": 3783.3333333333335,
+        "yaw": -9.400000000000006,
+        "changedPixelsOver2": 39,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 20,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 6.0,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 6.0
+      },
+      {
+        "tick": 228,
+        "virtualMs": 3800.0000000000005,
+        "yaw": -9.600000000000009,
+        "changedPixelsOver2": 40,
+        "changedPixelsOver20": 3,
+        "peakChannelDifference": 68,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 5.885999999999999,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 5.885999999999999
+      },
+      {
+        "tick": 229,
+        "virtualMs": 3816.666666666667,
+        "yaw": -9.800000000000004,
+        "changedPixelsOver2": 48,
+        "changedPixelsOver20": 5,
+        "peakChannelDifference": 65,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 4.885999999999999,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 4.885999999999999
+      },
+      {
+        "tick": 230,
+        "virtualMs": 3833.3333333333335,
+        "yaw": -10,
+        "changedPixelsOver2": 57,
+        "changedPixelsOver20": 12,
+        "peakChannelDifference": 44,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 5.0,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 5.0
+      },
+      {
+        "tick": 231,
+        "virtualMs": 3850.0000000000005,
+        "yaw": -10.20000000000001,
+        "changedPixelsOver2": 54,
+        "changedPixelsOver20": 4,
+        "peakChannelDifference": 127,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 4.2989999999999995,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 4.2989999999999995
+      },
+      {
+        "tick": 232,
+        "virtualMs": 3866.666666666667,
+        "yaw": -10.400000000000006,
+        "changedPixelsOver2": 49,
+        "changedPixelsOver20": 1,
+        "peakChannelDifference": 29,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 5.0,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 5.0
+      },
+      {
+        "tick": 233,
+        "virtualMs": 3883.3333333333335,
+        "yaw": -10.600000000000001,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 1,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 4.185,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 4.185
+      },
+      {
+        "tick": 234,
+        "virtualMs": 3900.0000000000005,
+        "yaw": -10.800000000000004,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 3.0599999999999996,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 3.0599999999999996
+      },
+      {
+        "tick": 235,
+        "virtualMs": 3916.666666666667,
+        "yaw": -11.000000000000007,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 3.5869999999999997,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 3.5869999999999997
+      },
+      {
+        "tick": 236,
+        "virtualMs": 3933.3333333333335,
+        "yaw": -11.200000000000003,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 4.0,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 4.0
+      },
+      {
+        "tick": 237,
+        "virtualMs": 3950.0000000000005,
+        "yaw": -11.400000000000006,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 4.885999999999999,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 4.885999999999999
+      },
+      {
+        "tick": 238,
+        "virtualMs": 3966.666666666667,
+        "yaw": -11.600000000000001,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 4.0,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 4.0
+      },
+      {
+        "tick": 239,
+        "virtualMs": 3983.3333333333335,
+        "yaw": -11.800000000000004,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 3.886,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 3.886
+      },
+      {
+        "tick": 240,
+        "virtualMs": 4000,
+        "yaw": -12,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0,
+        "controlJoinRowsOver20": 0,
+        "controlPeakJoinLuma": 4.413,
+        "staticJoinRowsOver20": 0,
+        "staticPeakJoinLuma": 4.413
+      }
+    ],
+    "clips": {
+      "negative": {
+        "path": "C:\\Storage\\Screensaver\\development\\r21-review\\join-negative-control-vs-static.mp4",
+        "frames": 21,
+        "firstMs": 0,
+        "lastMs": 650
+      },
+      "zero": {
+        "path": "C:\\Storage\\Screensaver\\development\\r21-review\\join-zero-control-vs-static.mp4",
+        "frames": 16,
+        "firstMs": 900.0000000000001,
+        "lastMs": 1150
+      },
+      "positive": {
+        "path": "C:\\Storage\\Screensaver\\development\\r21-review\\join-positive-control-vs-static.mp4",
+        "frames": 13,
+        "firstMs": 1450,
+        "lastMs": 1683.3333333333335
+      }
+    }
+  },
+  "interior": {
+    "runs": {
+      "control": "d4cc47baf8864208aa9d48aa29d1f8fb",
+      "static": "e014d3ecbb8e48fd99dc63167250740b"
+    },
+    "matchedTicks": 225,
+    "controlCallbacks": {
+      "1": 228
+    },
+    "staticCallbacks": {
+      "1": 228
+    },
+    "frames": [
+      {
+        "tick": 0,
+        "virtualMs": 0,
+        "yaw": -12,
+        "changedPixelsOver2": 3458,
+        "changedPixelsOver20": 628,
+        "peakChannelDifference": 73
+      },
+      {
+        "tick": 1,
+        "virtualMs": 16.666666666666668,
+        "yaw": -11.8,
+        "changedPixelsOver2": 3489,
+        "changedPixelsOver20": 633,
+        "peakChannelDifference": 103
+      },
+      {
+        "tick": 5,
+        "virtualMs": 83.33333333333334,
+        "yaw": -11,
+        "changedPixelsOver2": 3608,
+        "changedPixelsOver20": 688,
+        "peakChannelDifference": 81
+      },
+      {
+        "tick": 15,
+        "virtualMs": 250.00000000000003,
+        "yaw": -9,
+        "changedPixelsOver2": 4006,
+        "changedPixelsOver20": 833,
+        "peakChannelDifference": 83
+      },
+      {
+        "tick": 18,
+        "virtualMs": 300,
+        "yaw": -8.4,
+        "changedPixelsOver2": 4132,
+        "changedPixelsOver20": 868,
+        "peakChannelDifference": 83
+      },
+      {
+        "tick": 19,
+        "virtualMs": 316.6666666666667,
+        "yaw": -8.2,
+        "changedPixelsOver2": 4162,
+        "changedPixelsOver20": 881,
+        "peakChannelDifference": 71
+      },
+      {
+        "tick": 20,
+        "virtualMs": 333.33333333333337,
+        "yaw": -7.999999999999999,
+        "changedPixelsOver2": 4221,
+        "changedPixelsOver20": 896,
+        "peakChannelDifference": 76
+      },
+      {
+        "tick": 21,
+        "virtualMs": 350,
+        "yaw": -7.8,
+        "changedPixelsOver2": 4256,
+        "changedPixelsOver20": 905,
+        "peakChannelDifference": 83
+      },
+      {
+        "tick": 22,
+        "virtualMs": 366.6666666666667,
+        "yaw": -7.6,
+        "changedPixelsOver2": 4295,
+        "changedPixelsOver20": 915,
+        "peakChannelDifference": 91
+      },
+      {
+        "tick": 23,
+        "virtualMs": 383.33333333333337,
+        "yaw": -7.3999999999999995,
+        "changedPixelsOver2": 4319,
+        "changedPixelsOver20": 933,
+        "peakChannelDifference": 80
+      },
+      {
+        "tick": 24,
+        "virtualMs": 400,
+        "yaw": -7.2,
+        "changedPixelsOver2": 4369,
+        "changedPixelsOver20": 939,
+        "peakChannelDifference": 74
+      },
+      {
+        "tick": 25,
+        "virtualMs": 416.6666666666667,
+        "yaw": -7,
+        "changedPixelsOver2": 4423,
+        "changedPixelsOver20": 949,
+        "peakChannelDifference": 92
+      },
+      {
+        "tick": 26,
+        "virtualMs": 433.33333333333337,
+        "yaw": -6.8,
+        "changedPixelsOver2": 4457,
+        "changedPixelsOver20": 969,
+        "peakChannelDifference": 89
+      },
+      {
+        "tick": 27,
+        "virtualMs": 450.00000000000006,
+        "yaw": -6.6,
+        "changedPixelsOver2": 4510,
+        "changedPixelsOver20": 980,
+        "peakChannelDifference": 83
+      },
+      {
+        "tick": 28,
+        "virtualMs": 466.6666666666667,
+        "yaw": -6.3999999999999995,
+        "changedPixelsOver2": 4532,
+        "changedPixelsOver20": 991,
+        "peakChannelDifference": 84
+      },
+      {
+        "tick": 29,
+        "virtualMs": 483.33333333333337,
+        "yaw": -6.199999999999999,
+        "changedPixelsOver2": 4577,
+        "changedPixelsOver20": 1003,
+        "peakChannelDifference": 85
+      },
+      {
+        "tick": 30,
+        "virtualMs": 500.00000000000006,
+        "yaw": -5.999999999999999,
+        "changedPixelsOver2": 4624,
+        "changedPixelsOver20": 1024,
+        "peakChannelDifference": 79
+      },
+      {
+        "tick": 31,
+        "virtualMs": 516.6666666666667,
+        "yaw": -5.799999999999999,
+        "changedPixelsOver2": 4646,
+        "changedPixelsOver20": 1034,
+        "peakChannelDifference": 77
+      },
+      {
+        "tick": 32,
+        "virtualMs": 533.3333333333334,
+        "yaw": -5.6,
+        "changedPixelsOver2": 4698,
+        "changedPixelsOver20": 1049,
+        "peakChannelDifference": 72
+      },
+      {
+        "tick": 33,
+        "virtualMs": 550,
+        "yaw": -5.3999999999999995,
+        "changedPixelsOver2": 4734,
+        "changedPixelsOver20": 1063,
+        "peakChannelDifference": 76
+      },
+      {
+        "tick": 34,
+        "virtualMs": 566.6666666666667,
+        "yaw": -5.199999999999999,
+        "changedPixelsOver2": 4784,
+        "changedPixelsOver20": 1062,
+        "peakChannelDifference": 93
+      },
+      {
+        "tick": 35,
+        "virtualMs": 583.3333333333334,
+        "yaw": -4.999999999999999,
+        "changedPixelsOver2": 4835,
+        "changedPixelsOver20": 1057,
+        "peakChannelDifference": 76
+      },
+      {
+        "tick": 36,
+        "virtualMs": 600,
+        "yaw": -4.8,
+        "changedPixelsOver2": 4860,
+        "changedPixelsOver20": 1059,
+        "peakChannelDifference": 79
+      },
+      {
+        "tick": 37,
+        "virtualMs": 616.6666666666667,
+        "yaw": -4.599999999999999,
+        "changedPixelsOver2": 4887,
+        "changedPixelsOver20": 1072,
+        "peakChannelDifference": 93
+      },
+      {
+        "tick": 38,
+        "virtualMs": 633.3333333333334,
+        "yaw": -4.3999999999999995,
+        "changedPixelsOver2": 4923,
+        "changedPixelsOver20": 1066,
+        "peakChannelDifference": 86
+      },
+      {
+        "tick": 39,
+        "virtualMs": 650,
+        "yaw": -4.2,
+        "changedPixelsOver2": 4961,
+        "changedPixelsOver20": 1052,
+        "peakChannelDifference": 83
+      },
+      {
+        "tick": 40,
+        "virtualMs": 666.6666666666667,
+        "yaw": -3.9999999999999982,
+        "changedPixelsOver2": 5024,
+        "changedPixelsOver20": 1054,
+        "peakChannelDifference": 89
+      },
+      {
+        "tick": 41,
+        "virtualMs": 683.3333333333334,
+        "yaw": -3.799999999999999,
+        "changedPixelsOver2": 5044,
+        "changedPixelsOver20": 1064,
+        "peakChannelDifference": 87
+      },
+      {
+        "tick": 42,
+        "virtualMs": 700,
+        "yaw": -3.5999999999999996,
+        "changedPixelsOver2": 5064,
+        "changedPixelsOver20": 1066,
+        "peakChannelDifference": 74
+      },
+      {
+        "tick": 43,
+        "virtualMs": 716.6666666666667,
+        "yaw": -3.3999999999999986,
+        "changedPixelsOver2": 5096,
+        "changedPixelsOver20": 1068,
+        "peakChannelDifference": 83
+      },
+      {
+        "tick": 44,
+        "virtualMs": 733.3333333333334,
+        "yaw": -3.1999999999999993,
+        "changedPixelsOver2": 5129,
+        "changedPixelsOver20": 1077,
+        "peakChannelDifference": 75
+      },
+      {
+        "tick": 45,
+        "virtualMs": 750,
+        "yaw": -3,
+        "changedPixelsOver2": 5163,
+        "changedPixelsOver20": 1080,
+        "peakChannelDifference": 81
+      },
+      {
+        "tick": 46,
+        "virtualMs": 766.6666666666667,
+        "yaw": -2.799999999999999,
+        "changedPixelsOver2": 5192,
+        "changedPixelsOver20": 1089,
+        "peakChannelDifference": 92
+      },
+      {
+        "tick": 47,
+        "virtualMs": 783.3333333333334,
+        "yaw": -2.5999999999999996,
+        "changedPixelsOver2": 5228,
+        "changedPixelsOver20": 1081,
+        "peakChannelDifference": 74
+      },
+      {
+        "tick": 48,
+        "virtualMs": 800,
+        "yaw": -2.4000000000000004,
+        "changedPixelsOver2": 5266,
+        "changedPixelsOver20": 1090,
+        "peakChannelDifference": 87
+      },
+      {
+        "tick": 49,
+        "virtualMs": 816.6666666666667,
+        "yaw": -2.1999999999999993,
+        "changedPixelsOver2": 5318,
+        "changedPixelsOver20": 1086,
+        "peakChannelDifference": 92
+      },
+      {
+        "tick": 50,
+        "virtualMs": 833.3333333333334,
+        "yaw": -2,
+        "changedPixelsOver2": 5360,
+        "changedPixelsOver20": 1094,
+        "peakChannelDifference": 82
+      },
+      {
+        "tick": 51,
+        "virtualMs": 850.0000000000001,
+        "yaw": -1.799999999999999,
+        "changedPixelsOver2": 5383,
+        "changedPixelsOver20": 1076,
+        "peakChannelDifference": 78
+      },
+      {
+        "tick": 52,
+        "virtualMs": 866.6666666666667,
+        "yaw": -1.5999999999999996,
+        "changedPixelsOver2": 5436,
+        "changedPixelsOver20": 1076,
+        "peakChannelDifference": 88
+      },
+      {
+        "tick": 53,
+        "virtualMs": 883.3333333333334,
+        "yaw": -1.3999999999999986,
+        "changedPixelsOver2": 5457,
+        "changedPixelsOver20": 1073,
+        "peakChannelDifference": 90
+      },
+      {
+        "tick": 54,
+        "virtualMs": 900.0000000000001,
+        "yaw": -1.1999999999999993,
+        "changedPixelsOver2": 5504,
+        "changedPixelsOver20": 1078,
+        "peakChannelDifference": 74
+      },
+      {
+        "tick": 55,
+        "virtualMs": 916.6666666666667,
+        "yaw": -0.9999999999999982,
+        "changedPixelsOver2": 5542,
+        "changedPixelsOver20": 1079,
+        "peakChannelDifference": 89
+      },
+      {
+        "tick": 56,
+        "virtualMs": 933.3333333333334,
+        "yaw": -0.7999999999999989,
+        "changedPixelsOver2": 5583,
+        "changedPixelsOver20": 1084,
+        "peakChannelDifference": 99
+      },
+      {
+        "tick": 57,
+        "virtualMs": 950.0000000000001,
+        "yaw": -0.5999999999999979,
+        "changedPixelsOver2": 5618,
+        "changedPixelsOver20": 1091,
+        "peakChannelDifference": 84
+      },
+      {
+        "tick": 58,
+        "virtualMs": 966.6666666666667,
+        "yaw": -0.3999999999999986,
+        "changedPixelsOver2": 5641,
+        "changedPixelsOver20": 1085,
+        "peakChannelDifference": 91
+      },
+      {
+        "tick": 59,
+        "virtualMs": 983.3333333333334,
+        "yaw": -0.1999999999999993,
+        "changedPixelsOver2": 5678,
+        "changedPixelsOver20": 1095,
+        "peakChannelDifference": 73
+      },
+      {
+        "tick": 61,
+        "virtualMs": 1016.6666666666667,
+        "yaw": 0.20000000000000107,
+        "changedPixelsOver2": 5106,
+        "changedPixelsOver20": 1090,
+        "peakChannelDifference": 78
+      },
+      {
+        "tick": 62,
+        "virtualMs": 1033.3333333333335,
+        "yaw": 0.40000000000000213,
+        "changedPixelsOver2": 4369,
+        "changedPixelsOver20": 1068,
+        "peakChannelDifference": 74
+      },
+      {
+        "tick": 63,
+        "virtualMs": 1050,
+        "yaw": 0.5999999999999996,
+        "changedPixelsOver2": 3370,
+        "changedPixelsOver20": 910,
+        "peakChannelDifference": 73
+      },
+      {
+        "tick": 64,
+        "virtualMs": 1066.6666666666667,
+        "yaw": 0.8000000000000007,
+        "changedPixelsOver2": 2289,
+        "changedPixelsOver20": 538,
+        "peakChannelDifference": 65
+      },
+      {
+        "tick": 65,
+        "virtualMs": 1083.3333333333335,
+        "yaw": 1.0000000000000018,
+        "changedPixelsOver2": 1244,
+        "changedPixelsOver20": 117,
+        "peakChannelDifference": 32
+      },
+      {
+        "tick": 66,
+        "virtualMs": 1100,
+        "yaw": 1.200000000000001,
+        "changedPixelsOver2": 425,
+        "changedPixelsOver20": 1,
+        "peakChannelDifference": 21
+      },
+      {
+        "tick": 67,
+        "virtualMs": 1116.6666666666667,
+        "yaw": 1.4000000000000004,
+        "changedPixelsOver2": 16,
+        "changedPixelsOver20": 1,
+        "peakChannelDifference": 25
+      },
+      {
+        "tick": 68,
+        "virtualMs": 1133.3333333333335,
+        "yaw": 1.6000000000000014,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 69,
+        "virtualMs": 1150,
+        "yaw": 1.8000000000000007,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 70,
+        "virtualMs": 1166.6666666666667,
+        "yaw": 2.0000000000000018,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 71,
+        "virtualMs": 1183.3333333333335,
+        "yaw": 2.200000000000003,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 72,
+        "virtualMs": 1200,
+        "yaw": 2.4000000000000004,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 73,
+        "virtualMs": 1216.6666666666667,
+        "yaw": 2.6000000000000014,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 74,
+        "virtualMs": 1233.3333333333335,
+        "yaw": 2.8000000000000025,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 75,
+        "virtualMs": 1250,
+        "yaw": 3,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 76,
+        "virtualMs": 1266.6666666666667,
+        "yaw": 3.200000000000001,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 77,
+        "virtualMs": 1283.3333333333335,
+        "yaw": 3.400000000000002,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 78,
+        "virtualMs": 1300,
+        "yaw": 3.5999999999999996,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 79,
+        "virtualMs": 1316.6666666666667,
+        "yaw": 3.8000000000000007,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 80,
+        "virtualMs": 1333.3333333333335,
+        "yaw": 4.0000000000000036,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 81,
+        "virtualMs": 1350,
+        "yaw": 4.199999999999999,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 82,
+        "virtualMs": 1366.6666666666667,
+        "yaw": 4.400000000000002,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 83,
+        "virtualMs": 1383.3333333333335,
+        "yaw": 4.600000000000001,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 84,
+        "virtualMs": 1400,
+        "yaw": 4.800000000000001,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 85,
+        "virtualMs": 1416.6666666666667,
+        "yaw": 5,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 86,
+        "virtualMs": 1433.3333333333335,
+        "yaw": 5.200000000000003,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 87,
+        "virtualMs": 1450,
+        "yaw": 5.400000000000002,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 88,
+        "virtualMs": 1466.6666666666667,
+        "yaw": 5.600000000000001,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 89,
+        "virtualMs": 1483.3333333333335,
+        "yaw": 5.800000000000001,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 90,
+        "virtualMs": 1500,
+        "yaw": 6,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 91,
+        "virtualMs": 1516.6666666666667,
+        "yaw": 6.200000000000003,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 92,
+        "virtualMs": 1533.3333333333335,
+        "yaw": 6.400000000000002,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 93,
+        "virtualMs": 1550,
+        "yaw": 6.600000000000001,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 94,
+        "virtualMs": 1566.6666666666667,
+        "yaw": 6.800000000000001,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 95,
+        "virtualMs": 1583.3333333333335,
+        "yaw": 7.0000000000000036,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 96,
+        "virtualMs": 1600,
+        "yaw": 7.199999999999999,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 97,
+        "virtualMs": 1616.6666666666667,
+        "yaw": 7.400000000000002,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 98,
+        "virtualMs": 1633.3333333333335,
+        "yaw": 7.600000000000001,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 99,
+        "virtualMs": 1650.0000000000002,
+        "yaw": 7.800000000000004,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 100,
+        "virtualMs": 1666.6666666666667,
+        "yaw": 8,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 101,
+        "virtualMs": 1683.3333333333335,
+        "yaw": 8.200000000000003,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 102,
+        "virtualMs": 1700.0000000000002,
+        "yaw": 8.400000000000002,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 103,
+        "virtualMs": 1716.6666666666667,
+        "yaw": 8.600000000000001,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 104,
+        "virtualMs": 1733.3333333333335,
+        "yaw": 8.8,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 105,
+        "virtualMs": 1750.0000000000002,
+        "yaw": 9.000000000000004,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 106,
+        "virtualMs": 1766.6666666666667,
+        "yaw": 9.200000000000003,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 108,
+        "virtualMs": 1800.0000000000002,
+        "yaw": 9.600000000000001,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 109,
+        "virtualMs": 1816.6666666666667,
+        "yaw": 9.8,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 110,
+        "virtualMs": 1833.3333333333335,
+        "yaw": 10.000000000000004,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 111,
+        "virtualMs": 1850.0000000000002,
+        "yaw": 10.200000000000003,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 112,
+        "virtualMs": 1866.6666666666667,
+        "yaw": 10.400000000000002,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 113,
+        "virtualMs": 1883.3333333333335,
+        "yaw": 10.600000000000001,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 114,
+        "virtualMs": 1900.0000000000002,
+        "yaw": 10.800000000000004,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 115,
+        "virtualMs": 1916.6666666666667,
+        "yaw": 11,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 116,
+        "virtualMs": 1933.3333333333335,
+        "yaw": 11.200000000000003,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 117,
+        "virtualMs": 1950.0000000000002,
+        "yaw": 11.400000000000002,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 118,
+        "virtualMs": 1966.6666666666667,
+        "yaw": 11.600000000000001,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 119,
+        "virtualMs": 1983.3333333333335,
+        "yaw": 11.8,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 120,
+        "virtualMs": 2000.0000000000002,
+        "yaw": 11.999999999999996,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 121,
+        "virtualMs": 2016.6666666666667,
+        "yaw": 11.799999999999997,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 122,
+        "virtualMs": 2033.3333333333335,
+        "yaw": 11.599999999999998,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 123,
+        "virtualMs": 2050,
+        "yaw": 11.399999999999999,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 124,
+        "virtualMs": 2066.666666666667,
+        "yaw": 11.199999999999996,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 125,
+        "virtualMs": 2083.3333333333335,
+        "yaw": 10.999999999999996,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 126,
+        "virtualMs": 2100,
+        "yaw": 10.8,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 127,
+        "virtualMs": 2116.666666666667,
+        "yaw": 10.599999999999994,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 128,
+        "virtualMs": 2133.3333333333335,
+        "yaw": 10.399999999999999,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 129,
+        "virtualMs": 2150,
+        "yaw": 10.2,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 130,
+        "virtualMs": 2166.666666666667,
+        "yaw": 9.999999999999996,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 131,
+        "virtualMs": 2183.3333333333335,
+        "yaw": 9.799999999999997,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 132,
+        "virtualMs": 2200,
+        "yaw": 9.599999999999998,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 133,
+        "virtualMs": 2216.666666666667,
+        "yaw": 9.399999999999995,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 134,
+        "virtualMs": 2233.3333333333335,
+        "yaw": 9.2,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 135,
+        "virtualMs": 2250,
+        "yaw": 9,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 136,
+        "virtualMs": 2266.666666666667,
+        "yaw": 8.799999999999997,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 137,
+        "virtualMs": 2283.3333333333335,
+        "yaw": 8.599999999999998,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 138,
+        "virtualMs": 2300,
+        "yaw": 8.399999999999999,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 139,
+        "virtualMs": 2316.666666666667,
+        "yaw": 8.199999999999996,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 140,
+        "virtualMs": 2333.3333333333335,
+        "yaw": 7.9999999999999964,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 141,
+        "virtualMs": 2350,
+        "yaw": 7.800000000000001,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 142,
+        "virtualMs": 2366.666666666667,
+        "yaw": 7.599999999999994,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 143,
+        "virtualMs": 2383.3333333333335,
+        "yaw": 7.399999999999999,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 144,
+        "virtualMs": 2400,
+        "yaw": 7.199999999999999,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 145,
+        "virtualMs": 2416.666666666667,
+        "yaw": 6.9999999999999964,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 146,
+        "virtualMs": 2433.3333333333335,
+        "yaw": 6.799999999999997,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 147,
+        "virtualMs": 2450,
+        "yaw": 6.599999999999998,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 148,
+        "virtualMs": 2466.666666666667,
+        "yaw": 6.399999999999995,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 149,
+        "virtualMs": 2483.3333333333335,
+        "yaw": 6.199999999999999,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 150,
+        "virtualMs": 2500,
+        "yaw": 6,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 151,
+        "virtualMs": 2516.666666666667,
+        "yaw": 5.799999999999997,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 152,
+        "virtualMs": 2533.3333333333335,
+        "yaw": 5.599999999999998,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 153,
+        "virtualMs": 2550,
+        "yaw": 5.399999999999999,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 154,
+        "virtualMs": 2566.666666666667,
+        "yaw": 5.199999999999996,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 155,
+        "virtualMs": 2583.3333333333335,
+        "yaw": 4.9999999999999964,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 156,
+        "virtualMs": 2600,
+        "yaw": 4.800000000000001,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 157,
+        "virtualMs": 2616.666666666667,
+        "yaw": 4.599999999999994,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 158,
+        "virtualMs": 2633.3333333333335,
+        "yaw": 4.399999999999999,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 159,
+        "virtualMs": 2650,
+        "yaw": 4.199999999999999,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 160,
+        "virtualMs": 2666.666666666667,
+        "yaw": 3.999999999999993,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 161,
+        "virtualMs": 2683.3333333333335,
+        "yaw": 3.799999999999997,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 162,
+        "virtualMs": 2700,
+        "yaw": 3.6000000000000014,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 163,
+        "virtualMs": 2716.666666666667,
+        "yaw": 3.3999999999999986,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 164,
+        "virtualMs": 2733.3333333333335,
+        "yaw": 3.1999999999999957,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 165,
+        "virtualMs": 2750,
+        "yaw": 3,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 166,
+        "virtualMs": 2766.666666666667,
+        "yaw": 2.799999999999997,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 167,
+        "virtualMs": 2783.3333333333335,
+        "yaw": 2.5999999999999943,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 168,
+        "virtualMs": 2800,
+        "yaw": 2.3999999999999986,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 169,
+        "virtualMs": 2816.666666666667,
+        "yaw": 2.1999999999999957,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 170,
+        "virtualMs": 2833.3333333333335,
+        "yaw": 2,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 171,
+        "virtualMs": 2850,
+        "yaw": 1.7999999999999972,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 172,
+        "virtualMs": 2866.666666666667,
+        "yaw": 1.5999999999999943,
+        "changedPixelsOver2": 0,
+        "changedPixelsOver20": 0,
+        "peakChannelDifference": 0
+      },
+      {
+        "tick": 173,
+        "virtualMs": 2883.3333333333335,
+        "yaw": 1.3999999999999986,
+        "changedPixelsOver2": 16,
+        "changedPixelsOver20": 1,
+        "peakChannelDifference": 25
+      },
+      {
+        "tick": 174,
+        "virtualMs": 2900,
+        "yaw": 1.1999999999999957,
+        "changedPixelsOver2": 425,
+        "changedPixelsOver20": 1,
+        "peakChannelDifference": 21
+      },
+      {
+        "tick": 175,
+        "virtualMs": 2916.666666666667,
+        "yaw": 0.9999999999999929,
+        "changedPixelsOver2": 1244,
+        "changedPixelsOver20": 117,
+        "peakChannelDifference": 32
+      },
+      {
+        "tick": 176,
+        "virtualMs": 2933.3333333333335,
+        "yaw": 0.7999999999999972,
+        "changedPixelsOver2": 2289,
+        "changedPixelsOver20": 538,
+        "peakChannelDifference": 65
+      },
+      {
+        "tick": 177,
+        "virtualMs": 2950,
+        "yaw": 0.6000000000000014,
+        "changedPixelsOver2": 3370,
+        "changedPixelsOver20": 910,
+        "peakChannelDifference": 73
+      },
+      {
+        "tick": 178,
+        "virtualMs": 2966.666666666667,
+        "yaw": 0.3999999999999986,
+        "changedPixelsOver2": 4369,
+        "changedPixelsOver20": 1068,
+        "peakChannelDifference": 74
+      },
+      {
+        "tick": 179,
+        "virtualMs": 2983.3333333333335,
+        "yaw": 0.19999999999999574,
+        "changedPixelsOver2": 5106,
+        "changedPixelsOver20": 1090,
+        "peakChannelDifference": 78
+      },
+      {
+        "tick": 180,
+        "virtualMs": 3000,
+        "yaw": 0,
+        "changedPixelsOver2": 5515,
+        "changedPixelsOver20": 1096,
+        "peakChannelDifference": 91
+      },
+      {
+        "tick": 181,
+        "virtualMs": 3016.666666666667,
+        "yaw": -0.20000000000000284,
+        "changedPixelsOver2": 5678,
+        "changedPixelsOver20": 1095,
+        "peakChannelDifference": 73
+      },
+      {
+        "tick": 182,
+        "virtualMs": 3033.3333333333335,
+        "yaw": -0.4000000000000057,
+        "changedPixelsOver2": 5641,
+        "changedPixelsOver20": 1085,
+        "peakChannelDifference": 91
+      },
+      {
+        "tick": 183,
+        "virtualMs": 3050,
+        "yaw": -0.6000000000000014,
+        "changedPixelsOver2": 5618,
+        "changedPixelsOver20": 1091,
+        "peakChannelDifference": 84
+      },
+      {
+        "tick": 184,
+        "virtualMs": 3066.666666666667,
+        "yaw": -0.8000000000000043,
+        "changedPixelsOver2": 5583,
+        "changedPixelsOver20": 1084,
+        "peakChannelDifference": 99
+      },
+      {
+        "tick": 185,
+        "virtualMs": 3083.3333333333335,
+        "yaw": -1,
+        "changedPixelsOver2": 5542,
+        "changedPixelsOver20": 1079,
+        "peakChannelDifference": 89
+      },
+      {
+        "tick": 186,
+        "virtualMs": 3100,
+        "yaw": -1.2000000000000028,
+        "changedPixelsOver2": 5504,
+        "changedPixelsOver20": 1078,
+        "peakChannelDifference": 74
+      },
+      {
+        "tick": 187,
+        "virtualMs": 3116.666666666667,
+        "yaw": -1.4000000000000057,
+        "changedPixelsOver2": 5457,
+        "changedPixelsOver20": 1073,
+        "peakChannelDifference": 90
+      },
+      {
+        "tick": 188,
+        "virtualMs": 3133.3333333333335,
+        "yaw": -1.6000000000000014,
+        "changedPixelsOver2": 5436,
+        "changedPixelsOver20": 1076,
+        "peakChannelDifference": 88
+      },
+      {
+        "tick": 189,
+        "virtualMs": 3150,
+        "yaw": -1.8000000000000043,
+        "changedPixelsOver2": 5383,
+        "changedPixelsOver20": 1076,
+        "peakChannelDifference": 78
+      },
+      {
+        "tick": 190,
+        "virtualMs": 3166.666666666667,
+        "yaw": -2.000000000000007,
+        "changedPixelsOver2": 5360,
+        "changedPixelsOver20": 1094,
+        "peakChannelDifference": 82
+      },
+      {
+        "tick": 191,
+        "virtualMs": 3183.3333333333335,
+        "yaw": -2.200000000000003,
+        "changedPixelsOver2": 5318,
+        "changedPixelsOver20": 1086,
+        "peakChannelDifference": 92
+      },
+      {
+        "tick": 192,
+        "virtualMs": 3200,
+        "yaw": -2.3999999999999986,
+        "changedPixelsOver2": 5266,
+        "changedPixelsOver20": 1090,
+        "peakChannelDifference": 87
+      },
+      {
+        "tick": 193,
+        "virtualMs": 3216.666666666667,
+        "yaw": -2.6000000000000014,
+        "changedPixelsOver2": 5228,
+        "changedPixelsOver20": 1081,
+        "peakChannelDifference": 74
+      },
+      {
+        "tick": 194,
+        "virtualMs": 3233.3333333333335,
+        "yaw": -2.8000000000000043,
+        "changedPixelsOver2": 5192,
+        "changedPixelsOver20": 1089,
+        "peakChannelDifference": 92
+      },
+      {
+        "tick": 195,
+        "virtualMs": 3250.0000000000005,
+        "yaw": -3.000000000000007,
+        "changedPixelsOver2": 5163,
+        "changedPixelsOver20": 1080,
+        "peakChannelDifference": 81
+      },
+      {
+        "tick": 196,
+        "virtualMs": 3266.666666666667,
+        "yaw": -3.200000000000003,
+        "changedPixelsOver2": 5129,
+        "changedPixelsOver20": 1077,
+        "peakChannelDifference": 75
+      },
+      {
+        "tick": 197,
+        "virtualMs": 3283.3333333333335,
+        "yaw": -3.4000000000000057,
+        "changedPixelsOver2": 5096,
+        "changedPixelsOver20": 1068,
+        "peakChannelDifference": 83
+      },
+      {
+        "tick": 198,
+        "virtualMs": 3300.0000000000005,
+        "yaw": -3.6000000000000085,
+        "changedPixelsOver2": 5064,
+        "changedPixelsOver20": 1066,
+        "peakChannelDifference": 74
+      },
+      {
+        "tick": 199,
+        "virtualMs": 3316.666666666667,
+        "yaw": -3.8000000000000043,
+        "changedPixelsOver2": 5044,
+        "changedPixelsOver20": 1064,
+        "peakChannelDifference": 87
+      },
+      {
+        "tick": 200,
+        "virtualMs": 3333.3333333333335,
+        "yaw": -4,
+        "changedPixelsOver2": 5024,
+        "changedPixelsOver20": 1054,
+        "peakChannelDifference": 89
+      },
+      {
+        "tick": 201,
+        "virtualMs": 3350.0000000000005,
+        "yaw": -4.200000000000003,
+        "changedPixelsOver2": 4961,
+        "changedPixelsOver20": 1052,
+        "peakChannelDifference": 83
+      },
+      {
+        "tick": 202,
+        "virtualMs": 3366.666666666667,
+        "yaw": -4.400000000000006,
+        "changedPixelsOver2": 4923,
+        "changedPixelsOver20": 1066,
+        "peakChannelDifference": 86
+      },
+      {
+        "tick": 203,
+        "virtualMs": 3383.3333333333335,
+        "yaw": -4.600000000000001,
+        "changedPixelsOver2": 4887,
+        "changedPixelsOver20": 1072,
+        "peakChannelDifference": 93
+      },
+      {
+        "tick": 204,
+        "virtualMs": 3400.0000000000005,
+        "yaw": -4.800000000000004,
+        "changedPixelsOver2": 4860,
+        "changedPixelsOver20": 1059,
+        "peakChannelDifference": 79
+      },
+      {
+        "tick": 205,
+        "virtualMs": 3416.666666666667,
+        "yaw": -5.000000000000007,
+        "changedPixelsOver2": 4835,
+        "changedPixelsOver20": 1057,
+        "peakChannelDifference": 76
+      },
+      {
+        "tick": 206,
+        "virtualMs": 3433.3333333333335,
+        "yaw": -5.200000000000003,
+        "changedPixelsOver2": 4784,
+        "changedPixelsOver20": 1062,
+        "peakChannelDifference": 93
+      },
+      {
+        "tick": 207,
+        "virtualMs": 3450.0000000000005,
+        "yaw": -5.400000000000006,
+        "changedPixelsOver2": 4734,
+        "changedPixelsOver20": 1063,
+        "peakChannelDifference": 76
+      },
+      {
+        "tick": 208,
+        "virtualMs": 3466.666666666667,
+        "yaw": -5.600000000000001,
+        "changedPixelsOver2": 4698,
+        "changedPixelsOver20": 1049,
+        "peakChannelDifference": 72
+      },
+      {
+        "tick": 209,
+        "virtualMs": 3483.3333333333335,
+        "yaw": -5.800000000000004,
+        "changedPixelsOver2": 4646,
+        "changedPixelsOver20": 1034,
+        "peakChannelDifference": 77
+      },
+      {
+        "tick": 210,
+        "virtualMs": 3500.0000000000005,
+        "yaw": -6.000000000000007,
+        "changedPixelsOver2": 4623,
+        "changedPixelsOver20": 1024,
+        "peakChannelDifference": 79
+      },
+      {
+        "tick": 211,
+        "virtualMs": 3516.666666666667,
+        "yaw": -6.200000000000003,
+        "changedPixelsOver2": 4577,
+        "changedPixelsOver20": 1003,
+        "peakChannelDifference": 85
+      },
+      {
+        "tick": 212,
+        "virtualMs": 3533.3333333333335,
+        "yaw": -6.400000000000006,
+        "changedPixelsOver2": 4532,
+        "changedPixelsOver20": 991,
+        "peakChannelDifference": 84
+      },
+      {
+        "tick": 213,
+        "virtualMs": 3550.0000000000005,
+        "yaw": -6.6000000000000085,
+        "changedPixelsOver2": 4510,
+        "changedPixelsOver20": 980,
+        "peakChannelDifference": 83
+      },
+      {
+        "tick": 214,
+        "virtualMs": 3566.666666666667,
+        "yaw": -6.800000000000004,
+        "changedPixelsOver2": 4457,
+        "changedPixelsOver20": 969,
+        "peakChannelDifference": 89
+      },
+      {
+        "tick": 215,
+        "virtualMs": 3583.3333333333335,
+        "yaw": -7,
+        "changedPixelsOver2": 4423,
+        "changedPixelsOver20": 949,
+        "peakChannelDifference": 92
+      },
+      {
+        "tick": 216,
+        "virtualMs": 3600.0000000000005,
+        "yaw": -7.200000000000003,
+        "changedPixelsOver2": 4369,
+        "changedPixelsOver20": 939,
+        "peakChannelDifference": 74
+      },
+      {
+        "tick": 217,
+        "virtualMs": 3616.666666666667,
+        "yaw": -7.400000000000006,
+        "changedPixelsOver2": 4319,
+        "changedPixelsOver20": 933,
+        "peakChannelDifference": 80
+      },
+      {
+        "tick": 218,
+        "virtualMs": 3633.3333333333335,
+        "yaw": -7.600000000000001,
+        "changedPixelsOver2": 4295,
+        "changedPixelsOver20": 915,
+        "peakChannelDifference": 91
+      },
+      {
+        "tick": 219,
+        "virtualMs": 3650.0000000000005,
+        "yaw": -7.800000000000004,
+        "changedPixelsOver2": 4256,
+        "changedPixelsOver20": 905,
+        "peakChannelDifference": 83
+      },
+      {
+        "tick": 220,
+        "virtualMs": 3666.666666666667,
+        "yaw": -8.000000000000007,
+        "changedPixelsOver2": 4221,
+        "changedPixelsOver20": 896,
+        "peakChannelDifference": 76
+      },
+      {
+        "tick": 221,
+        "virtualMs": 3683.3333333333335,
+        "yaw": -8.200000000000003,
+        "changedPixelsOver2": 4162,
+        "changedPixelsOver20": 881,
+        "peakChannelDifference": 71
+      },
+      {
+        "tick": 222,
+        "virtualMs": 3700.0000000000005,
+        "yaw": -8.400000000000006,
+        "changedPixelsOver2": 4131,
+        "changedPixelsOver20": 868,
+        "peakChannelDifference": 83
+      },
+      {
+        "tick": 223,
+        "virtualMs": 3716.666666666667,
+        "yaw": -8.600000000000001,
+        "changedPixelsOver2": 4084,
+        "changedPixelsOver20": 847,
+        "peakChannelDifference": 82
+      },
+      {
+        "tick": 224,
+        "virtualMs": 3733.3333333333335,
+        "yaw": -8.800000000000004,
+        "changedPixelsOver2": 4055,
+        "changedPixelsOver20": 831,
+        "peakChannelDifference": 80
+      },
+      {
+        "tick": 225,
+        "virtualMs": 3750.0000000000005,
+        "yaw": -9.000000000000007,
+        "changedPixelsOver2": 4006,
+        "changedPixelsOver20": 833,
+        "peakChannelDifference": 83
+      },
+      {
+        "tick": 226,
+        "virtualMs": 3766.666666666667,
+        "yaw": -9.200000000000003,
+        "changedPixelsOver2": 3959,
+        "changedPixelsOver20": 821,
+        "peakChannelDifference": 89
+      },
+      {
+        "tick": 227,
+        "virtualMs": 3783.3333333333335,
+        "yaw": -9.400000000000006,
+        "changedPixelsOver2": 3924,
+        "changedPixelsOver20": 803,
+        "peakChannelDifference": 89
+      },
+      {
+        "tick": 228,
+        "virtualMs": 3800.0000000000005,
+        "yaw": -9.600000000000009,
+        "changedPixelsOver2": 3893,
+        "changedPixelsOver20": 799,
+        "peakChannelDifference": 71
+      },
+      {
+        "tick": 229,
+        "virtualMs": 3816.666666666667,
+        "yaw": -9.800000000000004,
+        "changedPixelsOver2": 3844,
+        "changedPixelsOver20": 780,
+        "peakChannelDifference": 83
+      },
+      {
+        "tick": 230,
+        "virtualMs": 3833.3333333333335,
+        "yaw": -10,
+        "changedPixelsOver2": 3792,
+        "changedPixelsOver20": 769,
+        "peakChannelDifference": 87
+      },
+      {
+        "tick": 231,
+        "virtualMs": 3850.0000000000005,
+        "yaw": -10.20000000000001,
+        "changedPixelsOver2": 3765,
+        "changedPixelsOver20": 756,
+        "peakChannelDifference": 88
+      },
+      {
+        "tick": 232,
+        "virtualMs": 3866.666666666667,
+        "yaw": -10.400000000000006,
+        "changedPixelsOver2": 3739,
+        "changedPixelsOver20": 742,
+        "peakChannelDifference": 92
+      },
+      {
+        "tick": 233,
+        "virtualMs": 3883.3333333333335,
+        "yaw": -10.600000000000001,
+        "changedPixelsOver2": 3683,
+        "changedPixelsOver20": 724,
+        "peakChannelDifference": 71
+      },
+      {
+        "tick": 234,
+        "virtualMs": 3900.0000000000005,
+        "yaw": -10.800000000000004,
+        "changedPixelsOver2": 3649,
+        "changedPixelsOver20": 699,
+        "peakChannelDifference": 86
+      },
+      {
+        "tick": 235,
+        "virtualMs": 3916.666666666667,
+        "yaw": -11.000000000000007,
+        "changedPixelsOver2": 3608,
+        "changedPixelsOver20": 688,
+        "peakChannelDifference": 82
+      },
+      {
+        "tick": 236,
+        "virtualMs": 3933.3333333333335,
+        "yaw": -11.200000000000003,
+        "changedPixelsOver2": 3558,
+        "changedPixelsOver20": 678,
+        "peakChannelDifference": 82
+      },
+      {
+        "tick": 237,
+        "virtualMs": 3950.0000000000005,
+        "yaw": -11.400000000000006,
+        "changedPixelsOver2": 3516,
+        "changedPixelsOver20": 668,
+        "peakChannelDifference": 82
+      },
+      {
+        "tick": 238,
+        "virtualMs": 3966.666666666667,
+        "yaw": -11.600000000000001,
+        "changedPixelsOver2": 3478,
+        "changedPixelsOver20": 655,
+        "peakChannelDifference": 94
+      },
+      {
+        "tick": 239,
+        "virtualMs": 3983.3333333333335,
+        "yaw": -11.800000000000004,
+        "changedPixelsOver2": 3489,
+        "changedPixelsOver20": 633,
+        "peakChannelDifference": 103
+      },
+      {
+        "tick": 240,
+        "virtualMs": 4000,
+        "yaw": -12,
+        "changedPixelsOver2": 3458,
+        "changedPixelsOver20": 628,
+        "peakChannelDifference": 73
+      }
+    ],
+    "clips": {
+      "negative": {
+        "path": "C:\\Storage\\Screensaver\\development\\r21-review\\interior-negative-control-vs-static.mp4",
+        "frames": 26,
+        "firstMs": 0,
+        "lastMs": 650
+      },
+      "zero": {
+        "path": "C:\\Storage\\Screensaver\\development\\r21-review\\interior-zero-control-vs-static.mp4",
+        "frames": 15,
+        "firstMs": 900.0000000000001,
+        "lastMs": 1150
+      },
+      "positive": {
+        "path": "C:\\Storage\\Screensaver\\development\\r21-review\\interior-positive-control-vs-static.mp4",
+        "frames": 15,
+        "firstMs": 1450,
+        "lastMs": 1683.3333333333335
+      }
+    }
+  }
+}
