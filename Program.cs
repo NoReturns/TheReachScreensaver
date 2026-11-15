@@ -12,6 +12,30 @@ internal static class Program
     [STAThread]
     private static int Main(string[] args)
     {
+#if REACH_DEVELOPER_BUILD
+        return ReachDeveloperApplication.Run(args);
+#else
+        if (args.Any(a => a.StartsWith("--reach-dev-projection", StringComparison.OrdinalIgnoreCase)
+            || a.Equals("--sandbox-root", StringComparison.OrdinalIgnoreCase)
+            || a.Equals("--reach-dev-smoke-seconds", StringComparison.OrdinalIgnoreCase)
+            || a.Equals("--reach-dev-fault", StringComparison.OrdinalIgnoreCase)
+            || a.Equals("--reach-dev-fixture", StringComparison.OrdinalIgnoreCase)
+            || a.Equals("--reach-dev-post", StringComparison.OrdinalIgnoreCase)
+            || a.Equals("--reach-dev-guard", StringComparison.OrdinalIgnoreCase)
+            || a.Equals("--reach-dev-bloom-mips", StringComparison.OrdinalIgnoreCase)
+            || a.Equals("--reach-dev-motion", StringComparison.OrdinalIgnoreCase)
+            || a.Equals("--reach-dev-continuous", StringComparison.OrdinalIgnoreCase)
+            || a.Equals("--reach-dev-yaw", StringComparison.OrdinalIgnoreCase)
+            || a.Equals("--reach-dev-forensics", StringComparison.OrdinalIgnoreCase)
+            || a.Equals("--reach-dev-source-probe", StringComparison.OrdinalIgnoreCase)
+            || a.Equals("--reach-dev-sector-parity", StringComparison.OrdinalIgnoreCase)
+            || a.Equals("--reach-dev-sector-motion", StringComparison.OrdinalIgnoreCase)
+            || a.Equals("--reach-dev-negative-probe", StringComparison.OrdinalIgnoreCase)
+            || a.Equals("--reach-dev-zero-target", StringComparison.OrdinalIgnoreCase)))
+        {
+            Console.Error.WriteLine("Developer projection is unavailable in this build.");
+            return 1;
+        }
         if (args.Length == 1 && string.Equals(args[0], "--reach-assets-status", StringComparison.OrdinalIgnoreCase))
         {
             Log.Initialize(ReachVisualConfiguration.RootDirectory);
@@ -121,6 +145,7 @@ internal static class Program
                 ConfigurationDialog.ShowError("The Reach Screensaver failed.\n\n" + ex.Message);
             return 1;
         }
+#endif
     }
 
     private static int RunConfiguration(IntPtr ownerHwnd)

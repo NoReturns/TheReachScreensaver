@@ -10,4 +10,16 @@ artifacts/
 *.log
 uploads/
 agent-tools/
+/development/runs/
+
+# Generated developer fixtures and disposable WebView2 sandboxes.
+/development/__pycache__/
+/development/b1-fixture-build-*/
+/development/b1-publish-*/
+/development/r[0-9]*-fixture-dist*/
+/development/r[0-9]*-publish*/
+/development/r[0-9]*-runs/
+/development/r[0-9]*-variants/
+/development/r[0-9]*-*-variants/
+/development/r9-build/
 

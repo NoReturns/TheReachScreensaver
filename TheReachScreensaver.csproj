@@ -21,7 +21,13 @@
     <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(ReachDeveloperBuild)' == 'true'">
+    <DefineConstants>$(DefineConstants);REACH_DEVELOPER_BUILD</DefineConstants>
+    <AssemblyName>TheReachDeveloper</AssemblyName>
+  </PropertyGroup>
+
   <ItemGroup>
+    <Compile Remove="artifacts\**\*.cs" />
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.4258.31" />
     <PackageReference Include="OpenTK" Version="4.9.4" />
     <!-- Lightweight RGBA decoder for embedded planet albedo maps (single-file publish friendly). -->
@@ -54,7 +60,7 @@
     <EmbeddedResource Include="Assets\Planets\Pluto_PIA11707_2048.jpg" LogicalName="TheReachScreensaver.Assets.Planets.Pluto_PIA11707_2048.jpg" />
   </ItemGroup>
 
-  <Target Name="CopyScreensaverExtension" AfterTargets="Publish" Condition="'$(RuntimeIdentifier)' == 'win-x64'">
+  <Target Name="CopyScreensaverExtension" AfterTargets="Publish" Condition="'$(RuntimeIdentifier)' == 'win-x64' and '$(ReachDeveloperBuild)' != 'true'">
     <Copy SourceFiles="$(PublishDir)$(AssemblyName).exe" DestinationFiles="$(PublishDir)$(AssemblyName).scr" />
   </Target>
 </Project>
